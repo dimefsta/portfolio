@@ -13,6 +13,9 @@
   --text-faint: #555;
   --accent: #e8e8e8;
   --accent-dim: rgba(232,232,232,0.06);
+  --accent-red: #e03030;
+  --accent-red-hover: #ff4444;
+  --accent-red-dim: rgba(224,48,48,0.10);
   --radius: 16px;
   --radius-sm: 10px;
   --radius-xs: 6px;
@@ -59,7 +62,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: relative;
   transition: border-color var(--transition);
 }
-.box:hover { border-color: rgba(255,255,255,0.15); }
+.box:hover { border-color: rgba(224,48,48,0.35); }
 
 /* =====================
    GRID PLACEMENT
@@ -97,7 +100,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  scrollbar-color: rgba(224,48,48,0.15) transparent;
   padding-right: 2px;
 }
 .projects-list { display: flex; flex-direction: column; gap: 10px; }
@@ -114,7 +117,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .certs-list::-webkit-scrollbar-track { background: transparent; }
 .skills::-webkit-scrollbar-thumb,
 .projects-list::-webkit-scrollbar-thumb,
-.certs-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+.certs-list::-webkit-scrollbar-thumb { background: rgba(224,48,48,0.2); border-radius: 99px; }
 
 .scroll-hint {
   position: absolute;
@@ -145,7 +148,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text-faint);
   transition: color var(--transition);
 }
-.view-all:hover { color: var(--text); }
+.view-all:hover { color: var(--accent-red); }
 
 /* =====================
    WELCOME BOX
@@ -168,7 +171,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .bold-name { font-weight: 700; color: var(--text); }
 .job {
   font-weight: 700;
-  color: var(--text);
+  color: var(--accent-red);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -206,7 +209,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
   height: fit-content;
 }
-.skill-tag:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
+.skill-tag:hover { border-color: rgba(224,48,48,0.4); color: var(--accent-red); }
 
 /* =====================
    LANGUAGES BOX
@@ -280,9 +283,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
 }
 .social-icon:hover {
-  color: var(--text);
-  border-color: rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.06);
+  color: var(--accent-red);
+  border-color: rgba(224,48,48,0.4);
+  background: var(--accent-red-dim);
   transform: translateY(-2px);
 }
 .hire-link {
@@ -291,7 +294,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text-faint);
   transition: color var(--transition);
 }
-.hire-link:hover { color: var(--text); }
+.hire-link:hover { color: var(--accent-red); }
 
 /* =====================
    PROJECTS
@@ -305,8 +308,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: border-color var(--transition), background var(--transition);
 }
 .project-card:hover {
-  border-color: rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.04);
+  border-color: rgba(224,48,48,0.35);
+  background: rgba(224,48,48,0.04);
 }
 .project-card-header {
   display: flex;
@@ -324,10 +327,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border: 1px solid var(--border);
   transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
-.project-btn.live { background: var(--text); color: var(--bg); border-color: var(--text); }
-.project-btn.live:hover { opacity: 0.85; }
+.project-btn.live { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+.project-btn.live:hover { background: var(--accent-red-hover); border-color: var(--accent-red-hover); }
 .project-btn.repo { color: var(--text-muted); background: transparent; }
-.project-btn.repo:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+.project-btn.repo:hover { color: var(--accent-red); border-color: rgba(224,48,48,0.4); }
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
@@ -351,18 +354,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    HIRE ME
    ===================== */
 .please-box {
-  background: #e8e8e8;
+  background: var(--accent-red);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background var(--transition);
 }
-.please-box:hover { background: #fff; }
+.please-box:hover { background: var(--accent-red-hover); }
 .cta-content { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .cta-emoji { font-size: 24px; line-height: 1; }
-.cta-text  { font-size: 16px; font-weight: 700; color: #0f0f0f; }
-.cta-sub   { font-size: 10px; color: #555; }
+.cta-text  { font-size: 16px; font-weight: 700; color: #fff; }
+.cta-sub   { font-size: 10px; color: rgba(255,255,255,0.7); }
 
 /* =====================
    CERTIFICATIONS
@@ -379,8 +382,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: border-color var(--transition), background var(--transition);
 }
 .cert-card:hover {
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.04);
+  border-color: rgba(224,48,48,0.35);
+  background: rgba(224,48,48,0.04);
 }
 .cert-clickable { cursor: pointer; }
 .cert-logo {
@@ -408,7 +411,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 12px; color: var(--text-faint); flex-shrink: 0;
   transition: color var(--transition), transform var(--transition);
 }
-.cert-card:hover .cert-arrow { color: var(--text); transform: translate(2px, -2px); }
+.cert-card:hover .cert-arrow { color: var(--accent-red); transform: translate(2px, -2px); }
 .cert-clickable:hover .cert-arrow { transform: scale(1.2); }
 .cert-count { font-weight: 400; color: var(--text-faint); font-size: 10px; }
 
@@ -461,7 +464,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: center;
   justify-content: center;
 }
-.cert-modal-close:hover { color: var(--text); }
+.cert-modal-close:hover { color: var(--accent-red); }
 .cert-modal-loading { color: var(--text-muted); font-size: 13px; padding: 40px 0; }
 .cert-modal-img {
   width: 100%;
@@ -490,7 +493,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 8px;
 }
 .timezone-time  { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; }
-.timezone-date  { font-size: 10px; color: var(--text-faint); letter-spacing: 0.01em; }
+.timezone-date  { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.01em; font-weight: 500; }
 .timezone-zone  { font-size: 9px;  color: var(--text-faint); margin-top: 1px; }
 
 /* =====================
@@ -577,7 +580,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; }
   .timezone-icon { font-size: 22px; }
   .timezone-time { font-size: 16px; font-weight: 700; }
-  .timezone-date { font-size: 10px; color: rgba(255,255,255,0.35); }
+  .timezone-date { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 500; }
   .timezone-label { font-size: 9px; }
   .timezone-zone  { display: none; }
 
