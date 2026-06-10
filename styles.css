@@ -37,11 +37,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* =====================
    BENTO GRID
+   Row3 = 70px  (timezone — compact)
+   Row4 = 160px (languages — all 4 visible)
    ===================== */
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 210px 190px 190px 90px 90px;
+  grid-template-rows: 210px 190px 70px 160px 90px;
   gap: 12px;
   max-width: 1100px;
   margin: 0 auto;
@@ -63,6 +65,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* =====================
    GRID PLACEMENT
+   Col:  1          2          3          4
+   Row1: welcome    welcome    welcome    about
+   Row2: contact    projects   projects   about
+   Row3: timezone   projects   projects   certs
+   Row4: languages  footer     footer     certs
+   Row5: hire-me    footer     footer     certs
    ===================== */
 .welcome-box   { grid-column: 1 / 4; grid-row: 1; }
 .about-box     { grid-column: 4;     grid-row: 1 / 3; }
@@ -213,24 +221,25 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .skill-tag:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
 
 /* =====================
-   LANGUAGES BOX
+   LANGUAGES BOX — 160px, all 4 visible
    ===================== */
 .languages-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 14px 20px;
 }
 .languages-box .box-title { margin-bottom: 10px; }
 
 .lang-list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 9px;
 }
 .lang-item {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 .lang-flag { font-size: 15px; line-height: 1; flex-shrink: 0; }
 .lang-name {
@@ -482,7 +491,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* =====================
-   TIMEZONE  — compact
+   TIMEZONE — compact (row = 70px)
    ===================== */
 .timezone-content {
   display: flex;
@@ -512,8 +521,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .about-box     { grid-column: span 1; grid-row: auto; min-height: 280px; }
   .contact-box   { grid-column: span 1; grid-row: auto; }
   .project-box   { grid-column: 1 / 3;  grid-row: auto; min-height: 340px; }
-  .timezone-box  { grid-column: span 1; grid-row: auto; }
-  .languages-box { grid-column: span 1; grid-row: auto; }
+  .timezone-box  { grid-column: span 1; grid-row: auto; min-height: 60px; }
+  .languages-box { grid-column: span 1; grid-row: auto; min-height: 160px; }
   .please-box    { grid-column: span 1; grid-row: auto; }
   .certs-box     { grid-column: 1 / 3;  grid-row: auto; min-height: 280px; }
   .footer-box    { grid-column: 1 / 3;  grid-row: auto; }
@@ -527,6 +536,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-column: 1; grid-row: auto;
   }
   .about-box, .project-box, .certs-box { min-height: 260px; }
+  .languages-box { min-height: 160px; }
   .typewriter { font-size: 17px; }
   .social-icons { gap: 8px; }
   .social-icon { width: 44px; height: 44px; }
