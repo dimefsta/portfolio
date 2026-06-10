@@ -1,0 +1,2 @@
+$(base64 ~/esyd.jpg | tr -d '
+')
