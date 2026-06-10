@@ -507,112 +507,173 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ============================================================
-   MOBILE — Clean Bento
-   grid-template-areas ensures exact placement
-
-   welcome  welcome
-   timezone contact
-   hireme   contact   ← contact spans 2 rows
-   projects projects
-   about    about
-   langs    certs
-   footer   footer
+   MOBILE — Single column tiles
+   Κάθε box παίρνει ακριβώς όσο ύψος χρειάζεται.
+   Σειρά: welcome, timezone, contact, projects,
+          about (collapsible), langs, certs (collapsible), footer
    ============================================================ */
 @media (max-width: 580px) {
   body { padding: 10px; font-size: 13px; }
 
+  /* Single column — override όλα τα grid spans */
   .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
-    grid-template-areas:
-      "welcome  welcome"
-      "timezone contact"
-      "hireme   contact"
-      "projects projects"
-      "about    about"
-      "langs    certs"
-      "footer   footer";
   }
 
-  .welcome-box   { grid-area: welcome; }
-  .timezone-box  { grid-area: timezone; }
-  .contact-box   { grid-area: contact; }
-  .please-box    { grid-area: hireme; }
-  .project-box   { grid-area: projects; }
-  .about-box     { grid-area: about; }
-  .languages-box { grid-area: langs; }
-  .certs-box     { grid-area: certs; }
-  .footer-box    { grid-area: footer; display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; }
+  /* Σειρά εμφάνισης */
+  .welcome-box   { order: 1; }
+  .timezone-box  { order: 2; }
+  .contact-box   { order: 3; }
+  .please-box    { order: 4; }
+  .project-box   { order: 5; }
+  .about-box     { order: 6; }
+  .languages-box { order: 7; }
+  .certs-box     { order: 8; }
+  .footer-box    { order: 9; }
 
-  /* ────────────────────────────────
-     TAP-TO-EXPAND: About & Certs
-     KEY FIX: title sits OUTSIDE the
-     collapsible wrapper, always visible.
-     Only .about-inner / .certs-inner collapses.
-     ──────────────────────────────── */
+  /* Όλα τα boxes: auto height, χωρίς min-height */
+  .box {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden;
+  }
 
-  /* About box wrapper */
+  /* Σκοτώνουμε τα flex:1 που φουσκώνουν τα boxes */
+  .about-box,
+  .project-box,
+  .certs-box { display: block; }
+
+  .about-content,
+  .project-content,
+  .certs-content {
+    flex: none;
+    overflow: visible;
+    display: block;
+    min-height: 0;
+  }
+
+  .skills,
+  .projects-list,
+  .certs-list {
+    flex: none;
+    overflow: visible;
+  }
+
+  /* ── Welcome ── */
+  .welcome-box { padding: 16px 18px; }
+  .welcome-content { gap: 14px; height: auto; }
+  .typewriter { font-size: 15px; line-height: 1.55; }
+  .welcome-image-container { width: 70px; height: 70px; }
+
+  /* ── Timezone (μικρό tile) ── */
+  .timezone-box { padding: 14px 16px; }
+  .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; }
+  .timezone-icon { font-size: 22px; }
+  .timezone-time { font-size: 16px; font-weight: 700; }
+  .timezone-label { font-size: 9px; }
+  .timezone-zone  { display: none; }
+
+  /* ── Contact ── */
+  .contact-box { padding: 16px 14px; }
+  .contact-content { height: auto; }
+  .contact-sub { display: none; }
+  .contact-box .box-title { margin-bottom: 10px; }
+  .social-icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 0;
+  }
+  .social-icon { width: 100%; height: 44px; border-radius: 8px; }
+  .hire-link { display: none; }
+
+  /* ── Hire Me ── */
+  .please-box { padding: 14px 12px; min-height: 60px !important; }
+  .cta-emoji { font-size: 20px; }
+  .cta-text  { font-size: 13px; }
+  .cta-sub   { font-size: 9px; }
+
+  /* ── Projects (horizontal scroll cards) ── */
+  .project-box { padding: 14px 14px 10px; overflow: visible; }
+  .project-box .box-title { margin-bottom: 10px; font-size: 10px; }
+  .project-box .projects-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    gap: 10px;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .project-box .projects-list::-webkit-scrollbar { display: none; }
+  .project-card {
+    min-width: 200px;
+    max-width: 200px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .project-box .scroll-hint { display: none; }
+
+  /* ── Languages ── */
+  .languages-box { padding: 14px 16px; justify-content: flex-start; }
+  .languages-box .box-title { margin-bottom: 10px; font-size: 10px; }
+  .lang-list { gap: 8px; }
+  .lang-item { gap: 6px; }
+  .lang-flag  { font-size: 14px; }
+  .lang-name  { font-size: 10px; min-width: 44px; }
+  .lang-level { display: none; }
+  .lang-badge { font-size: 8px; padding: 2px 5px; }
+
+  /* ════════════════════════════════════════
+     ABOUT & CERTS — tap-to-expand tiles
+     Τίτλος: πάντα ορατός
+     Περιεχόμενο: κολλάπσεται
+     ════════════════════════════════════════ */
+
   .about-box {
     padding: 14px 16px;
     cursor: pointer;
-    overflow: hidden;
-    /* flex column so title + collapsible stack vertically */
-    display: flex;
-    flex-direction: column;
   }
-  /* Title row: always visible, flex with chevron */
   .about-box .mobile-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-shrink: 0;
-    margin-bottom: 0;
   }
-  .about-box .mobile-header .box-title {
-    margin-bottom: 0;
-  }
-  /* Collapsible body — hidden by default */
+  .about-box .mobile-header .box-title { margin-bottom: 0; }
   .about-box .about-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 480ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1),
+                margin-top 300ms ease;
     margin-top: 0;
   }
   .about-box.expanded .about-content {
     max-height: 900px;
     margin-top: 12px;
   }
-  .about-box .skills {
-    overflow: visible;
-    flex-wrap: wrap;
-  }
+  .about-box .skills { overflow: visible; flex-wrap: wrap; }
   .about-box .scroll-hint { display: none; }
 
-  /* Certs box wrapper */
   .certs-box {
     padding: 14px 14px;
     cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
   }
   .certs-box .mobile-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-shrink: 0;
-    margin-bottom: 0;
   }
-  .certs-box .mobile-header .box-title {
-    margin-bottom: 0;
-  }
-  /* Collapsible body */
+  .certs-box .mobile-header .box-title { margin-bottom: 0; }
   .certs-box .certs-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 480ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1),
+                margin-top 300ms ease;
     margin-top: 0;
   }
   .certs-box.expanded .certs-content {
@@ -622,85 +683,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .certs-box .certs-list { overflow: visible; }
   .certs-box .scroll-hint { display: none; }
 
-  /* Chevron icon (injected by JS) */
+  /* Chevron */
   .mobile-chevron {
     font-size: 16px;
     color: var(--text-faint);
-    line-height: 1;
     flex-shrink: 0;
-    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 320ms cubic-bezier(0.16,1,0.3,1);
     pointer-events: none;
     user-select: none;
   }
   .about-box.expanded .mobile-chevron,
-  .certs-box.expanded .mobile-chevron {
-    transform: rotate(180deg);
-  }
-
-  /* ── Welcome ── */
-  .welcome-box { padding: 16px 18px; }
-  .welcome-content { gap: 14px; }
-  .typewriter { font-size: 15px; line-height: 1.55; }
-  .welcome-image-container { width: 70px; height: 70px; }
-
-  /* ── Timezone ── */
-  .timezone-box { padding: 14px 16px; min-height: 80px; display: flex; align-items: stretch; }
-  .timezone-content { flex-direction: column; gap: 4px; align-items: flex-start; justify-content: center; }
-  .timezone-icon  { font-size: 22px; line-height: 1; }
-  .timezone-time  { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
-  .timezone-label { font-size: 9px; color: var(--text-faint); }
-  .timezone-zone  { display: none; }
-
-  /* ── Hire Me ── */
-  .please-box { min-height: 70px; padding: 14px 12px; }
-  .cta-emoji { font-size: 20px; }
-  .cta-text  { font-size: 13px; }
-  .cta-sub   { font-size: 9px; }
-
-  /* ── Contact (spans 2 rows) ── */
-  .contact-box { padding: 16px 14px; display: flex; }
-  .contact-content { display: flex; flex-direction: column; height: 100%; }
-  .contact-box .box-title { margin-bottom: 10px; font-size: 10px; }
-  .contact-sub { display: none; }
-  .social-icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
-    margin-bottom: 10px;
-  }
-  .social-icon { width: 100%; height: 40px; border-radius: 8px; }
-  .social-icon svg { width: 18px; height: 18px; }
-  .hire-link { font-size: 10px; margin-top: auto; padding-top: 6px; }
-
-  /* ── Projects (horizontal scroll) ── */
-  .project-box { padding: 16px 16px 12px; overflow: visible; }
-  .project-box .project-content { overflow: visible; }
-  .project-box .box-title { margin-bottom: 12px; }
-  .project-box .projects-list {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 10px;
-    padding-bottom: 8px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .project-box .projects-list::-webkit-scrollbar { display: none; }
-  .project-card { min-width: 210px; max-width: 210px; scroll-snap-align: start; flex-shrink: 0; }
-  .project-box .scroll-hint { display: none; }
-
-  /* ── Languages ── */
-  .languages-box { padding: 14px; min-height: 0; justify-content: flex-start; }
-  .languages-box .box-title { margin-bottom: 10px; font-size: 10px; }
-  .lang-list { gap: 8px; }
-  .lang-item { gap: 6px; }
-  .lang-flag  { font-size: 14px; }
-  .lang-name  { font-size: 10px; min-width: 42px; }
-  .lang-level { display: none; }
-  .lang-badge { font-size: 8px; padding: 2px 5px; }
+  .certs-box.expanded  .mobile-chevron { transform: rotate(180deg); }
 
   /* ── Footer ── */
-  .footer-box { font-size: 11px; min-height: 40px; }
+  .footer-box { padding: 12px 16px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
 }
