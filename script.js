@@ -1,123 +1,132 @@
-// =====================
-// TYPEWRITER ANIMATION
-// =====================
-const lines = ['line1','line2','line3','line4'];
-let currentLine = 0;
-
-function showNextLine() {
-  if (currentLine < lines.length) {
-    const el = document.getElementById(lines[currentLine]);
-    if (el) {
-      el.style.transition = 'opacity 0.5s ease';
+/* =====================
+   TYPEWRITER
+   ===================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const lines = [
+    { id: 'line1', delay: 300 },
+    { id: 'line2', delay: 700 },
+    { id: 'line3', delay: 1100 },
+    { id: 'line4', delay: 1500 },
+  ];
+  lines.forEach(({ id, delay }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    setTimeout(() => {
+      el.style.transition = 'opacity 600ms ease';
       el.style.opacity = '1';
+    }, delay);
+  });
+});
+
+/* =====================
+   CLOCK
+   ===================== */
+function updateClock() {
+  const el = document.getElementById('timezone-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('el-GR', {
+    timeZone: 'Europe/Athens',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* =====================
+   MOBILE TAP-TO-EXPAND
+   Handles: about, certs, languages, contact, project
+   ===================== */
+function initExpandable() {
+  if (window.innerWidth > 580) return;
+
+  const configs = [
+    {
+      boxSel:     '.about-box',
+      titleSel:   '.about-content > .box-title, .about-box > .about-content > .box-title',
+      rootTitle:  true,   // box-title is direct child of box (not inside content)
+      innerClass: null,   // uses about-content directly
+      stopSel:    'a, button, .cert-clickable',
+    },
+    {
+      boxSel:     '.certs-box',
+      rootTitle:  true,
+      innerClass: null,
+      stopSel:    'a, button, .cert-clickable',
+    },
+    {
+      boxSel:     '.languages-box',
+      rootTitle:  true,
+      innerClass: null,
+      stopSel:    'a, button',
+    },
+    {
+      boxSel:     '.contact-box',
+      rootTitle:  true,
+      innerClass: 'contact-inner',
+      stopSel:    'a, button',
+    },
+    {
+      boxSel:     '.project-box',
+      rootTitle:  true,
+      innerClass: 'project-inner',
+      stopSel:    'a, button',
+    },
+  ];
+
+  configs.forEach(cfg => {
+    var box = document.querySelector(cfg.boxSel);
+    if (!box) return;
+
+    // ── Build mobile-header if not present ──
+    if (!box.querySelector('.mobile-header')) {
+      var titleEl = box.querySelector('.box-title');
+      if (!titleEl) return;
+
+      var header = document.createElement('div');
+      header.className = 'mobile-header';
+
+      var chevron = document.createElement('span');
+      chevron.className = 'mobile-chevron';
+      chevron.innerHTML = '&#8964;';
+      chevron.setAttribute('aria-hidden', 'true');
+
+      titleEl.parentNode.insertBefore(header, titleEl);
+      header.appendChild(titleEl);
+      header.appendChild(chevron);
     }
-    currentLine++;
-    if (currentLine < lines.length) setTimeout(showNextLine, 350);
-  }
+
+    // ── Wrap collapsible content if innerClass specified ──
+    if (cfg.innerClass && !box.querySelector('.' + cfg.innerClass)) {
+      var wrapper = document.createElement('div');
+      wrapper.className = cfg.innerClass;
+
+      var header = box.querySelector('.mobile-header');
+      // move everything after the mobile-header into wrapper
+      var children = Array.from(box.childNodes);
+      children.forEach(function(child) {
+        if (child !== header && child.nodeType !== 3 /* text */ ) {
+          wrapper.appendChild(child);
+        }
+      });
+      box.appendChild(wrapper);
+    }
+
+    // ── Toggle handler ──
+    // Clone to remove any previous listeners
+    var newBox = box.cloneNode(true);
+    box.parentNode.replaceChild(newBox, box);
+
+    newBox.addEventListener('click', function(e) {
+      if (window.innerWidth > 580) return;
+      if (cfg.stopSel && e.target.closest(cfg.stopSel)) return;
+      newBox.classList.toggle('expanded');
+    });
+  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(showNextLine, 300);
-
-  // =====================
-  // LIVE CLOCK
-  // =====================
-  function updateClock() {
-    const el = document.getElementById('timezone-time');
-    if (!el) return;
-    const now = new Date();
-    el.textContent = now.toLocaleTimeString('el-GR', {
-      timeZone: 'Europe/Athens',
-      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-    });
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  // =====================
-  // MOBILE TAP-TO-EXPAND
-  // Wraps box title in a .mobile-header div with a chevron.
-  // Only runs on screens <= 580px.
-  // =====================
-
-  function isMobile() { return window.innerWidth <= 580; }
-
-  // Wrap the existing .box-title inside a .mobile-header + add chevron
-  // Only called once per box (guarded by data attribute)
-  function injectMobileHeader(boxEl) {
-    if (!boxEl || boxEl.dataset.mobileInit) return;
-    boxEl.dataset.mobileInit = 'true';
-
-    const titleEl = boxEl.querySelector(':scope > .about-content > .box-title, :scope > .certs-content > .box-title, :scope > .box-title');
-    // We need the DIRECT child box-title of the box, not inside content wrappers
-    // So we look for the first .box-title that's a direct child:
-    let directTitle = null;
-    for (const child of boxEl.children) {
-      if (child.classList.contains('box-title')) { directTitle = child; break; }
-    }
-    // If title is inside about-content / certs-content, move it out
-    // (In the current HTML it IS inside .about-content / .certs-content)
-    // So we grab it from there:
-    const contentEl = boxEl.querySelector('.about-content, .certs-content');
-    if (!contentEl) return;
-    const titleInContent = contentEl.querySelector('.box-title');
-    if (!titleInContent) return;
-
-    // Move title out of content wrapper
-    boxEl.insertBefore(titleInContent, contentEl);
-
-    // Wrap title + chevron in .mobile-header
-    const header = document.createElement('div');
-    header.className = 'mobile-header';
-
-    const chevron = document.createElement('span');
-    chevron.className = 'mobile-chevron';
-    chevron.setAttribute('aria-hidden', 'true');
-    chevron.textContent = '\u2304'; // ⌄ down arrow
-
-    titleInContent.parentNode.insertBefore(header, titleInContent);
-    header.appendChild(titleInContent);
-    header.appendChild(chevron);
-  }
-
-  function setupExpandBoxes() {
-    if (!isMobile()) return;
-
-    const aboutBox = document.querySelector('.about-box');
-    const certsBox = document.querySelector('.certs-box');
-
-    injectMobileHeader(aboutBox);
-    injectMobileHeader(certsBox);
-
-    // Attach click handlers once
-    if (aboutBox && !aboutBox._tapBound) {
-      aboutBox._tapBound = true;
-      aboutBox.addEventListener('click', function(e) {
-        if (!isMobile()) return;
-        if (e.target.closest('a, button')) return;
-        aboutBox.classList.toggle('expanded');
-      });
-    }
-
-    if (certsBox && !certsBox._tapBound) {
-      certsBox._tapBound = true;
-      certsBox.addEventListener('click', function(e) {
-        if (!isMobile()) return;
-        // If tapping a cert card link, just expand (don't collapse)
-        if (e.target.closest('.cert-card')) {
-          certsBox.classList.add('expanded');
-          return;
-        }
-        certsBox.classList.toggle('expanded');
-      });
-    }
-  }
-
-  setupExpandBoxes();
-
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setupExpandBoxes, 200);
-  });
+document.addEventListener('DOMContentLoaded', initExpandable);
+window.addEventListener('resize', function() {
+  initExpandable();
 });

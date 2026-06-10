@@ -390,12 +390,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 11px; font-weight: 700;
   flex-shrink: 0;
 }
-.cert-logo.google { background: rgba(66,133,244,0.15);  color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
-.cert-logo.fcc    { background: rgba(0,166,99,0.15);    color: #00a663; border: 1px solid rgba(0,166,99,0.2);   font-size: 9px; }
-.cert-logo.meta   { background: rgba(24,119,242,0.15);  color: #1877f2; border: 1px solid rgba(24,119,242,0.2); }
-.cert-logo.ms     { background: rgba(0,120,212,0.15);   color: #0078d4; border: 1px solid rgba(0,120,212,0.2);  font-size: 9px; }
-.cert-logo.cisco  { background: rgba(0,188,212,0.12);   color: #00bcd4; border: 1px solid rgba(0,188,212,0.2);  font-size: 9px; }
-.cert-logo.ucert  { background: rgba(180,120,255,0.12); color: #b478ff; border: 1px solid rgba(180,120,255,0.22); font-size: 10px; }
+.cert-logo.google  { background: rgba(66,133,244,0.15);  color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
+.cert-logo.fcc     { background: rgba(0,166,99,0.15);    color: #00a663; border: 1px solid rgba(0,166,99,0.2);   font-size: 9px; }
+.cert-logo.meta    { background: rgba(24,119,242,0.15);  color: #1877f2; border: 1px solid rgba(24,119,242,0.2); }
+.cert-logo.ms      { background: rgba(0,120,212,0.15);   color: #0078d4; border: 1px solid rgba(0,120,212,0.2);  font-size: 9px; }
+.cert-logo.cisco   { background: rgba(0,188,212,0.12);   color: #00bcd4; border: 1px solid rgba(0,188,212,0.2);  font-size: 9px; }
+.cert-logo.ucert   { background: rgba(180,120,255,0.12); color: #b478ff; border: 1px solid rgba(180,120,255,0.22); font-size: 10px; }
+.cert-logo.sap     { background: rgba(0,150,60,0.12);    color: #00963c; border: 1px solid rgba(0,150,60,0.2);   font-size: 9px; font-weight: 800; }
+.cert-logo.workearly { background: rgba(99,102,241,0.12); color: #818cf8; border: 1px solid rgba(99,102,241,0.25); font-size: 9px; font-weight: 700; }
 .cert-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .cert-name {
   font-size: 12px; font-weight: 600; color: var(--text);
@@ -408,6 +410,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .cert-card:hover .cert-arrow { color: var(--text); transform: translate(2px, -2px); }
 .cert-clickable:hover .cert-arrow { transform: scale(1.2); }
+.cert-count { font-weight: 400; color: var(--text-faint); font-size: 10px; }
 
 /* =====================
    CERT MODAL
@@ -508,14 +511,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ============================================================
    MOBILE — Single column tiles
-   Κάθε box παίρνει ακριβώς όσο ύψος χρειάζεται.
-   Σειρά: welcome, timezone, contact, projects,
-          about (collapsible), langs, certs (collapsible), footer
    ============================================================ */
 @media (max-width: 580px) {
   body { padding: 10px; font-size: 13px; }
 
-  /* Single column — override όλα τα grid spans */
   .container {
     display: flex;
     flex-direction: column;
@@ -533,7 +532,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .certs-box     { order: 8; }
   .footer-box    { order: 9; }
 
-  /* Όλα τα boxes: auto height, χωρίς min-height */
   .box {
     width: 100%;
     height: auto !important;
@@ -541,7 +539,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     overflow: hidden;
   }
 
-  /* Σκοτώνουμε τα flex:1 που φουσκώνουν τα boxes */
   .about-box,
   .project-box,
   .certs-box { display: block; }
@@ -568,7 +565,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .typewriter { font-size: 15px; line-height: 1.55; }
   .welcome-image-container { width: 70px; height: 70px; }
 
-  /* ── Timezone (μικρό tile) ── */
+  /* ── Timezone ── */
   .timezone-box { padding: 14px 16px; }
   .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; }
   .timezone-icon { font-size: 22px; }
@@ -576,48 +573,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .timezone-label { font-size: 9px; }
   .timezone-zone  { display: none; }
 
-  /* ── Contact ── */
-  .contact-box { padding: 16px 14px; }
-  .contact-content { height: auto; }
-  .contact-sub { display: none; }
-  .contact-box .box-title { margin-bottom: 10px; }
-  .social-icons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-bottom: 0;
-  }
-  .social-icon { width: 100%; height: 44px; border-radius: 8px; }
-  .hire-link { display: none; }
-
   /* ── Hire Me ── */
   .please-box { padding: 14px 12px; min-height: 60px !important; }
   .cta-emoji { font-size: 20px; }
   .cta-text  { font-size: 13px; }
   .cta-sub   { font-size: 9px; }
-
-  /* ── Projects (horizontal scroll cards) ── */
-  .project-box { padding: 14px 14px 10px; overflow: visible; }
-  .project-box .box-title { margin-bottom: 10px; font-size: 10px; }
-  .project-box .projects-list {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: visible;
-    gap: 10px;
-    padding-bottom: 4px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .project-box .projects-list::-webkit-scrollbar { display: none; }
-  .project-card {
-    min-width: 200px;
-    max-width: 200px;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
-  .project-box .scroll-hint { display: none; }
 
   /* ── Languages ── */
   .languages-box { padding: 14px 16px; justify-content: flex-start; }
@@ -629,12 +589,24 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .lang-level { display: none; }
   .lang-badge { font-size: 8px; padding: 2px 5px; }
 
-  /* ════════════════════════════════════════
-     ABOUT & CERTS — tap-to-expand tiles
-     Τίτλος: πάντα ορατός
-     Περιεχόμενο: κολλάπσεται
-     ════════════════════════════════════════ */
+  /* ── Footer ── */
+  .footer-box { padding: 12px 16px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
 
+  /* ════════════════════════════════════════
+     MOBILE CHEVRON — shared
+     ════════════════════════════════════════ */
+  .mobile-chevron {
+    font-size: 16px;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    transition: transform 320ms cubic-bezier(0.16,1,0.3,1);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ════════════════════════════════════════
+     ABOUT — tap-to-expand
+     ════════════════════════════════════════ */
   .about-box {
     padding: 14px 16px;
     cursor: pointer;
@@ -648,17 +620,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .about-box .about-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1),
-                margin-top 300ms ease;
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
     margin-top: 0;
   }
-  .about-box.expanded .about-content {
-    max-height: 900px;
-    margin-top: 12px;
-  }
+  .about-box.expanded .about-content  { max-height: 900px; margin-top: 12px; }
+  .about-box.expanded .mobile-chevron { transform: rotate(180deg); }
   .about-box .skills { overflow: visible; flex-wrap: wrap; }
   .about-box .scroll-hint { display: none; }
 
+  /* ════════════════════════════════════════
+     CERTS — tap-to-expand
+     ════════════════════════════════════════ */
   .certs-box {
     padding: 14px 14px;
     cursor: pointer;
@@ -672,29 +644,93 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .certs-box .certs-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1),
-                margin-top 300ms ease;
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
     margin-top: 0;
   }
-  .certs-box.expanded .certs-content {
-    max-height: 1600px;
-    margin-top: 12px;
-  }
+  .certs-box.expanded .certs-content  { max-height: 1600px; margin-top: 12px; }
+  .certs-box.expanded .mobile-chevron { transform: rotate(180deg); }
   .certs-box .certs-list { overflow: visible; }
   .certs-box .scroll-hint { display: none; }
 
-  /* Chevron */
-  .mobile-chevron {
-    font-size: 16px;
-    color: var(--text-faint);
-    flex-shrink: 0;
-    transition: transform 320ms cubic-bezier(0.16,1,0.3,1);
-    pointer-events: none;
-    user-select: none;
+  /* ════════════════════════════════════════
+     CONTACT — tap-to-expand
+     ════════════════════════════════════════ */
+  .contact-box {
+    padding: 14px 16px;
+    cursor: pointer;
   }
-  .about-box.expanded .mobile-chevron,
-  .certs-box.expanded  .mobile-chevron { transform: rotate(180deg); }
+  .contact-box .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-box .mobile-header .box-title { margin-bottom: 0; }
+  /* hide sub-text & hire-link when collapsed */
+  .contact-box .contact-sub  { display: none; }
+  .contact-box .hire-link    { display: none; }
+  .contact-box .contact-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
+    margin-top: 0;
+  }
+  .contact-box.expanded .contact-inner  { max-height: 300px; margin-top: 12px; }
+  .contact-box.expanded .mobile-chevron { transform: rotate(180deg); }
+  .contact-box .social-icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 0;
+  }
+  .contact-box .social-icon { width: 100%; height: 44px; border-radius: 8px; }
 
-  /* ── Footer ── */
-  .footer-box { padding: 12px 16px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+  /* ════════════════════════════════════════
+     PROJECTS — tap-to-expand
+     ════════════════════════════════════════ */
+  .project-box {
+    padding: 14px 14px 10px;
+    overflow: visible;
+    cursor: pointer;
+  }
+  .project-box .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .project-box .mobile-header .box-title { margin-bottom: 0; font-size: 10px; }
+  .project-box .project-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 600ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
+    margin-top: 0;
+  }
+  .project-box.expanded .project-inner  { max-height: 3000px; margin-top: 12px; }
+  .project-box.expanded .mobile-chevron { transform: rotate(180deg); }
+  .project-box .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: visible;
+  }
+  .project-box .scroll-hint { display: none; }
+
+  /* ── Languages — tap-to-expand ── */
+  .languages-box {
+    cursor: pointer;
+    padding: 14px 16px;
+  }
+  .languages-box .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .languages-box .mobile-header .box-title { margin-bottom: 0; }
+  .languages-box .lang-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
+    margin-top: 0;
+  }
+  .languages-box.expanded .lang-list    { max-height: 300px; margin-top: 12px; }
+  .languages-box.expanded .mobile-chevron { transform: rotate(180deg); }
 }
