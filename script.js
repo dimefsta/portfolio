@@ -19,114 +19,143 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =====================
-   CLOCK
+   CLOCK + DATE
    ===================== */
 function updateClock() {
-  const el = document.getElementById('timezone-time');
-  if (!el) return;
-  el.textContent = new Date().toLocaleTimeString('el-GR', {
-    timeZone: 'Europe/Athens',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+  var timeEl = document.getElementById('timezone-time');
+  var dateEl = document.getElementById('timezone-date');
+  var now = new Date();
+
+  if (timeEl) {
+    timeEl.textContent = now.toLocaleTimeString('el-GR', {
+      timeZone: 'Europe/Athens',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  }
+
+  if (dateEl) {
+    dateEl.textContent = now.toLocaleDateString('el-GR', {
+      timeZone: 'Europe/Athens',
+      weekday: 'short',
+      day:     'numeric',
+      month:   'short',
+      year:    'numeric',
+    });
+  }
 }
 setInterval(updateClock, 1000);
 updateClock();
 
 /* =====================
    MOBILE TAP-TO-EXPAND
-   Handles: about, certs, languages, contact, project
    ===================== */
+function buildMobileHeader(box) {
+  if (box.querySelector('.mobile-header')) return; // already built
+  var titleEl = box.querySelector('.box-title');
+  if (!titleEl) return;
+
+  var header = document.createElement('div');
+  header.className = 'mobile-header';
+
+  var chevron = document.createElement('span');
+  chevron.className = 'mobile-chevron';
+  chevron.innerHTML = '&#8964;';
+  chevron.setAttribute('aria-hidden', 'true');
+
+  titleEl.parentNode.insertBefore(header, titleEl);
+  header.appendChild(titleEl);
+  header.appendChild(chevron);
+}
+
+function wrapInner(box, wrapperClass) {
+  if (box.querySelector('.' + wrapperClass)) return; // already wrapped
+  var header = box.querySelector('.mobile-header');
+  var wrapper = document.createElement('div');
+  wrapper.className = wrapperClass;
+
+  // collect all direct children that are NOT the header and NOT text nodes
+  var toMove = Array.from(box.children).filter(function(c) { return c !== header; });
+  toMove.forEach(function(c) { wrapper.appendChild(c); });
+  box.appendChild(wrapper);
+}
+
 function initExpandable() {
-  if (window.innerWidth > 580) return;
+  var isMobile = window.innerWidth <= 580;
 
-  const configs = [
-    {
-      boxSel:     '.about-box',
-      titleSel:   '.about-content > .box-title, .about-box > .about-content > .box-title',
-      rootTitle:  true,   // box-title is direct child of box (not inside content)
-      innerClass: null,   // uses about-content directly
-      stopSel:    'a, button, .cert-clickable',
-    },
-    {
-      boxSel:     '.certs-box',
-      rootTitle:  true,
-      innerClass: null,
-      stopSel:    'a, button, .cert-clickable',
-    },
-    {
-      boxSel:     '.languages-box',
-      rootTitle:  true,
-      innerClass: null,
-      stopSel:    'a, button',
-    },
-    {
-      boxSel:     '.contact-box',
-      rootTitle:  true,
-      innerClass: 'contact-inner',
-      stopSel:    'a, button',
-    },
-    {
-      boxSel:     '.project-box',
-      rootTitle:  true,
-      innerClass: 'project-inner',
-      stopSel:    'a, button',
-    },
-  ];
-
-  configs.forEach(cfg => {
-    var box = document.querySelector(cfg.boxSel);
-    if (!box) return;
-
-    // ── Build mobile-header if not present ──
-    if (!box.querySelector('.mobile-header')) {
-      var titleEl = box.querySelector('.box-title');
-      if (!titleEl) return;
-
-      var header = document.createElement('div');
-      header.className = 'mobile-header';
-
-      var chevron = document.createElement('span');
-      chevron.className = 'mobile-chevron';
-      chevron.innerHTML = '&#8964;';
-      chevron.setAttribute('aria-hidden', 'true');
-
-      titleEl.parentNode.insertBefore(header, titleEl);
-      header.appendChild(titleEl);
-      header.appendChild(chevron);
+  /* ── ABOUT ── */
+  var aboutBox = document.querySelector('.about-box');
+  if (aboutBox) {
+    if (isMobile) {
+      buildMobileHeader(aboutBox);
+      aboutBox.onclick = function(e) {
+        if (e.target.closest('a, button, .cert-clickable')) return;
+        aboutBox.classList.toggle('expanded');
+      };
+    } else {
+      aboutBox.onclick = null;
     }
+  }
 
-    // ── Wrap collapsible content if innerClass specified ──
-    if (cfg.innerClass && !box.querySelector('.' + cfg.innerClass)) {
-      var wrapper = document.createElement('div');
-      wrapper.className = cfg.innerClass;
-
-      var header = box.querySelector('.mobile-header');
-      // move everything after the mobile-header into wrapper
-      var children = Array.from(box.childNodes);
-      children.forEach(function(child) {
-        if (child !== header && child.nodeType !== 3 /* text */ ) {
-          wrapper.appendChild(child);
-        }
-      });
-      box.appendChild(wrapper);
+  /* ── CERTS ── */
+  var certsBox = document.querySelector('.certs-box');
+  if (certsBox) {
+    if (isMobile) {
+      buildMobileHeader(certsBox);
+      certsBox.onclick = function(e) {
+        if (e.target.closest('a, button, .cert-clickable')) return;
+        certsBox.classList.toggle('expanded');
+      };
+    } else {
+      certsBox.onclick = null;
     }
+  }
 
-    // ── Toggle handler ──
-    // Clone to remove any previous listeners
-    var newBox = box.cloneNode(true);
-    box.parentNode.replaceChild(newBox, box);
+  /* ── LANGUAGES ── */
+  var langBox = document.querySelector('.languages-box');
+  if (langBox) {
+    if (isMobile) {
+      buildMobileHeader(langBox);
+      langBox.onclick = function(e) {
+        if (e.target.closest('a, button')) return;
+        langBox.classList.toggle('expanded');
+      };
+    } else {
+      langBox.onclick = null;
+    }
+  }
 
-    newBox.addEventListener('click', function(e) {
-      if (window.innerWidth > 580) return;
-      if (cfg.stopSel && e.target.closest(cfg.stopSel)) return;
-      newBox.classList.toggle('expanded');
-    });
-  });
+  /* ── CONTACT ── */
+  var contactBox = document.querySelector('.contact-box');
+  if (contactBox) {
+    if (isMobile) {
+      buildMobileHeader(contactBox);
+      wrapInner(contactBox, 'contact-inner');
+      contactBox.onclick = function(e) {
+        if (e.target.closest('a, button')) return;
+        contactBox.classList.toggle('expanded');
+      };
+    } else {
+      contactBox.onclick = null;
+    }
+  }
+
+  /* ── PROJECTS ── */
+  var projectBox = document.querySelector('.project-box');
+  if (projectBox) {
+    if (isMobile) {
+      buildMobileHeader(projectBox);
+      wrapInner(projectBox, 'project-inner');
+      projectBox.onclick = function(e) {
+        if (e.target.closest('a, button')) return;
+        projectBox.classList.toggle('expanded');
+      };
+    } else {
+      projectBox.onclick = null;
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initExpandable);
-window.addEventListener('resize', function() {
-  initExpandable();
-});
+window.addEventListener('resize', initExpandable);
