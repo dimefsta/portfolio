@@ -247,7 +247,7 @@
               <span class="cert-arrow">↗</span>
             </a>
 
-            <div class="cert-card cert-clickable" onclick="openCertModal('assets/esyd.jpg', 'Standard Office User — ΕΣΥΔ')">
+            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd.jpg', 'Standard Office User — ΕΣΥΔ')">
               <div class="cert-logo ucert">U</div>
               <div class="cert-info">
                 <span class="cert-name">Standard Office User</span>
@@ -256,7 +256,7 @@
               <span class="cert-arrow">🖼️</span>
             </div>
 
-            <div class="cert-card cert-clickable" onclick="openCertModal('assets/eopep.jpg', 'Standard Office User — ΕΟΠΠΕΠ')">
+            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpg', 'Standard Office User — ΕΟΠΠΕΠ')">
               <div class="cert-logo ucert">U</div>
               <div class="cert-info">
                 <span class="cert-name">Standard Office User</span>
@@ -315,7 +315,7 @@
 
       <!-- FOOTER BOX -->
       <div class="box footer-box">
-        <span>© 2026 Dimitris Efstathiou</span>
+        <span>© 2026 Just_di.e</span>
       </div>
 
     </div>
@@ -332,7 +332,9 @@
     <script src="script.js"></script>
     <script>
       function openCertModal(src, title) {
-        document.getElementById('cert-modal-img').src = src;
+        var img = document.getElementById('cert-modal-img');
+        img.src = '';
+        img.src = src;
         document.getElementById('cert-modal-title').textContent = title;
         document.getElementById('cert-modal').classList.add('active');
         document.body.style.overflow = 'hidden';
