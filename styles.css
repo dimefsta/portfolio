@@ -37,12 +37,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* =====================
    BENTO GRID — DESKTOP
-   Col:  1          2          3          4
-   Row1: welcome    welcome    welcome    about
-   Row2: contact    projects   projects   about
-   Row3: timezone   projects   projects   certs
-   Row4: languages  projects   projects   certs
-   Row5: hire-me    footer     footer     certs
    ===================== */
 .container {
   display: grid;
@@ -80,13 +74,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .certs-box     { grid-column: 4;     grid-row: 3 / 6; }
 .footer-box    { grid-column: 2 / 4; grid-row: 5; display: flex; align-items: center; justify-content: center; }
 
-/* Scrollable tall boxes */
 .about-box,
 .project-box,
-.certs-box {
-  display: flex;
-  flex-direction: column;
-}
+.certs-box { display: flex; flex-direction: column; }
 
 /* =====================
    INNER SCROLL WRAPPERS
@@ -229,16 +219,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .languages-box .box-title { margin-bottom: 10px; }
 
-.lang-list {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-.lang-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.lang-list { display: flex; flex-direction: column; gap: 9px; }
+.lang-item { display: flex; align-items: center; gap: 8px; }
 .lang-flag { font-size: 15px; line-height: 1; flex-shrink: 0; }
 .lang-name {
   font-size: 11px;
@@ -246,11 +228,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text);
   min-width: 52px;
 }
-.lang-level {
-  font-size: 10px;
-  color: var(--text-faint);
-  flex: 1;
-}
+.lang-level { font-size: 10px; color: var(--text-faint); flex: 1; }
 .lang-badge {
   font-size: 9px;
   font-weight: 600;
@@ -283,14 +261,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-bottom: 18px;
   margin-top: -8px;
 }
-
 .social-icons {
   display: flex;
   gap: 10px;
   justify-content: flex-start;
   margin-bottom: 16px;
 }
-
 .social-icon {
   display: flex;
   align-items: center;
@@ -309,7 +285,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: rgba(255,255,255,0.06);
   transform: translateY(-2px);
 }
-
 .hire-link {
   margin-top: auto;
   font-size: 11px;
@@ -484,25 +459,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   justify-content: center;
 }
 .cert-modal-close:hover { color: var(--text); }
-.cert-modal-loading {
-  color: var(--text-muted);
-  font-size: 13px;
-  padding: 40px 0;
-}
+.cert-modal-loading { color: var(--text-muted); font-size: 13px; padding: 40px 0; }
 .cert-modal-img {
   width: 100%;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   display: none;
 }
-.cert-modal-title {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
+.cert-modal-title { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
 /* =====================
-   TIMEZONE — compact (row = 70px)
+   TIMEZONE
    ===================== */
 .timezone-content {
   display: flex;
@@ -516,13 +483,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .timezone-zone  { font-size: 9px;  color: var(--text-faint); }
 
 /* =====================
-   FOOTER — slim 50px
+   FOOTER
    ===================== */
-.footer-box {
-  color: var(--text-faint);
-  font-size: 11px;
-  padding: 0 20px;
-}
+.footer-box { color: var(--text-faint); font-size: 11px; padding: 0 20px; }
 
 /* =====================
    TABLET
@@ -532,28 +495,29 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
   }
-  .welcome-box   { grid-column: 1 / 3; grid-row: auto; }
-  .about-box     { grid-column: span 1; grid-row: auto; min-height: 280px; }
-  .contact-box   { grid-column: span 1; grid-row: auto; }
-  .project-box   { grid-column: 1 / 3;  grid-row: auto; min-height: 400px; }
-  .timezone-box  { grid-column: span 1; grid-row: auto; min-height: 60px; }
-  .languages-box { grid-column: span 1; grid-row: auto; min-height: 160px; }
-  .please-box    { grid-column: span 1; grid-row: auto; }
-  .certs-box     { grid-column: 1 / 3;  grid-row: auto; min-height: 280px; }
-  .footer-box    { grid-column: 1 / 3;  grid-row: auto; min-height: 50px; }
+  .welcome-box   { grid-column: 1 / 3; }
+  .about-box     { grid-column: span 1; min-height: 280px; }
+  .contact-box   { grid-column: span 1; }
+  .project-box   { grid-column: 1 / 3; min-height: 400px; }
+  .timezone-box  { grid-column: span 1; min-height: 60px; }
+  .languages-box { grid-column: span 1; min-height: 160px; }
+  .please-box    { grid-column: span 1; }
+  .certs-box     { grid-column: 1 / 3; min-height: 280px; }
+  .footer-box    { grid-column: 1 / 3; min-height: 50px; }
 }
 
-/* =====================
+/* ============================================================
    MOBILE — Clean Bento
-   Exact layout:
-   Row 1: welcome (full)
-   Row 2: timezone | contact
-   Row 3: hire-me  | contact  (contact spans 2 rows)
-   Row 4: projects (full, horizontal scroll)
-   Row 5: about    (full, tap-to-expand)
-   Row 6: languages | certs
-   Row 7: footer (full)
-   ===================== */
+   grid-template-areas ensures exact placement
+
+   welcome  welcome
+   timezone contact
+   hireme   contact   ← contact spans 2 rows
+   projects projects
+   about    about
+   langs    certs
+   footer   footer
+   ============================================================ */
 @media (max-width: 580px) {
   body { padding: 10px; font-size: 13px; }
 
@@ -562,7 +526,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 8px;
-    /* Named grid areas for exact placement */
     grid-template-areas:
       "welcome  welcome"
       "timezone contact"
@@ -573,7 +536,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
       "footer   footer";
   }
 
-  /* ── assign boxes to areas ── */
   .welcome-box   { grid-area: welcome; }
   .timezone-box  { grid-area: timezone; }
   .contact-box   { grid-area: contact; }
@@ -584,46 +546,120 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .certs-box     { grid-area: certs; }
   .footer-box    { grid-area: footer; display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; }
 
-  /* ── Welcome box ── */
+  /* ────────────────────────────────
+     TAP-TO-EXPAND: About & Certs
+     KEY FIX: title sits OUTSIDE the
+     collapsible wrapper, always visible.
+     Only .about-inner / .certs-inner collapses.
+     ──────────────────────────────── */
+
+  /* About box wrapper */
+  .about-box {
+    padding: 14px 16px;
+    cursor: pointer;
+    overflow: hidden;
+    /* flex column so title + collapsible stack vertically */
+    display: flex;
+    flex-direction: column;
+  }
+  /* Title row: always visible, flex with chevron */
+  .about-box .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  .about-box .mobile-header .box-title {
+    margin-bottom: 0;
+  }
+  /* Collapsible body — hidden by default */
+  .about-box .about-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 480ms cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 0;
+  }
+  .about-box.expanded .about-content {
+    max-height: 900px;
+    margin-top: 12px;
+  }
+  .about-box .skills {
+    overflow: visible;
+    flex-wrap: wrap;
+  }
+  .about-box .scroll-hint { display: none; }
+
+  /* Certs box wrapper */
+  .certs-box {
+    padding: 14px 14px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .certs-box .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  .certs-box .mobile-header .box-title {
+    margin-bottom: 0;
+  }
+  /* Collapsible body */
+  .certs-box .certs-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 480ms cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 0;
+  }
+  .certs-box.expanded .certs-content {
+    max-height: 1600px;
+    margin-top: 12px;
+  }
+  .certs-box .certs-list { overflow: visible; }
+  .certs-box .scroll-hint { display: none; }
+
+  /* Chevron icon (injected by JS) */
+  .mobile-chevron {
+    font-size: 16px;
+    color: var(--text-faint);
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    user-select: none;
+  }
+  .about-box.expanded .mobile-chevron,
+  .certs-box.expanded .mobile-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── Welcome ── */
   .welcome-box { padding: 16px 18px; }
   .welcome-content { gap: 14px; }
   .typewriter { font-size: 15px; line-height: 1.55; }
   .welcome-image-container { width: 70px; height: 70px; }
 
-  /* ── Timezone box — mini pill ── */
-  .timezone-box {
-    padding: 14px 16px;
-    min-height: 80px;
-    display: flex;
-    align-items: stretch;
-  }
+  /* ── Timezone ── */
+  .timezone-box { padding: 14px 16px; min-height: 80px; display: flex; align-items: stretch; }
   .timezone-content { flex-direction: column; gap: 4px; align-items: flex-start; justify-content: center; }
   .timezone-icon  { font-size: 22px; line-height: 1; }
   .timezone-time  { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
   .timezone-label { font-size: 9px; color: var(--text-faint); }
   .timezone-zone  { display: none; }
 
-  /* ── Hire Me box ── */
-  .please-box {
-    min-height: 70px;
-    padding: 14px 12px;
-    border-radius: var(--radius);
-  }
+  /* ── Hire Me ── */
+  .please-box { min-height: 70px; padding: 14px 12px; }
   .cta-emoji { font-size: 20px; }
   .cta-text  { font-size: 13px; }
   .cta-sub   { font-size: 9px; }
 
-  /* ── Contact box — spans 2 rows via grid-area ── */
-  .contact-box {
-    padding: 16px 14px;
-    display: flex;
-  }
-  .contact-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    gap: 0;
-  }
+  /* ── Contact (spans 2 rows) ── */
+  .contact-box { padding: 16px 14px; display: flex; }
+  .contact-content { display: flex; flex-direction: column; height: 100%; }
   .contact-box .box-title { margin-bottom: 10px; font-size: 10px; }
   .contact-sub { display: none; }
   .social-icons {
@@ -632,24 +668,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     gap: 7px;
     margin-bottom: 10px;
   }
-  .social-icon {
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-  }
+  .social-icon { width: 100%; height: 40px; border-radius: 8px; }
   .social-icon svg { width: 18px; height: 18px; }
-  .hire-link {
-    font-size: 10px;
-    margin-top: auto;
-    padding-top: 6px;
-  }
+  .hire-link { font-size: 10px; margin-top: auto; padding-top: 6px; }
 
-  /* ── Projects — full width, horizontal scroll ── */
-  .project-box {
-    padding: 16px 16px 12px;
-    min-height: 0;
-    overflow: visible;
-  }
+  /* ── Projects (horizontal scroll) ── */
+  .project-box { padding: 16px 16px 12px; overflow: visible; }
   .project-box .project-content { overflow: visible; }
   .project-box .box-title { margin-bottom: 12px; }
   .project-box .projects-list {
@@ -664,93 +688,19 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     scrollbar-width: none;
   }
   .project-box .projects-list::-webkit-scrollbar { display: none; }
-  .project-card {
-    min-width: 210px;
-    max-width: 210px;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
+  .project-card { min-width: 210px; max-width: 210px; scroll-snap-align: start; flex-shrink: 0; }
   .project-box .scroll-hint { display: none; }
 
-  /* ── About — tap-to-expand ── */
-  .about-box {
-    padding: 16px 16px 14px;
-    min-height: 0;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .about-box .about-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 450ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .about-box.expanded .about-content {
-    max-height: 800px;
-  }
-  .about-box .skills {
-    overflow: visible;
-    flex-wrap: wrap;
-  }
-  .about-box .scroll-hint { display: none; }
-
   /* ── Languages ── */
-  .languages-box {
-    padding: 14px 14px;
-    min-height: 0;
-    justify-content: flex-start;
-  }
+  .languages-box { padding: 14px; min-height: 0; justify-content: flex-start; }
   .languages-box .box-title { margin-bottom: 10px; font-size: 10px; }
   .lang-list { gap: 8px; }
   .lang-item { gap: 6px; }
   .lang-flag  { font-size: 14px; }
-  .lang-name  { font-size: 10px; font-weight: 600; min-width: 42px; }
+  .lang-name  { font-size: 10px; min-width: 42px; }
   .lang-level { display: none; }
   .lang-badge { font-size: 8px; padding: 2px 5px; }
 
-  /* ── Certs — tap-to-expand ── */
-  .certs-box {
-    padding: 14px 14px;
-    min-height: 0;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .certs-box .certs-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 450ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .certs-box.expanded .certs-content {
-    max-height: 1400px;
-  }
-  .certs-box .certs-list { overflow: visible; }
-  .certs-box .scroll-hint { display: none; }
-
-  /* ── Expand toggle (chevron injected by JS) ── */
-  .expand-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 12px;
-    flex-shrink: 0;
-    cursor: pointer;
-  }
-  .expand-toggle .box-title { margin-bottom: 0; }
-  .expand-chevron {
-    font-size: 14px;
-    color: var(--text-faint);
-    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .about-box.expanded .expand-chevron,
-  .certs-box.expanded .expand-chevron { transform: rotate(180deg); }
-
   /* ── Footer ── */
-  .footer-box {
-    color: var(--text-faint);
-    font-size: 11px;
-    min-height: 40px;
-  }
+  .footer-box { font-size: 11px; min-height: 40px; }
 }

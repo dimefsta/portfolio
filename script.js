@@ -26,77 +26,86 @@ document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('timezone-time');
     if (!el) return;
     const now = new Date();
-    const time = now.toLocaleTimeString('el-GR', {
+    el.textContent = now.toLocaleTimeString('el-GR', {
       timeZone: 'Europe/Athens',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
     });
-    el.textContent = time;
   }
   updateClock();
   setInterval(updateClock, 1000);
 
   // =====================
   // MOBILE TAP-TO-EXPAND
-  // Injects chevron toggle into About & Certs boxes
-  // Only activates when screen <= 580px
+  // Wraps box title in a .mobile-header div with a chevron.
+  // Only runs on screens <= 580px.
   // =====================
-  function isMobile() {
-    return window.innerWidth <= 580;
-  }
 
-  // Inject expand toggle row inside a box
-  // Wraps existing .box-title into an .expand-toggle div with chevron
-  function injectToggle(boxSelector, titleSelector) {
-    var box = document.querySelector(boxSelector);
-    if (!box) return;
-    var title = box.querySelector(titleSelector);
-    if (!title || box.querySelector('.expand-toggle')) return; // already injected
+  function isMobile() { return window.innerWidth <= 580; }
 
-    var wrapper = document.createElement('div');
-    wrapper.className = 'expand-toggle';
+  // Wrap the existing .box-title inside a .mobile-header + add chevron
+  // Only called once per box (guarded by data attribute)
+  function injectMobileHeader(boxEl) {
+    if (!boxEl || boxEl.dataset.mobileInit) return;
+    boxEl.dataset.mobileInit = 'true';
 
-    var chevron = document.createElement('span');
-    chevron.className = 'expand-chevron';
-    chevron.innerHTML = '&#8964;'; // ⌄
+    const titleEl = boxEl.querySelector(':scope > .about-content > .box-title, :scope > .certs-content > .box-title, :scope > .box-title');
+    // We need the DIRECT child box-title of the box, not inside content wrappers
+    // So we look for the first .box-title that's a direct child:
+    let directTitle = null;
+    for (const child of boxEl.children) {
+      if (child.classList.contains('box-title')) { directTitle = child; break; }
+    }
+    // If title is inside about-content / certs-content, move it out
+    // (In the current HTML it IS inside .about-content / .certs-content)
+    // So we grab it from there:
+    const contentEl = boxEl.querySelector('.about-content, .certs-content');
+    if (!contentEl) return;
+    const titleInContent = contentEl.querySelector('.box-title');
+    if (!titleInContent) return;
+
+    // Move title out of content wrapper
+    boxEl.insertBefore(titleInContent, contentEl);
+
+    // Wrap title + chevron in .mobile-header
+    const header = document.createElement('div');
+    header.className = 'mobile-header';
+
+    const chevron = document.createElement('span');
+    chevron.className = 'mobile-chevron';
     chevron.setAttribute('aria-hidden', 'true');
+    chevron.textContent = '\u2304'; // ⌄ down arrow
 
-    title.parentNode.insertBefore(wrapper, title);
-    wrapper.appendChild(title);
-    wrapper.appendChild(chevron);
+    titleInContent.parentNode.insertBefore(header, titleInContent);
+    header.appendChild(titleInContent);
+    header.appendChild(chevron);
   }
 
   function setupExpandBoxes() {
     if (!isMobile()) return;
 
-    injectToggle('.about-box', '.box-title');
-    injectToggle('.certs-box', '.box-title');
+    const aboutBox = document.querySelector('.about-box');
+    const certsBox = document.querySelector('.certs-box');
 
-    // About box toggle
-    var aboutBox = document.querySelector('.about-box');
-    if (aboutBox && !aboutBox._expandBound) {
-      aboutBox._expandBound = true;
+    injectMobileHeader(aboutBox);
+    injectMobileHeader(certsBox);
+
+    // Attach click handlers once
+    if (aboutBox && !aboutBox._tapBound) {
+      aboutBox._tapBound = true;
       aboutBox.addEventListener('click', function(e) {
         if (!isMobile()) return;
-        // Don't interfere with links/buttons inside
         if (e.target.closest('a, button')) return;
         aboutBox.classList.toggle('expanded');
       });
     }
 
-    // Certs box toggle — but NOT when clicking a cert card link/button
-    var certsBox = document.querySelector('.certs-box');
-    if (certsBox && !certsBox._expandBound) {
-      certsBox._expandBound = true;
+    if (certsBox && !certsBox._tapBound) {
+      certsBox._tapBound = true;
       certsBox.addEventListener('click', function(e) {
         if (!isMobile()) return;
-        // If clicking a cert card, only expand — don't toggle shut
+        // If tapping a cert card link, just expand (don't collapse)
         if (e.target.closest('.cert-card')) {
-          if (!certsBox.classList.contains('expanded')) {
-            certsBox.classList.add('expanded');
-          }
+          certsBox.classList.add('expanded');
           return;
         }
         certsBox.classList.toggle('expanded');
@@ -106,8 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupExpandBoxes();
 
-  // Re-run on resize (e.g. rotate phone)
-  var resizeTimer;
+  let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(setupExpandBoxes, 200);
