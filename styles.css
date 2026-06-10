@@ -481,9 +481,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   height: 100%;
 }
 .timezone-icon  { font-size: 20px; flex-shrink: 0; }
+.timezone-info  { display: flex; flex-direction: column; justify-content: center; }
 .timezone-label { font-size: 10px; color: var(--text-muted); }
-.timezone-time  { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; margin: 1px 0; }
-.timezone-zone  { font-size: 9px;  color: var(--text-faint); }
+/* time + date on the same row */
+.timezone-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.timezone-time  { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; }
+.timezone-date  { font-size: 10px; color: var(--text-faint); letter-spacing: 0.01em; }
+.timezone-zone  { font-size: 9px;  color: var(--text-faint); margin-top: 1px; }
 
 /* =====================
    FOOTER
@@ -521,7 +529,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     gap: 8px;
   }
 
-  /* Σειρά εμφάνισης */
   .welcome-box   { order: 1; }
   .timezone-box  { order: 2; }
   .contact-box   { order: 3; }
@@ -570,6 +577,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; }
   .timezone-icon { font-size: 22px; }
   .timezone-time { font-size: 16px; font-weight: 700; }
+  .timezone-date { font-size: 10px; color: rgba(255,255,255,0.35); }
   .timezone-label { font-size: 9px; }
   .timezone-zone  { display: none; }
 
@@ -595,6 +603,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* ════════════════════════════════════════
      MOBILE CHEVRON — shared
      ════════════════════════════════════════ */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-header .box-title { margin-bottom: 0; }
   .mobile-chevron {
     font-size: 16px;
     color: var(--text-faint);
@@ -607,16 +621,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* ════════════════════════════════════════
      ABOUT — tap-to-expand
      ════════════════════════════════════════ */
-  .about-box {
-    padding: 14px 16px;
-    cursor: pointer;
-  }
-  .about-box .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .about-box .mobile-header .box-title { margin-bottom: 0; }
+  .about-box { padding: 14px 16px; cursor: pointer; }
   .about-box .about-content {
     max-height: 0;
     overflow: hidden;
@@ -631,16 +636,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* ════════════════════════════════════════
      CERTS — tap-to-expand
      ════════════════════════════════════════ */
-  .certs-box {
-    padding: 14px 14px;
-    cursor: pointer;
-  }
-  .certs-box .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .certs-box .mobile-header .box-title { margin-bottom: 0; }
+  .certs-box { padding: 14px 14px; cursor: pointer; }
   .certs-box .certs-content {
     max-height: 0;
     overflow: hidden;
@@ -655,26 +651,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* ════════════════════════════════════════
      CONTACT — tap-to-expand
      ════════════════════════════════════════ */
-  .contact-box {
-    padding: 14px 16px;
-    cursor: pointer;
-  }
-  .contact-box .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .contact-box .mobile-header .box-title { margin-bottom: 0; }
-  /* hide sub-text & hire-link when collapsed */
-  .contact-box .contact-sub  { display: none; }
-  .contact-box .hire-link    { display: none; }
-  .contact-box .contact-inner {
+  .contact-box { padding: 14px 16px; cursor: pointer; }
+  .contact-box .contact-body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
     margin-top: 0;
   }
-  .contact-box.expanded .contact-inner  { max-height: 300px; margin-top: 12px; }
+  .contact-box.expanded .contact-body  { max-height: 300px; margin-top: 12px; }
   .contact-box.expanded .mobile-chevron { transform: rotate(180deg); }
   .contact-box .social-icons {
     display: grid;
@@ -683,48 +667,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     margin-bottom: 0;
   }
   .contact-box .social-icon { width: 100%; height: 44px; border-radius: 8px; }
+  .contact-box .contact-sub { display: none; }
+  .contact-box .hire-link   { display: none; }
 
   /* ════════════════════════════════════════
      PROJECTS — tap-to-expand
      ════════════════════════════════════════ */
-  .project-box {
-    padding: 14px 14px 10px;
-    overflow: visible;
-    cursor: pointer;
-  }
-  .project-box .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .project-box .mobile-header .box-title { margin-bottom: 0; font-size: 10px; }
-  .project-box .project-inner {
+  .project-box { padding: 14px 14px 10px; overflow: visible; cursor: pointer; }
+  .project-box .project-body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 600ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
     margin-top: 0;
   }
-  .project-box.expanded .project-inner  { max-height: 3000px; margin-top: 12px; }
+  .project-box.expanded .project-body  { max-height: 3000px; margin-top: 12px; }
   .project-box.expanded .mobile-chevron { transform: rotate(180deg); }
-  .project-box .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow: visible;
-  }
+  .project-box .projects-list { display: flex; flex-direction: column; gap: 10px; overflow: visible; }
   .project-box .scroll-hint { display: none; }
 
   /* ── Languages — tap-to-expand ── */
-  .languages-box {
-    cursor: pointer;
-    padding: 14px 16px;
-  }
-  .languages-box .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .languages-box .mobile-header .box-title { margin-bottom: 0; }
+  .languages-box { cursor: pointer; padding: 14px 16px; }
   .languages-box .lang-list {
     max-height: 0;
     overflow: hidden;

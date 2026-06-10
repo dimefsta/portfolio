@@ -28,9 +28,13 @@
       </div>
 
       <!-- ABOUT BOX -->
-      <div class="box about-box expandable">
-        <div class="about-content expand-inner">
+      <div class="box about-box">
+        <div class="mobile-header" style="display:none">
           <h3 class="box-title">About Me</h3>
+          <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
+        </div>
+        <h3 class="box-title" id="about-title-desktop">About Me</h3>
+        <div class="about-content">
           <p class="about-bio">Based in Athens 🇬🇷. Started Computer Science at ASOEE, now building my dev path through real projects and certifications. Entrepreneur mindset — I learn fast and ship things.</p>
           <p class="about-bio" style="margin-top:8px;">Open to <strong>junior roles</strong>, <strong>freelance</strong> &amp; <strong>collaborations</strong>.</p>
           <div class="skills">
@@ -58,8 +62,14 @@
 
       <!-- CONTACT BOX -->
       <div class="box contact-box">
-        <div class="contact-content">
+        <div class="mobile-header" style="display:none">
           <h3 class="box-title">Let's Connect</h3>
+          <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
+        </div>
+        <div class="contact-content" id="contact-desktop-title">
+          <h3 class="box-title">Let's Connect</h3>
+        </div>
+        <div class="contact-body">
           <p class="contact-sub">Open to collaborations &amp; opportunities</p>
           <div class="social-icons">
             <a href="https://github.com/dimefsta" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
@@ -80,85 +90,50 @@
       </div>
 
       <!-- PROJECTS BOX -->
-      <div class="box project-box expandable">
-        <div class="project-content expand-inner">
-          <h3 class="box-title">Projects
+      <div class="box project-box">
+        <div class="mobile-header" style="display:none">
+          <h3 class="box-title">Projects <a href="https://github.com/dimefsta?tab=repositories" target="_blank" rel="noopener noreferrer" class="view-all">View all →</a></h3>
+          <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
+        </div>
+        <div class="project-content">
+          <h3 class="box-title" id="projects-title-desktop">Projects
             <a href="https://github.com/dimefsta?tab=repositories" target="_blank" rel="noopener noreferrer" class="view-all">View all →</a>
           </h3>
+        </div>
+        <div class="project-body">
           <div class="projects-list" id="projects-list">
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">johnhns.com</span>
-                <div class="project-links">
-                  <a href="https://www.johnhns.com/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">johnhns.com</span><div class="project-links"><a href="https://www.johnhns.com/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a></div></div>
               <p class="project-desc">Personal website built from scratch. Custom design, responsive layout, modern web standards.</p>
               <span class="project-lang" data-lang="HTML">HTML</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">SupaBangBang</span>
-                <div class="project-links">
-                  <a href="https://dimefsta.github.io/supabangbang/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/supabangbang" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">SupaBangBang</span><div class="project-links"><a href="https://dimefsta.github.io/supabangbang/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/supabangbang" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">A browser-based game built with vanilla JavaScript and HTML5 Canvas. Fast-paced action with custom mechanics.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">Text-Encryptor</span>
-                <div class="project-links">
-                  <a href="https://text-encryptor-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/Text-Encryptor" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">Text-Encryptor</span><div class="project-links"><a href="https://text-encryptor-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/Text-Encryptor" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">Encrypt and decrypt sentences using a custom keyword. Clean UI with instant results.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">React Weather App</span>
-                <div class="project-links">
-                  <a href="https://react-weather-app-omega-nine-36.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/react-weather-app" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">React Weather App</span><div class="project-links"><a href="https://react-weather-app-omega-nine-36.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/react-weather-app" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">Real-time weather app built with React. Fetches live data by city using the OpenWeather API.</p>
               <span class="project-lang" data-lang="React">React</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">QR Generator</span>
-                <div class="project-links">
-                  <a href="https://qr-generator-lemon.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/qr-generator" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">QR Generator</span><div class="project-links"><a href="https://qr-generator-lemon.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><n href="https://github.com/dimefsta/qr-generator" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</n></div></div>
               <p class="project-desc">Generate QR codes instantly from any URL or text. Minimal and fast.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">Tetris</span>
-                <div class="project-links">
-                  <a href="https://tetris-justdie.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/tetris" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">Tetris</span><div class="project-links"><a href="https://tetris-justdie.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/tetris" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">Classic Tetris game built with vanilla JavaScript and HTML5 Canvas. Keyboard controls, score tracking.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header">
-                <span class="project-name">Snake Game</span>
-                <div class="project-links">
-                  <a href="https://snake-game-red.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a>
-                  <a href="https://github.com/dimefsta/SNAKE-GAME" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a>
-                </div>
-              </div>
+              <div class="project-card-header"><span class="project-name">Snake Game</span><div class="project-links"><a href="https://snake-game-red.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/SNAKE-GAME" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">Snake browser game with smooth canvas rendering, speed progression and high score.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
@@ -177,155 +152,30 @@
       </div>
 
       <!-- CERTIFICATIONS BOX -->
-      <div class="box certs-box expandable">
-        <div class="certs-content expand-inner">
+      <div class="box certs-box">
+        <div class="mobile-header" style="display:none">
           <h3 class="box-title">Certifications <span class="cert-count">(15)</span></h3>
+          <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
+        </div>
+        <div class="certs-content">
+          <h3 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count">(15)</span></h3>
           <div class="certs-list">
-
-            <a href="https://www.coursera.org/account/accomplishments/specialization/WZHNQSVZR6WV" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo google">G</div>
-              <div class="cert-info">
-                <span class="cert-name">IT Support Professional</span>
-                <span class="cert-issuer-name">Google · Jan 2025</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.credly.com/badges/4e831c8e-7855-41cb-afbf-4173fd2b26ef/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo workearly">WE</div>
-              <div class="cert-info">
-                <span class="cert-name">SQL Fundamentals</span>
-                <span class="cert-issuer-name">Workearly · Sep 2025</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.coursera.org/account/accomplishments/records/PT89UX6PV5ZP" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo meta">M</div>
-              <div class="cert-info">
-                <span class="cert-name">React Basics</span>
-                <span class="cert-issuer-name">Meta · Nov 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.coursera.org/account/accomplishments/records/CVBWQ5QK6AA7" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo meta">M</div>
-              <div class="cert-info">
-                <span class="cert-name">Version Control</span>
-                <span class="cert-issuer-name">Meta · Nov 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.coursera.org/account/accomplishments/records/X66SEWQ4XXKA" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo meta">M</div>
-              <div class="cert-info">
-                <span class="cert-name">Programming with JavaScript</span>
-                <span class="cert-issuer-name">Meta · Nov 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.coursera.org/account/accomplishments/records/88Y9BADCM86W" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo meta">M</div>
-              <div class="cert-info">
-                <span class="cert-name">HTML and CSS in Depth</span>
-                <span class="cert-issuer-name">Meta · Nov 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.coursera.org/account/accomplishments/records/EW7YPBKE2WEC" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo meta">M</div>
-              <div class="cert-info">
-                <span class="cert-name">Intro to Front-End Development</span>
-                <span class="cert-issuer-name">Meta · Nov 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://freecodecamp.org/certification/mitsakos/javascript-algorithms-and-data-structures" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo fcc">&lt;/&gt;</div>
-              <div class="cert-info">
-                <span class="cert-name">JS Algorithms &amp; Data Structures</span>
-                <span class="cert-issuer-name">freeCodeCamp · Oct 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://freecodecamp.org/certification/mitsakos/responsive-web-design" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo fcc">&lt;/&gt;</div>
-              <div class="cert-info">
-                <span class="cert-name">Responsive Web Design</span>
-                <span class="cert-issuer-name">freeCodeCamp · Sep 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://freecodecamp.org/certification/mitsakos/foundational-c-sharp-with-microsoft" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo fcc">&lt;/&gt;</div>
-              <div class="cert-info">
-                <span class="cert-name">Foundational C# with Microsoft</span>
-                <span class="cert-issuer-name">freeCodeCamp · Sep 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.credly.com/badges/cb63da41-f402-4848-b8cc-88a52ed347b6/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo sap">SAP</div>
-              <div class="cert-info">
-                <span class="cert-name">SAP S/4HANA Retail</span>
-                <span class="cert-issuer-name">SAP · Sep 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://www.credly.com/badges/4f183a9b-ad4c-47c1-9102-7d11c1f92b57/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo cisco">IoT</div>
-              <div class="cert-info">
-                <span class="cert-name">Introduction to IoT</span>
-                <span class="cert-issuer-name">Cisco · Sep 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo google">G</div>
-              <div class="cert-info">
-                <span class="cert-name">Fundamentals of Digital Marketing</span>
-                <span class="cert-issuer-name">Google Digital Garage · Aug 2023</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
-            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd%20.jpeg', 'Standard Office User — ΕΣΥΔ')">
-              <div class="cert-logo ucert">U</div>
-              <div class="cert-info">
-                <span class="cert-name">Standard Office User (ΕΣΥΔ)</span>
-                <span class="cert-issuer-name">UCERT · May 2023</span>
-              </div>
-              <span class="cert-arrow">🖼️</span>
-            </div>
-
-            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpeg', 'Standard Office User — ΕΟΠΠΕΠ')">
-              <div class="cert-logo ucert">U</div>
-              <div class="cert-info">
-                <span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span>
-                <span class="cert-issuer-name">UCERT · May 2023</span>
-              </div>
-              <span class="cert-arrow">🖼️</span>
-            </div>
-
-            <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card">
-              <div class="cert-logo google">G</div>
-              <div class="cert-info">
-                <span class="cert-name">Online Marketing in Tourism</span>
-                <span class="cert-issuer-name">Google Digital Garage · Feb 2018</span>
-              </div>
-              <span class="cert-arrow">↗</span>
-            </a>
-
+            <a href="https://www.coursera.org/account/accomplishments/specialization/WZHNQSVZR6WV" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">IT Support Professional</span><span class="cert-issuer-name">Google · Jan 2025</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.credly.com/badges/4e831c8e-7855-41cb-afbf-4173fd2b26ef/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo workearly">WE</div><div class="cert-info"><span class="cert-name">SQL Fundamentals</span><span class="cert-issuer-name">Workearly · Sep 2025</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.coursera.org/account/accomplishments/records/PT89UX6PV5ZP" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">React Basics</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.coursera.org/account/accomplishments/records/CVBWQ5QK6AA7" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">Version Control</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.coursera.org/account/accomplishments/records/X66SEWQ4XXKA" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">Programming with JavaScript</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.coursera.org/account/accomplishments/records/88Y9BADCM86W" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">HTML and CSS in Depth</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.coursera.org/account/accomplishments/records/EW7YPBKE2WEC" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">Intro to Front-End Development</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://freecodecamp.org/certification/mitsakos/javascript-algorithms-and-data-structures" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo fcc">&lt;/&gt;</div><div class="cert-info"><span class="cert-name">JS Algorithms &amp; Data Structures</span><span class="cert-issuer-name">freeCodeCamp · Oct 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://freecodecamp.org/certification/mitsakos/responsive-web-design" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo fcc">&lt;/&gt;</div><div class="cert-info"><span class="cert-name">Responsive Web Design</span><span class="cert-issuer-name">freeCodeCamp · Sep 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://freecodecamp.org/certification/mitsakos/foundational-c-sharp-with-microsoft" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo fcc">&lt;/&gt;</div><div class="cert-info"><span class="cert-name">Foundational C# with Microsoft</span><span class="cert-issuer-name">freeCodeCamp · Sep 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.credly.com/badges/cb63da41-f402-4848-b8cc-88a52ed347b6/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo sap">SAP</div><div class="cert-info"><span class="cert-name">SAP S/4HANA Retail</span><span class="cert-issuer-name">SAP · Sep 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://www.credly.com/badges/4f183a9b-ad4c-47c1-9102-7d11c1f92b57/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo cisco">IoT</div><div class="cert-info"><span class="cert-name">Introduction to IoT</span><span class="cert-issuer-name">Cisco · Sep 2023</span></div><span class="cert-arrow">↗</span></a>
+            <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Fundamentals of Digital Marketing</span><span class="cert-issuer-name">Google Digital Garage · Aug 2023</span></div><span class="cert-arrow">↗</span></a>
+            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd%20.jpeg','Standard Office User — ΕΣΥΔ')"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΣΥΔ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow">🖼️</span></div>
+            <div class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpeg','Standard Office User — ΕΟΠΠΕΠ')"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow">🖼️</span></div>
+            <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Online Marketing in Tourism</span><span class="cert-issuer-name">Google Digital Garage · Feb 2018</span></div><span class="cert-arrow">↗</span></a>
           </div>
         </div>
         <span class="scroll-hint">↑ hover to scroll</span>
@@ -337,8 +187,10 @@
           <span class="timezone-icon">🇬🇷</span>
           <div class="timezone-info">
             <div class="timezone-label">Athens, Greece</div>
-            <div class="timezone-time" id="timezone-time">--:--</div>
-            <div class="timezone-date" id="timezone-date">---</div>
+            <div class="timezone-row">
+              <span class="timezone-time" id="timezone-time">--:--</span>
+              <span class="timezone-date" id="timezone-date">---</span>
+            </div>
             <div class="timezone-zone">EEST (UTC+3)</div>
           </div>
         </div>
@@ -346,39 +198,21 @@
 
       <!-- LANGUAGES BOX -->
       <div class="box languages-box">
-        <h3 class="box-title">Languages</h3>
+        <div class="mobile-header" style="display:none">
+          <h3 class="box-title">Languages</h3>
+          <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
+        </div>
+        <h3 class="box-title" id="lang-title-desktop">Languages</h3>
         <div class="lang-list">
-          <div class="lang-item">
-            <span class="lang-flag">🇬🇷</span>
-            <span class="lang-name">Greek</span>
-            <span class="lang-level">Native</span>
-            <span class="lang-badge native">Native</span>
-          </div>
-          <div class="lang-item">
-            <span class="lang-flag">🇬🇧</span>
-            <span class="lang-name">English</span>
-            <span class="lang-level">Professional</span>
-            <span class="lang-badge">Duolingo 130</span>
-          </div>
-          <div class="lang-item">
-            <span class="lang-flag">🇫🇷</span>
-            <span class="lang-name">French</span>
-            <span class="lang-level">Professional</span>
-            <span class="lang-badge">Duolingo 130</span>
-          </div>
-          <div class="lang-item">
-            <span class="lang-flag">🇪🇸</span>
-            <span class="lang-name">Spanish</span>
-            <span class="lang-level">Elementary</span>
-            <span class="lang-badge basic">Duolingo 42</span>
-          </div>
+          <div class="lang-item"><span class="lang-flag">🇬🇷</span><span class="lang-name">Greek</span><span class="lang-level">Native</span><span class="lang-badge native">Native</span></div>
+          <div class="lang-item"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130</span></div>
+          <div class="lang-item"><span class="lang-flag">🇫🇷</span><span class="lang-name">French</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130</span></div>
+          <div class="lang-item"><span class="lang-flag">🇪🇸</span><span class="lang-name">Spanish</span><span class="lang-level">Elementary</span><span class="lang-badge basic">Duolingo 42</span></div>
         </div>
       </div>
 
       <!-- FOOTER BOX -->
-      <div class="box footer-box">
-        <span>© 2026 Just_di.e</span>
-      </div>
+      <div class="box footer-box"><span>© 2026 Just_di.e</span></div>
 
     </div>
 
@@ -394,17 +228,14 @@
 
     <script src="script.js"></script>
     <script>
+      /* ---- cert modal ---- */
       function openCertModal(src, title) {
         var modal = document.getElementById('cert-modal');
         var img   = document.getElementById('cert-modal-img');
         var loading = document.getElementById('cert-modal-loading');
-        img.style.display = 'none';
-        loading.style.display = 'block';
-        loading.textContent = 'Loading...';
-        img.src = '';
+        img.style.display = 'none'; loading.style.display = 'block'; loading.textContent = 'Loading...'; img.src = '';
         document.getElementById('cert-modal-title').textContent = title;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        modal.classList.add('active'); document.body.style.overflow = 'hidden';
         img.onload  = function() { loading.style.display = 'none'; img.style.display = 'block'; };
         img.onerror = function() { loading.textContent = 'Could not load image.'; };
         img.src = src;
@@ -415,110 +246,52 @@
       }
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCertModal(); });
 
-      /* ---- Mobile tap-to-expand: About, Certs, Languages ---- */
-      function initExpandable() {
+      /* ---- Mobile tap-to-expand ---- */
+      function initMobile() {
+        if (window.innerWidth > 580) {
+          /* desktop: show desktop titles, hide mobile headers */
+          document.querySelectorAll('.mobile-header').forEach(function(h){ h.style.display='none'; });
+          document.querySelectorAll('[id$="-title-desktop"], #about-title-desktop, #lang-title-desktop, #certs-title-desktop, #projects-title-desktop').forEach(function(el){ el.style.display=''; });
+          /* ensure bodies visible */
+          ['about-content','contact-body','project-body','certs-content','lang-list'].forEach(function(cls){
+            var el = document.querySelector('.'+cls);
+            if (el) { el.style.maxHeight=''; el.style.overflow=''; }
+          });
+          return;
+        }
+
+        /* mobile: hide desktop titles, show mobile headers */
+        document.getElementById('about-title-desktop') && (document.getElementById('about-title-desktop').style.display='none');
+        document.getElementById('lang-title-desktop')  && (document.getElementById('lang-title-desktop').style.display='none');
+        document.getElementById('certs-title-desktop') && (document.getElementById('certs-title-desktop').style.display='none');
+        document.getElementById('projects-title-desktop') && (document.getElementById('projects-title-desktop').style.display='none');
+        /* hide desktop contact title div */
+        var contactDesktop = document.getElementById('contact-desktop-title');
+        if (contactDesktop) contactDesktop.style.display='none';
+
+        document.querySelectorAll('.mobile-header').forEach(function(h){ h.style.display='flex'; });
+
         var boxes = [
-          { sel: '.about-box',     contentSel: '.about-content' },
-          { sel: '.certs-box',     contentSel: '.certs-content' },
-          { sel: '.languages-box', contentSel: '.lang-list' }
+          { box: document.querySelector('.about-box'),    toggle: 'about-content' },
+          { box: document.querySelector('.certs-box'),    toggle: 'certs-content' },
+          { box: document.querySelector('.contact-box'),  toggle: 'contact-body' },
+          { box: document.querySelector('.project-box'),  toggle: 'project-body' },
+          { box: document.querySelector('.languages-box'),toggle: 'lang-list' },
         ];
+
         boxes.forEach(function(item) {
-          var box = document.querySelector(item.sel);
-          if (!box) return;
-
-          if (!box.querySelector('.mobile-header')) {
-            var titleEl = box.querySelector('.box-title');
-            if (!titleEl) return;
-            var header  = document.createElement('div');
-            header.className = 'mobile-header';
-            var chevron = document.createElement('span');
-            chevron.className = 'mobile-chevron';
-            chevron.innerHTML = '&#8964;';
-            chevron.setAttribute('aria-hidden', 'true');
-            titleEl.parentNode.insertBefore(header, titleEl);
-            header.appendChild(titleEl);
-            header.appendChild(chevron);
-          }
-
-          var newBox = box.cloneNode(true);
-          box.parentNode.replaceChild(newBox, box);
-
-          newBox.addEventListener('click', function(e) {
+          if (!item.box || item.box._mobileInit) return;
+          item.box._mobileInit = true;
+          item.box.addEventListener('click', function(e) {
             if (window.innerWidth > 580) return;
             if (e.target.closest('a, button, .cert-clickable')) return;
-            newBox.classList.toggle('expanded');
+            item.box.classList.toggle('expanded');
           });
         });
       }
-      document.addEventListener('DOMContentLoaded', initExpandable);
-      window.addEventListener('resize', initExpandable);
+
+      document.addEventListener('DOMContentLoaded', initMobile);
+      window.addEventListener('resize', initMobile);
     </script>
-
-    <style>
-      .cert-count { font-weight: 400; color: var(--text-faint, #555); font-size: 10px; }
-
-      .cert-logo.sap {
-        background: rgba(0,150,60,0.12); color: #00963c;
-        border: 1px solid rgba(0,150,60,0.2);
-        font-size: 9px; font-weight: 800;
-      }
-      .cert-logo.workearly {
-        background: rgba(99,102,241,0.12); color: #818cf8;
-        border: 1px solid rgba(99,102,241,0.25);
-        font-size: 9px; font-weight: 700;
-      }
-
-      /* Timezone date */
-      .timezone-date {
-        font-size: 11px;
-        color: rgba(255,255,255,0.45);
-        margin-top: 1px;
-        letter-spacing: 0.01em;
-      }
-
-      /* Mobile tap-to-expand: Languages */
-      @media (max-width: 580px) {
-        .languages-box { cursor: pointer; padding: 14px 16px; }
-        .languages-box .mobile-header {
-          display: flex; align-items: center; justify-content: space-between;
-        }
-        .languages-box .mobile-header .box-title { margin-bottom: 0; }
-        .languages-box .lang-list {
-          max-height: 0; overflow: hidden;
-          transition: max-height 480ms cubic-bezier(0.16,1,0.3,1), margin-top 300ms ease;
-          margin-top: 0;
-        }
-        .languages-box.expanded .lang-list  { max-height: 300px; margin-top: 12px; }
-        .languages-box.expanded .mobile-chevron { transform: rotate(180deg); }
-      }
-
-      /* Modal */
-      .cert-modal {
-        display: none; position: fixed; inset: 0;
-        background: rgba(0,0,0,0.85); z-index: 9999;
-        align-items: center; justify-content: center;
-        padding: 16px; box-sizing: border-box;
-      }
-      .cert-modal.active { display: flex; }
-      .cert-modal-inner {
-        position: relative; background: #1a1a1a; border-radius: 12px; padding: 16px;
-        max-width: min(90vw, 700px); width: 100%; max-height: 90vh; overflow-y: auto;
-        box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 12px;
-      }
-      .cert-modal-close {
-        position: absolute; top: 10px; right: 14px; font-size: 26px; color: #aaa;
-        background: none; border: none; cursor: pointer; line-height: 1;
-        padding: 4px 8px; min-width: 44px; min-height: 44px;
-      }
-      .cert-modal-close:hover { color: #fff; }
-      .cert-modal-loading { color: #aaa; font-size: 14px; padding: 40px 0; }
-      .cert-modal-img     { width: 100%; height: auto; border-radius: 8px; display: none; }
-      .cert-modal-title   { color: #ccc; font-size: 13px; text-align: center; margin: 0; }
-      @media (max-width: 480px) {
-        .cert-modal { padding: 10px; }
-        .cert-modal-inner { padding: 12px; border-radius: 10px; }
-        .cert-modal-close { top: 6px; right: 8px; font-size: 22px; }
-      }
-    </style>
   </body>
 </html>
