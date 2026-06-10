@@ -32,33 +32,34 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* ===== BENTO CONTAINER ===== */
 /*
-  Layout (4 cols x 8 rows):
-  Row 1-4: [welcome x3] [about x1]
-  Row 5-6: [contact x1] [projects x2] [about cont.]
-  Row 7:   [contact cont.] [please x1] [please x1] [about cont.]
-  Row 8:   [timezone x1]  [footer x3]
+  Grid 4 cols x 9 rows:
+  Row 1-4: welcome(1-3) | about(4)
+  Row 5-7: contact(1) | projects(2-3) | about(4 cont)
+  Row 7:   contact(1 cont) | please(2-3?no) | certs(4 row7+)
+  Row 8-9: certs(4) | ...
 
-  Simplified placement:
-  welcome:  col 1-3, row 1-4
-  about:    col 4,   row 1-6
-  contact:  col 1,   row 5-7
-  projects: col 2-3, row 5-7
-  please:   col 2-3, row (center)
-  timezone: col 1,   row 8
-  footer:   col 2-4, row 8
+  Final layout:
+  welcome:   col 1-3, row 1-4
+  about:     col 4,   row 1-6
+  contact:   col 1,   row 5-7
+  projects:  col 2-3, row 5-8
+  please:    col 1,   row 8    (center-ish)
+  certs:     col 4,   row 7-9
+  timezone:  col 1,   row 9
+  footer:    col 2-4, row 9
 */
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr) repeat(3, 1fr) 1fr;
+  grid-template-rows: repeat(8, 1fr) 0.7fr;
   gap: 10px;
   padding: 10px;
   background-color: var(--container-bg-color);
   width: 80%;
   height: 80%;
   max-width: 1200px;
-  max-height: 800px;
-  margin: 80px auto;
+  max-height: 820px;
+  margin: 60px auto;
   box-sizing: border-box;
 }
 
@@ -79,7 +80,6 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .box:hover { border-color: var(--hover-border-color); }
 
-/* ===== BOX TITLE ===== */
 .box-title {
   font-size: 0.65rem;
   font-weight: 700;
@@ -95,20 +95,14 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 /* ===== GRID PLACEMENT ===== */
-/* welcome: col 1-3, row 1-4 */
 .welcome-box  { grid-column: 1 / 4; grid-row: 1 / 5; }
-/* about: col 4, row 1-6 */
-.about-box    { grid-column: 4 / 5; grid-row: 1 / 7; }
-/* contact: col 1, row 5-7 */
+.about-box    { grid-column: 4 / 5; grid-row: 1 / 6; }
 .contact-box  { grid-column: 1 / 2; grid-row: 5 / 8; }
-/* projects: col 2-3, row 5-7 */
-.project-box  { grid-column: 2 / 4; grid-row: 5 / 8; }
-/* hire me: col 4, row 7 — center of bento visually */
-.please-box   { grid-column: 4 / 5; grid-row: 7 / 8; }
-/* timezone: col 1, row 8 (bottom-left) */
-.timezone-box { grid-column: 1 / 2; grid-row: 8 / 9; }
-/* footer: col 2-4, row 8 */
-.footer-box   { grid-column: 2 / 5; grid-row: 8 / 9; }
+.project-box  { grid-column: 2 / 4; grid-row: 5 / 9; }
+.please-box   { grid-column: 1 / 2; grid-row: 8 / 9; }
+.certs-box    { grid-column: 4 / 5; grid-row: 6 / 10; }
+.timezone-box { grid-column: 1 / 2; grid-row: 9 / 10; }
+.footer-box   { grid-column: 2 / 5; grid-row: 9 / 10; }
 
 /* ===== EXPANDABLE BOXES ===== */
 .expandable .expand-inner {
@@ -143,21 +137,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* ===== WELCOME BOX ===== */
 .welcome-box { text-align: left; align-items: flex-start; justify-content: flex-start; }
-.welcome-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-}
-.welcome-text {
-  font-size: 1.1em;
-  max-width: 60%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+.welcome-content { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; height: 100%; }
+.welcome-text { font-size: 1.1em; max-width: 60%; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
 @keyframes typing { from { width: 0; } to { width: 100%; } }
 @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--box-text-color); } }
 .typewriter {
@@ -179,11 +160,12 @@ img { display: block; max-width: 100%; height: auto; }
 /* ===== ABOUT BOX ===== */
 .about-box { align-items: flex-start; justify-content: flex-start; text-align: left; }
 .about-content { display: flex; flex-direction: column; width: 100%; height: 100%; }
-.about-bio { font-size: 0.75rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 14px; }
-.skills { display: flex; flex-wrap: wrap; gap: 6px; }
+.about-bio { font-size: 0.73rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 6px; }
+.about-bio strong { color: var(--box-text-color); font-weight: 700; }
+.skills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 .skill-tag {
-  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em;
-  padding: 3px 9px; border-radius: 999px;
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.04em;
+  padding: 3px 8px; border-radius: 999px;
   background: var(--skill-bg); border: 1px solid var(--skill-border);
   color: var(--box-text-color);
   transition: background 0.2s, border-color 0.2s;
@@ -193,25 +175,17 @@ img { display: block; max-width: 100%; height: auto; }
 /* ===== CONTACT BOX ===== */
 .contact-box { align-items: flex-start; justify-content: flex-start; text-align: left; }
 .contact-content { display: flex; flex-direction: column; width: 100%; }
-.contact-sub { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
-.contact-links { display: flex; flex-direction: column; gap: 8px; }
+.contact-sub { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
+.contact-links { display: flex; flex-direction: column; gap: 7px; }
 .contact-link {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.78rem; font-weight: 600;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.75rem; font-weight: 600;
   color: var(--box-text-color);
-  padding: 9px 13px; border-radius: var(--radius-sm);
+  padding: 8px 11px; border-radius: var(--radius-sm);
   background: var(--skill-bg); border: 1px solid var(--skill-border);
   transition: background 0.2s, border-color 0.2s;
 }
 .contact-link:hover { background: var(--accent-dim); border-color: var(--hover-border-color); }
-
-/* ===== TIMEZONE BOX ===== */
-.timezone-box { text-align: left; justify-content: flex-start; align-items: center; }
-.timezone-content { display: flex; align-items: center; gap: 12px; width: 100%; }
-.timezone-icon { font-size: 1.4rem; flex-shrink: 0; }
-.timezone-label { font-size: 0.58rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
-.timezone-time { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.timezone-zone { font-size: 0.56rem; color: var(--text-faint); margin-top: 2px; }
 
 /* ===== PROJECTS BOX ===== */
 .project-box { align-items: flex-start; justify-content: flex-start; text-align: left; }
@@ -233,7 +207,7 @@ img { display: block; max-width: 100%; height: auto; }
 .project-meta { display: flex; gap: 10px; margin-top: 3px; }
 .project-lang, .project-stars { font-size: 0.58rem; color: var(--text-faint); display: flex; align-items: center; gap: 3px; }
 
-/* ===== HIRE ME (CTA) BOX ===== */
+/* ===== HIRE ME BOX ===== */
 .please-box {
   background-color: var(--cta-box-bg-color) !important;
   color: var(--cta-box-text-color) !important;
@@ -250,7 +224,51 @@ img { display: block; max-width: 100%; height: auto; }
 .cta-content { display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .cta-emoji { font-size: 1.3rem; }
 .cta-text { font-size: 0.95rem; font-weight: 800; }
-.cta-sub { font-size: 0.6rem; opacity: 0.85; }
+.cta-sub { font-size: 0.58rem; opacity: 0.85; }
+
+/* ===== CERTIFICATIONS BOX ===== */
+.certs-box { align-items: flex-start; justify-content: flex-start; text-align: left; }
+.certs-content { display: flex; flex-direction: column; width: 100%; height: 100%; }
+.certs-list { display: flex; flex-direction: column; gap: 5px; }
+.cert-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--skill-bg);
+  border: 1px solid var(--skill-border);
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+.cert-item:hover { background: var(--accent-dim); border-color: var(--hover-border-color); }
+.cert-issuer {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.cert-issuer.google  { background: rgba(66,133,244,0.15);  color: #4285f4; }
+.cert-issuer.meta    { background: rgba(0,132,255,0.15);   color: #0084ff; }
+.cert-issuer.fcc     { background: rgba(0,100,80,0.2);     color: #00a86b; }
+.cert-issuer.ms      { background: rgba(0,120,215,0.15);   color: #0078d7; }
+.cert-issuer.cisco   { background: rgba(0,188,212,0.15);   color: #00bcd4; }
+.cert-name { font-size: 0.65rem; color: var(--box-text-color); font-weight: 500; line-height: 1.3; }
+.cert-date { font-size: 0.56rem; color: var(--text-faint); white-space: nowrap; }
+
+/* ===== TIMEZONE BOX ===== */
+.timezone-box { text-align: left; justify-content: flex-start; align-items: center; }
+.timezone-content { display: flex; align-items: center; gap: 10px; width: 100%; }
+.timezone-icon { font-size: 1.2rem; flex-shrink: 0; }
+.timezone-label { font-size: 0.56rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1px; }
+.timezone-time { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.timezone-zone { font-size: 0.54rem; color: var(--text-faint); margin-top: 1px; }
 
 /* ===== FOOTER BOX ===== */
 .footer-box { font-size: 0.72rem; color: var(--text-muted); }
@@ -260,14 +278,14 @@ img { display: block; max-width: 100%; height: auto; }
   body, html { overflow: auto; }
   .container {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(7, auto);
+    grid-template-rows: repeat(8, auto);
     width: 100vw;
     height: auto;
     max-height: none;
     margin: 20px auto;
   }
   .welcome-box, .about-box, .contact-box, .timezone-box,
-  .project-box, .please-box, .footer-box {
+  .project-box, .please-box, .certs-box, .footer-box {
     grid-column: span 1;
     grid-row: span 1;
   }
