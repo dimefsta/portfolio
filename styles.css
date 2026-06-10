@@ -41,10 +41,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-auto-rows: minmax(0, auto);
   gap: 12px;
   max-width: 1100px;
   margin: 0 auto;
+  align-items: start;
 }
 
 /* =====================
@@ -62,38 +63,37 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .box:hover { border-color: rgba(255,255,255,0.15); }
 
 /* =====================
-   EXPANDABLE BOXES
+   SCROLLABLE BOXES — fixed height, scroll inside
    ===================== */
-.expandable { max-height: 280px; }
-.expandable:hover { overflow-y: auto; max-height: 520px; }
-.expandable::-webkit-scrollbar { width: 4px; }
-.expandable::-webkit-scrollbar-track { background: transparent; }
-.expandable::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-
-.expand-inner { min-height: 100%; }
+.scrollable {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+.scrollable::-webkit-scrollbar { width: 3px; }
+.scrollable::-webkit-scrollbar-track { background: transparent; }
+.scrollable::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
 
 .scroll-hint {
   position: absolute;
   bottom: 8px; right: 12px;
   font-size: 10px;
   color: var(--text-faint);
-  opacity: 0;
-  transition: opacity var(--transition);
   pointer-events: none;
+  opacity: 0.6;
 }
-.expandable:not(:hover) .scroll-hint { opacity: 1; }
 
 /* =====================
-   GRID PLACEMENT
+   GRID PLACEMENT + FIXED HEIGHTS
    ===================== */
-.welcome-box  { grid-column: span 3; grid-row: span 1; min-height: 200px; }
-.about-box    { grid-column: span 1; grid-row: span 2; }
-.contact-box  { grid-column: span 1; grid-row: span 1; }
-.project-box  { grid-column: span 2; grid-row: span 2; }
-.please-box   { grid-column: span 1; grid-row: span 1; cursor: pointer; }
-.certs-box    { grid-column: span 1; grid-row: span 2; }
-.timezone-box { grid-column: span 1; grid-row: span 1; }
-.footer-box   { grid-column: span 2; grid-row: span 1; display: flex; align-items: center; justify-content: center; }
+.welcome-box  { grid-column: span 3; min-height: 180px; }
+.about-box    { grid-column: span 1; grid-row: span 2; height: 380px; }
+.contact-box  { grid-column: span 1; min-height: 160px; }
+.project-box  { grid-column: span 2; grid-row: span 2; height: 380px; }
+.please-box   { grid-column: span 1; cursor: pointer; min-height: 130px; }
+.certs-box    { grid-column: span 1; grid-row: span 2; height: 380px; }
+.timezone-box { grid-column: span 1; min-height: 90px; }
+.footer-box   { grid-column: span 2; min-height: 60px; display: flex; align-items: center; justify-content: center; }
 
 /* =====================
    BOX TITLES
@@ -108,6 +108,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 .view-all {
   font-size: 10px;
@@ -155,6 +156,21 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* =====================
    ABOUT BOX
    ===================== */
+.about-box {
+  display: flex;
+  flex-direction: column;
+}
+.about-content {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  padding-right: 4px;
+}
+.about-content::-webkit-scrollbar { width: 3px; }
+.about-content::-webkit-scrollbar-track { background: transparent; }
+.about-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+
 .about-bio {
   font-size: 12px;
   line-height: 1.7;
@@ -228,17 +244,36 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* =====================
    PROJECTS
    ===================== */
+.project-box {
+  display: flex;
+  flex-direction: column;
+}
+.project-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
 .projects-list {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
+.projects-list::-webkit-scrollbar { width: 3px; }
+.projects-list::-webkit-scrollbar-track { background: transparent; }
+.projects-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
 
 .project-card {
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
+  flex-shrink: 0;
   transition: border-color var(--transition), background var(--transition);
 }
 .project-card:hover {
@@ -314,9 +349,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition), transform var(--transition);
+  transition: background var(--transition);
 }
-.please-box:hover { background: #fff; transform: scale(1.01); }
+.please-box:hover { background: #fff; }
 .cta-content { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .cta-emoji { font-size: 28px; line-height: 1; }
 .cta-text { font-size: 18px; font-weight: 700; color: #0f0f0f; }
@@ -325,11 +360,29 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* =====================
    CERTIFICATIONS
    ===================== */
+.certs-box {
+  display: flex;
+  flex-direction: column;
+}
+.certs-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
 .certs-list {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
+.certs-list::-webkit-scrollbar { width: 3px; }
+.certs-list::-webkit-scrollbar-track { background: transparent; }
+.certs-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
 
 .cert-card {
   display: flex;
@@ -339,6 +392,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
+  flex-shrink: 0;
   transition: border-color var(--transition), background var(--transition);
   cursor: pointer;
 }
@@ -419,6 +473,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .welcome-box { grid-column: span 2; }
   .project-box { grid-column: span 2; }
   .footer-box  { grid-column: span 2; }
+  .about-box, .project-box, .certs-box { height: 320px; }
 }
 
 @media (max-width: 580px) {
@@ -429,6 +484,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-column: span 1;
     grid-row: span 1;
   }
+  .about-box, .project-box, .certs-box { height: 280px; }
   .typewriter { font-size: 17px; }
   .social-icons { gap: 8px; }
   .social-icon { width: 44px; height: 44px; }
