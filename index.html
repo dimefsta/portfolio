@@ -123,7 +123,7 @@
               <span class="project-lang" data-lang="React">React</span>
             </div>
             <div class="project-card">
-              <div class="project-card-header"><span class="project-name">QR Generator</span><div class="project-links"><a href="https://qr-generator-lemon.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><n href="https://github.com/dimefsta/qr-generator" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</n></div></div>
+              <div class="project-card-header"><span class="project-name">QR Generator</span><div class="project-links"><a href="https://qr-generator-lemon.vercel.app" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a><a href="https://github.com/dimefsta/qr-generator" target="_blank" rel="noopener noreferrer" class="project-btn repo">Code</a></div></div>
               <p class="project-desc">Generate QR codes instantly from any URL or text. Minimal and fast.</p>
               <span class="project-lang" data-lang="JavaScript">JavaScript</span>
             </div>
@@ -205,9 +205,9 @@
         <h3 class="box-title" id="lang-title-desktop">Languages</h3>
         <div class="lang-list">
           <div class="lang-item"><span class="lang-flag">🇬🇷</span><span class="lang-name">Greek</span><span class="lang-level">Native</span><span class="lang-badge native">Native</span></div>
-          <div class="lang-item"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130</span></div>
-          <div class="lang-item"><span class="lang-flag">🇫🇷</span><span class="lang-name">French</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130</span></div>
-          <div class="lang-item"><span class="lang-flag">🇪🇸</span><span class="lang-name">Spanish</span><span class="lang-level">Elementary</span><span class="lang-badge basic">Duolingo 42</span></div>
+          <div class="lang-item"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130/130</span></div>
+          <div class="lang-item"><span class="lang-flag">🇫🇷</span><span class="lang-name">French</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130/130</span></div>
+          <div class="lang-item"><span class="lang-flag">🇪🇸</span><span class="lang-name">Spanish</span><span class="lang-level">Elementary</span><span class="lang-badge basic">Duolingo 42/130</span></div>
         </div>
       </div>
 
@@ -249,10 +249,8 @@
       /* ---- Mobile tap-to-expand ---- */
       function initMobile() {
         if (window.innerWidth > 580) {
-          /* desktop: show desktop titles, hide mobile headers */
           document.querySelectorAll('.mobile-header').forEach(function(h){ h.style.display='none'; });
           document.querySelectorAll('[id$="-title-desktop"], #about-title-desktop, #lang-title-desktop, #certs-title-desktop, #projects-title-desktop').forEach(function(el){ el.style.display=''; });
-          /* ensure bodies visible */
           ['about-content','contact-body','project-body','certs-content','lang-list'].forEach(function(cls){
             var el = document.querySelector('.'+cls);
             if (el) { el.style.maxHeight=''; el.style.overflow=''; }
@@ -260,12 +258,10 @@
           return;
         }
 
-        /* mobile: hide desktop titles, show mobile headers */
         document.getElementById('about-title-desktop') && (document.getElementById('about-title-desktop').style.display='none');
         document.getElementById('lang-title-desktop')  && (document.getElementById('lang-title-desktop').style.display='none');
         document.getElementById('certs-title-desktop') && (document.getElementById('certs-title-desktop').style.display='none');
         document.getElementById('projects-title-desktop') && (document.getElementById('projects-title-desktop').style.display='none');
-        /* hide desktop contact title div */
         var contactDesktop = document.getElementById('contact-desktop-title');
         if (contactDesktop) contactDesktop.style.display='none';
 
