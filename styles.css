@@ -13,9 +13,9 @@
   --text-faint: #555;
   --accent: #e8e8e8;
   --accent-dim: rgba(232,232,232,0.06);
-  --accent-red: #e03030;
-  --accent-red-hover: #ff4444;
-  --accent-red-dim: rgba(224,48,48,0.10);
+  --accent-red: #ff2e2e;
+  --accent-red-hover: #ff5555;
+  --accent-red-dim: rgba(255,46,46,0.10);
   --radius: 16px;
   --radius-sm: 10px;
   --radius-xs: 6px;
@@ -62,7 +62,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: relative;
   transition: border-color var(--transition);
 }
-.box:hover { border-color: rgba(224,48,48,0.35); }
+.box:hover { border-color: rgba(255,46,46,0.35); }
 
 /* =====================
    GRID PLACEMENT
@@ -100,7 +100,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(224,48,48,0.15) transparent;
+  scrollbar-color: rgba(255,46,46,0.15) transparent;
   padding-right: 2px;
 }
 .projects-list { display: flex; flex-direction: column; gap: 10px; }
@@ -117,7 +117,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .certs-list::-webkit-scrollbar-track { background: transparent; }
 .skills::-webkit-scrollbar-thumb,
 .projects-list::-webkit-scrollbar-thumb,
-.certs-list::-webkit-scrollbar-thumb { background: rgba(224,48,48,0.2); border-radius: 99px; }
+.certs-list::-webkit-scrollbar-thumb { background: rgba(255,46,46,0.2); border-radius: 99px; }
 
 .scroll-hint {
   position: absolute;
@@ -209,7 +209,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
   height: fit-content;
 }
-.skill-tag:hover { border-color: rgba(224,48,48,0.4); color: var(--accent-red); }
+.skill-tag:hover { border-color: rgba(255,46,46,0.4); color: var(--accent-red); }
 
 /* =====================
    LANGUAGES BOX
@@ -284,7 +284,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .social-icon:hover {
   color: var(--accent-red);
-  border-color: rgba(224,48,48,0.4);
+  border-color: rgba(255,46,46,0.4);
   background: var(--accent-red-dim);
   transform: translateY(-2px);
 }
@@ -308,8 +308,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: border-color var(--transition), background var(--transition);
 }
 .project-card:hover {
-  border-color: rgba(224,48,48,0.35);
-  background: rgba(224,48,48,0.04);
+  border-color: rgba(255,46,46,0.35);
+  background: rgba(255,46,46,0.04);
 }
 .project-card-header {
   display: flex;
@@ -330,7 +330,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-btn.live { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
 .project-btn.live:hover { background: var(--accent-red-hover); border-color: var(--accent-red-hover); }
 .project-btn.repo { color: var(--text-muted); background: transparent; }
-.project-btn.repo:hover { color: var(--accent-red); border-color: rgba(224,48,48,0.4); }
+.project-btn.repo:hover { color: var(--accent-red); border-color: rgba(255,46,46,0.4); }
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
@@ -382,8 +382,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: border-color var(--transition), background var(--transition);
 }
 .cert-card:hover {
-  border-color: rgba(224,48,48,0.35);
-  background: rgba(224,48,48,0.04);
+  border-color: rgba(255,46,46,0.35);
+  background: rgba(255,46,46,0.04);
 }
 .cert-clickable { cursor: pointer; }
 .cert-logo {
