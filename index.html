@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Just_Di.E | Just Dimitris Efstathiou</title>
+    <title>Dimitris Efstathiou | Software Developer &amp; Entrepreneur · Athens</title>
 
     <!-- SEO: Meta Description -->
     <meta name="description" content="Dimitris Efstathiou — Software Developer &amp; Entrepreneur based in Athens, Greece. JavaScript, React, Node.js. Open to junior roles, freelance &amp; collaborations." />
@@ -39,7 +39,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <!-- Only load the weights actually used: 400, 500, 600, 700 -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Schema.org JSON-LD: Person -->
@@ -58,18 +59,16 @@
         "addressLocality": "Athens",
         "addressCountry": "GR"
       },
-      "email": "just_di.e@just-die.com",
       "sameAs": [
         "https://github.com/dimefsta",
         "https://www.linkedin.com/in/dimitris-efstathiou-97a496344",
         "https://instagram.com/Just_di.e"
       ],
-      "knowsAbout": ["JavaScript", "React", "Node.js", "Python", "C#", "HTML5", "CSS3", "SQL", "Git", "Linux", "IoT", "Digital Marketing", "SEO"]
+      "knowsAbout": ["JavaScript", "React", "Node.js", "Python", "C#", "HTML5", "CSS3", "SQL", "Git", "Linux", "IoT"]
     }
     </script>
 
     <style>
-      /* Skip link */
       .skip-link {
         position: absolute;
         top: -40px;
@@ -103,19 +102,19 @@
               <p class="typewriter" id="line4">and a <span class="job">software developer</span> by night.</p>
             </div>
             <div class="welcome-image-container">
-              <img src="assets/welcomebox.png" alt="Just Dimitris Efstathiou photo" class="welcome-image" width="95" height="95" loading="eager" />
+              <img src="assets/welcomebox.png" alt="Dimitris Efstathiou photo" class="welcome-image" width="95" height="95" loading="eager" />
             </div>
           </div>
         </div>
 
         <!-- ABOUT BOX -->
-        <div class="box about-box">
+        <div class="box about-box" id="about-box">
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">About Me</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
           </div>
           <h3 class="box-title" id="about-title-desktop">About Me</h3>
-          <div class="about-content">
+          <div class="about-content" id="about-content" aria-labelledby="about-box">
             <p class="about-bio">Based in Athens 🇬🇷. Started Computer Science at ASOEE, now building my dev path through real projects. I learn fast and ship even faster.</p>
             <p class="about-bio" style="margin-top:8px;">Open to <strong>junior roles</strong>, <strong>freelance</strong> &amp; <strong>collaborations</strong>.</p>
             <div class="skills">
@@ -141,7 +140,7 @@
         </div>
 
         <!-- CONTACT BOX -->
-        <div class="box contact-box">
+        <div class="box contact-box" id="contact-box">
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Let's Connect</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -150,7 +149,7 @@
             <h3 class="box-title">Let's Connect</h3>
             <p class="contact-sub">Open to collaborations &amp; opportunities</p>
           </div>
-          <div class="contact-body">
+          <div class="contact-body" id="contact-body">
             <nav class="social-icons" aria-label="Social media links">
               <a href="https://github.com/dimefsta" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub profile (opens in new tab)">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
@@ -169,7 +168,7 @@
         </div>
 
         <!-- PROJECTS BOX -->
-        <div class="box project-box">
+        <div class="box project-box" id="project-box">
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Projects</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -177,7 +176,7 @@
           <div class="project-content">
             <h3 class="box-title" id="projects-title-desktop">Projects</h3>
           </div>
-          <div class="project-body">
+          <div class="project-body" id="project-body">
             <div class="projects-list" id="projects-list">
               <div class="project-card">
                 <div class="project-card-header"><span class="project-name">johnhns.com</span><div class="project-links"><a href="https://www.johnhns.com/" target="_blank" rel="noopener noreferrer" class="project-btn live">Live ↗</a></div></div>
@@ -229,12 +228,12 @@
         </a>
 
         <!-- CERTIFICATIONS BOX -->
-        <div class="box certs-box">
+        <div class="box certs-box" id="certs-box">
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Certifications <span class="cert-count" id="cert-count-mobile"></span></h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
           </div>
-          <div class="certs-content">
+          <div class="certs-content" id="certs-content">
             <h3 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count" id="cert-count-desktop"></span></h3>
             <div class="certs-list" id="certs-list">
               <a href="https://www.coursera.org/account/accomplishments/specialization/WZHNQSVZR6WV" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">IT Support Professional</span><span class="cert-issuer-name">Google · Jan 2025</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
@@ -250,8 +249,8 @@
               <a href="https://www.credly.com/badges/cb63da41-f402-4848-b8cc-88a52ed347b6/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo sap">SAP</div><div class="cert-info"><span class="cert-name">SAP S/4HANA Retail</span><span class="cert-issuer-name">SAP · Sep 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://www.credly.com/badges/4f183a9b-ad4c-47c1-9102-7d11c1f92b57/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo cisco">IoT</div><div class="cert-info"><span class="cert-name">Introduction to IoT</span><span class="cert-issuer-name">Cisco · Sep 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Fundamentals of Digital Marketing</span><span class="cert-issuer-name">Google Digital Garage · Aug 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
-              <button class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd%20.jpeg','Standard Office User — ΕΣΥΔ')" aria-label="View Standard Office User ΕΣΥΔ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΣΥΔ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
-              <button class="cert-card cert-clickable" onclick="openCertModal('https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpeg','Standard Office User — ΕΟΠΠΕΠ')" aria-label="View Standard Office User ΕΟΠΠΕΠ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
+              <button class="cert-card cert-clickable" data-cert-src="https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd%20.jpeg" data-cert-title="Standard Office User — ΕΣΥΔ" aria-label="View Standard Office User ΕΣΥΔ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΣΥΔ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
+              <button class="cert-card cert-clickable" data-cert-src="https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpeg" data-cert-title="Standard Office User — ΕΟΠΠΕΠ" aria-label="View Standard Office User ΕΟΠΠΕΠ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
               <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Online Marketing in Tourism</span><span class="cert-issuer-name">Google Digital Garage · Feb 2018</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -277,13 +276,13 @@
         </div>
 
         <!-- LANGUAGES BOX -->
-        <div class="box languages-box">
+        <div class="box languages-box" id="languages-box">
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Languages</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
           </div>
           <h3 class="box-title" id="lang-title-desktop">Languages</h3>
-          <div class="lang-list">
+          <div class="lang-list" id="lang-list">
             <div class="lang-item"><span class="lang-flag" aria-hidden="true">🇬🇷</span><span class="lang-name">Greek</span><span class="lang-level">Native</span><span class="lang-badge native">Native</span></div>
             <div class="lang-item"><span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-name">English</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130/130</span></div>
             <div class="lang-item"><span class="lang-flag" aria-hidden="true">🇫🇷</span><span class="lang-name">French</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130/130</span></div>
@@ -294,7 +293,7 @@
       </div>
     </main>
 
-    <!-- FOOTER — outside grid, full-width, minimal -->
+    <!-- FOOTER -->
     <footer class="site-footer">
       <span>© 2026 Just_di.e</span>
     </footer>
@@ -309,7 +308,6 @@
       </div>
     </div>
 
-    <!-- All JS in one external file, deferred -->
     <script src="script.js" defer></script>
   </body>
 </html>

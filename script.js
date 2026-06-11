@@ -16,6 +16,21 @@ document.addEventListener('DOMContentLoaded', function () {
       el.style.opacity = '1';
     }, item.delay);
   });
+
+  /* Dynamic cert count */
+  var certItems = document.querySelectorAll('#certs-list .cert-card');
+  var count = certItems.length;
+  var desktopCount = document.getElementById('cert-count-desktop');
+  var mobileCount  = document.getElementById('cert-count-mobile');
+  if (desktopCount) desktopCount.textContent = '(' + count + ')';
+  if (mobileCount)  mobileCount.textContent  = '(' + count + ')';
+
+  /* Cert clickable buttons — data-driven, no inline onclick */
+  document.querySelectorAll('.cert-clickable[data-cert-src]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      openCertModal(btn.dataset.certSrc, btn.dataset.certTitle);
+    });
+  });
 });
 
 /* =====================
@@ -45,8 +60,16 @@ function updateClock() {
   if (monthEl) monthEl.textContent = MONTHS_SHORT[athens.getMonth()];
   if (yearEl)  yearEl.textContent  = athens.getFullYear();
 }
-setInterval(updateClock, 1000);
+
+/* Pause clock when tab is hidden — saves battery on mobile */
+var _clockInterval;
+function startClock() { if (!_clockInterval) _clockInterval = setInterval(updateClock, 1000); }
+function stopClock()  { clearInterval(_clockInterval); _clockInterval = null; }
+document.addEventListener('visibilitychange', function () {
+  document.hidden ? stopClock() : (updateClock(), startClock());
+});
 updateClock();
+startClock();
 
 /* =====================
    CERT MODAL
@@ -81,11 +104,12 @@ document.addEventListener('keydown', function (e) {
 /* =====================
    MOBILE TAP-TO-EXPAND
    ===================== */
+var MOBILE_BREAKPOINT = 580;
 var _mobileInitMap = new WeakMap();
 var _resizeTimer;
 
 function initMobile() {
-  if (window.innerWidth > 580) {
+  if (window.innerWidth > MOBILE_BREAKPOINT) {
     document.querySelectorAll('.mobile-header').forEach(function (h) { h.style.display = 'none'; });
     document.querySelectorAll(
       '[id$="-title-desktop"], #about-title-desktop, #lang-title-desktop, #certs-title-desktop, #projects-title-desktop'
@@ -107,21 +131,40 @@ function initMobile() {
   document.querySelectorAll('.mobile-header').forEach(function (h) { h.style.display = 'flex'; });
 
   var boxes = [
-    { box: document.querySelector('.about-box'),     toggle: 'about-content' },
-    { box: document.querySelector('.certs-box'),     toggle: 'certs-content' },
-    { box: document.querySelector('.contact-box'),   toggle: 'contact-body' },
-    { box: document.querySelector('.project-box'),   toggle: 'project-body' },
-    { box: document.querySelector('.languages-box'), toggle: 'lang-list' },
+    { box: document.querySelector('.about-box'),     header: document.querySelector('.about-box .mobile-header') },
+    { box: document.querySelector('.certs-box'),     header: document.querySelector('.certs-box .mobile-header') },
+    { box: document.querySelector('.contact-box'),   header: document.querySelector('.contact-box .mobile-header') },
+    { box: document.querySelector('.project-box'),   header: document.querySelector('.project-box .mobile-header') },
+    { box: document.querySelector('.languages-box'), header: document.querySelector('.languages-box .mobile-header') },
   ];
 
   boxes.forEach(function (item) {
     if (!item.box || _mobileInitMap.has(item.box)) return;
     _mobileInitMap.set(item.box, true);
+
+    /* ARIA attributes for screen readers */
+    if (item.header) {
+      item.header.setAttribute('role', 'button');
+      item.header.setAttribute('tabindex', '0');
+      item.header.setAttribute('aria-expanded', 'false');
+    }
+
     item.box.addEventListener('click', function (e) {
-      if (window.innerWidth > 580) return;
+      if (window.innerWidth > MOBILE_BREAKPOINT) return;
       if (e.target.closest('a, button, .cert-clickable')) return;
-      item.box.classList.toggle('expanded');
+      var expanded = item.box.classList.toggle('expanded');
+      if (item.header) item.header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     });
+
+    /* Keyboard support for mobile headers */
+    if (item.header) {
+      item.header.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.box.click();
+        }
+      });
+    }
   });
 }
 
