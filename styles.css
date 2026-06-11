@@ -97,7 +97,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   min-height: 0;
 }
 
-/* certs-content must NOT clip the child scrollbar */
 .certs-content {
   flex: 1;
   overflow: visible;
@@ -179,6 +178,31 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: color var(--transition);
 }
 .view-all:hover { color: var(--accent-red); }
+
+/* =====================
+   VIEW MORE BUTTON
+   ===================== */
+.view-more-btn {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  margin-right: 14px;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+.view-more-btn:hover {
+  color: var(--accent-red);
+  border-color: rgba(255,46,46,0.4);
+  background: var(--accent-red-dim);
+}
 
 /* =====================
    WELCOME BOX
@@ -304,6 +328,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-box {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .contact-content {
   flex-shrink: 0;
@@ -311,8 +336,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-body {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-height: 0;
+  align-items: flex-start;
 }
 .contact-sub {
   font-size: 11px;
@@ -323,7 +347,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   gap: 10px;
   justify-content: flex-start;
-  margin-bottom: 12px;
   flex-wrap: wrap;
 }
 .social-icon {
@@ -705,6 +728,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .lang-name  { font-size: 10px; min-width: 44px; }
   .lang-level { display: none; }
   .lang-badge { font-size: 8px; padding: 2px 5px; }
+
+  /* — View More button on mobile — */
+  .view-more-btn { margin-right: 0; }
 
   /* — Footer — */
   .footer-box { padding: 12px 16px; font-size: 11px; display: flex; align-items: center; justify-content: center; }
