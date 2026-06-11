@@ -1,7 +1,33 @@
 /* =====================
+   EMAIL OBFUSCATION
+   Reconstructed at runtime — invisible to scrapers in source
+   ===================== */
+function buildEmail() {
+  var u = 'just_di.e';
+  var d = 'just-die';
+  var t = 'com';
+  return u + '@' + d + '.' + t;
+}
+
+function applyEmailLinks() {
+  var email = buildEmail();
+  /* Hire Me box */
+  var hireBox = document.querySelector('.please-box[data-email-target]');
+  if (hireBox) hireBox.setAttribute('href', 'mailto:' + email);
+  /* Email social icon */
+  var emailIcon = document.querySelector('.social-icon[data-email-target]');
+  if (emailIcon) emailIcon.setAttribute('href', 'mailto:' + email);
+  /* aria-label update */
+  if (emailIcon) emailIcon.setAttribute('aria-label', 'Send email to ' + email);
+  if (hireBox)  hireBox.setAttribute('aria-label',  'Hire me — send an email to ' + email);
+}
+
+/* =====================
    TYPEWRITER
    ===================== */
 document.addEventListener('DOMContentLoaded', function () {
+  applyEmailLinks();
+
   var lines = [
     { id: 'line1', delay: 300 },
     { id: 'line2', delay: 700 },
@@ -142,7 +168,6 @@ function initMobile() {
     if (!item.box || _mobileInitMap.has(item.box)) return;
     _mobileInitMap.set(item.box, true);
 
-    /* ARIA attributes for screen readers */
     if (item.header) {
       item.header.setAttribute('role', 'button');
       item.header.setAttribute('tabindex', '0');
@@ -156,7 +181,6 @@ function initMobile() {
       if (item.header) item.header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     });
 
-    /* Keyboard support for mobile headers */
     if (item.header) {
       item.header.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
