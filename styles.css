@@ -46,7 +46,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 260px 220px 80px 190px 58px;
+  grid-template-rows: 260px 220px 100px 220px 58px;
   gap: 14px;
   max-width: 1280px;
   margin: 0 auto;
@@ -641,9 +641,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .welcome-box   { grid-column: 1 / 3; }
   .about-box     { grid-column: span 1; min-height: 280px; }
   .contact-box   { grid-column: span 1; }
-  .project-box   { grid-column: 1 / 3; min-height: 400px; }
-  .timezone-box  { grid-column: span 1; min-height: 70px; }
-  .languages-box { grid-column: span 1; min-height: 160px; }
+  .project-box   { grid-column: 1 / 3; min-height: 480px; }
+  .timezone-box  { grid-column: span 1; min-height: 100px; }
+  .languages-box { grid-column: span 1; min-height: 180px; }
   .please-box    { grid-column: span 1; }
   .certs-box     { grid-column: 1 / 3; min-height: 280px; }
 }
