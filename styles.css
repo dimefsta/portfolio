@@ -80,7 +80,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .about-box,
 .certs-box { display: flex; flex-direction: column; }
 
-/* project-box: flex column so we can give project-body flex:1 */
 .project-box {
   display: flex;
   flex-direction: column;
@@ -90,8 +89,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* =====================
    INNER SCROLL WRAPPERS
    ===================== */
-.about-content,
-.certs-content {
+.about-content {
   flex: 1;
   overflow: hidden;
   display: flex;
@@ -99,7 +97,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   min-height: 0;
 }
 
-/* project-content = title row (fixed), project-body = scrollable area */
+/* certs-content must NOT clip the child scrollbar */
+.certs-content {
+  flex: 1;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .project-content {
   flex-shrink: 0;
 }
@@ -110,7 +116,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   min-height: 0;
   display: flex;
   flex-direction: column;
-  /* push scrollbar to the right edge of the box */
   margin-right: -14px;
   padding-right: 14px;
 }
@@ -123,7 +128,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   scrollbar-width: thin;
   scrollbar-color: rgba(255,46,46,0.45) rgba(255,255,255,0.04);
 }
-/* projects-list & certs-list: shift scrollbar outside padding */
 .projects-list,
 .certs-list {
   margin-right: -14px;
@@ -304,7 +308,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-content {
   flex-shrink: 0;
 }
-/* On desktop, contact-body is always visible */
 .contact-body {
   display: flex;
   flex-direction: column;
@@ -720,7 +723,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .certs-box.expanded .certs-content  { max-height: 1600px; margin-top: 12px; }
   .certs-box.expanded .mobile-chevron { transform: rotate(180deg); }
-  .certs-box .certs-list { overflow: visible; }
+  .certs-box .certs-list { overflow: visible; margin-right: 0; padding-right: 0; }
   .certs-box .scroll-hint { display: none; }
 
   /* ════════════════════════════════════════
@@ -757,7 +760,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .project-box.expanded .project-body  { max-height: 3000px; margin-top: 12px; }
   .project-box.expanded .mobile-chevron { transform: rotate(180deg); }
-  .project-box .projects-list { display: flex; flex-direction: column; gap: 10px; overflow: visible; }
+  .project-box .projects-list { display: flex; flex-direction: column; gap: 10px; overflow: visible; margin-right: 0; padding-right: 0; }
   .project-box .scroll-hint { display: none; }
 
   /* — Languages — tap-to-expand */
