@@ -545,6 +545,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .timezone-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   height: 100%;
 }
@@ -557,8 +558,36 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 8px;
 }
 .timezone-time  { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; }
-.timezone-date  { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.01em; font-weight: 500; }
 .timezone-zone  { font-size: 9px;  color: var(--text-faint); margin-top: 1px; }
+
+.timezone-date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.timezone-date-day {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.timezone-date-month {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-red);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.timezone-date-year {
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
 
 /* =====================
    FOOTER
@@ -651,12 +680,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
   /* — Timezone — */
   .timezone-box { padding: 14px 16px; }
-  .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; }
+  .timezone-content { height: auto; flex-direction: row; gap: 10px; align-items: center; justify-content: space-between; }
   .timezone-icon { font-size: 22px; }
   .timezone-time { font-size: 16px; font-weight: 700; }
-  .timezone-date { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 500; }
   .timezone-label { font-size: 9px; }
   .timezone-zone  { display: none; }
+  .timezone-date-day   { font-size: 18px; }
+  .timezone-date-month { font-size: 9px; }
+  .timezone-date-year  { font-size: 8px; }
 
   /* — Hire Me — */
   .please-box { padding: 0; min-height: 60px !important; }
