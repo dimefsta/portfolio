@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#0f0f0f"/>
+  <text x="5" y="22" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="13" fill="#ff2e2e">JD</text>
+  <circle cx="26" cy="9" r="3" fill="#ff2e2e"/>
+</svg>
