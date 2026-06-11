@@ -55,7 +55,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 190px 160px 64px 140px 46px;
   gap: 12px;
-  max-width: 1200px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
 }
@@ -225,9 +225,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .welcome-text { flex: 1; }
 .typewriter {
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-muted);
   opacity: 0;
 }
@@ -240,8 +240,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .welcome-image-container {
   flex-shrink: 0;
-  width: 110px;
-  height: 110px;
+  width: 95px;
+  height: 95px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -625,7 +625,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    FOOTER — standalone, outside grid
    ===================== */
 .site-footer {
-  max-width: 1200px;
+  max-width: 900px;
   width: 100%;
   margin: 12px auto 0;
   padding: 14px 4px;
