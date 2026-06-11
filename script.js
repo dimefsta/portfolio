@@ -21,10 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
 /* =====================
    CLOCK + DATE
    ===================== */
+var MONTHS_SHORT = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
 function updateClock() {
-  var timeEl = document.getElementById('timezone-time');
-  var dateEl = document.getElementById('timezone-date');
+  var timeEl  = document.getElementById('timezone-time');
+  var dayEl   = document.getElementById('timezone-date-day');
+  var monthEl = document.getElementById('timezone-date-month');
+  var yearEl  = document.getElementById('timezone-date-year');
+
   var now = new Date();
+  var athens = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Athens' }));
+
   if (timeEl) {
     timeEl.textContent = now.toLocaleTimeString('el-GR', {
       timeZone: 'Europe/Athens',
@@ -34,14 +41,9 @@ function updateClock() {
       hour12: false,
     });
   }
-  if (dateEl) {
-    dateEl.textContent = now.toLocaleDateString('el-GR', {
-      timeZone: 'Europe/Athens',
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    });
-  }
+  if (dayEl)   dayEl.textContent   = String(athens.getDate()).padStart(2, '0');
+  if (monthEl) monthEl.textContent = MONTHS_SHORT[athens.getMonth()];
+  if (yearEl)  yearEl.textContent  = athens.getFullYear();
 }
 setInterval(updateClock, 1000);
 updateClock();
