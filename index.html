@@ -25,9 +25,14 @@
     <meta name="twitter:description" content="Dimitris Efstathiou — Software Developer &amp; Entrepreneur based in Athens, Greece. JavaScript, React, Node.js. Open to junior roles, freelance &amp; collaborations." />
     <meta name="twitter:image" content="https://www.just-die.com/assets/welcomebox.png" />
 
+    <!-- PWA + Theme -->
+    <meta name="theme-color" content="#0f0f0f" />
+    <link rel="manifest" href="site.webmanifest" />
+
     <!-- Favicon -->
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/favicon.ico" />
 
     <!-- Performance: Preload hero image (LCP) -->
     <link rel="preload" as="image" href="assets/welcomebox.png" />
@@ -36,6 +41,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Schema.org JSON-LD: Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dimitris Efstathiou",
+      "alternateName": "Just_Di.E",
+      "url": "https://www.just-die.com",
+      "image": "https://www.just-die.com/assets/welcomebox.png",
+      "jobTitle": "Software Developer",
+      "description": "Software Developer & Entrepreneur based in Athens, Greece. JavaScript, React, Node.js.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Athens",
+        "addressCountry": "GR"
+      },
+      "email": "just_di.e@just-die.com",
+      "sameAs": [
+        "https://github.com/dimefsta",
+        "https://www.linkedin.com/in/dimitris-efstathiou-97a496344",
+        "https://instagram.com/Just_di.e"
+      ],
+      "knowsAbout": ["JavaScript", "React", "Node.js", "Python", "C#", "HTML5", "CSS3", "SQL", "Git", "Linux", "IoT", "Digital Marketing", "SEO"]
+    }
+    </script>
 
     <style>
       /* Skip link */
@@ -72,7 +103,7 @@
               <p class="typewriter" id="line4">and a <span class="job">software developer</span> by night.</p>
             </div>
             <div class="welcome-image-container">
-              <img src="assets/welcomebox.png" alt="Just Dimitris Efstathiou photo" class="welcome-image" />
+              <img src="assets/welcomebox.png" alt="Just Dimitris Efstathiou photo" class="welcome-image" width="95" height="95" loading="eager" />
             </div>
           </div>
         </div>
@@ -200,12 +231,12 @@
         <!-- CERTIFICATIONS BOX -->
         <div class="box certs-box">
           <div class="mobile-header" style="display:none">
-            <h3 class="box-title">Certifications <span class="cert-count">(15)</span></h3>
+            <h3 class="box-title">Certifications <span class="cert-count" id="cert-count-mobile"></span></h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
           </div>
           <div class="certs-content">
-            <h3 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count">(15)</span></h3>
-            <div class="certs-list">
+            <h3 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count" id="cert-count-desktop"></span></h3>
+            <div class="certs-list" id="certs-list">
               <a href="https://www.coursera.org/account/accomplishments/specialization/WZHNQSVZR6WV" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">IT Support Professional</span><span class="cert-issuer-name">Google · Jan 2025</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://www.credly.com/badges/4e831c8e-7855-41cb-afbf-4173fd2b26ef/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo workearly">WE</div><div class="cert-info"><span class="cert-name">SQL Fundamentals</span><span class="cert-issuer-name">Workearly · Sep 2025</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://www.coursera.org/account/accomplishments/records/PT89UX6PV5ZP" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo meta">M</div><div class="cert-info"><span class="cert-name">React Basics</span><span class="cert-issuer-name">Meta · Nov 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>

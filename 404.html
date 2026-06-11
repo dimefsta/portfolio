@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | Just_Di.E</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8e8;
+      --text-muted: #888;
+      --text-faint: #555;
+      --accent-red: #ff2e2e;
+      --radius: 16px;
+      --font: 'Montserrat', sans-serif;
+    }
+    html { -webkit-font-smoothing: antialiased; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+    }
+    .code {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-red);
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 11px 28px;
+      background: var(--accent-red);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: background 200ms ease;
+    }
+    .btn:hover { background: #ff5555; }
+    .footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="code">404</div>
+    <h1 class="title">Page not found</h1>
+    <p class="sub">This page doesn't exist or was moved.<br />Let's get you back on track.</p>
+    <a href="/" class="btn">← Back to Portfolio</a>
+  </div>
+  <p class="footer">© 2026 Just_di.e</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Just_Di.E — Dimitris Efstathiou",
+  "short_name": "Just_Di.E",
+  "description": "Software Developer & Entrepreneur based in Athens, Greece.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#0f0f0f",
+  "icons": [
+    {
+      "src": "assets/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
