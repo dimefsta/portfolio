@@ -46,7 +46,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 260px 220px 80px 190px 58px;
+  grid-template-rows: 220px 180px 72px 160px 50px;
   gap: 14px;
   max-width: 1280px;
   margin: 0 auto;
@@ -217,7 +217,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .welcome-text { flex: 1; }
 .typewriter {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-muted);
@@ -232,8 +232,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .welcome-image-container {
   flex-shrink: 0;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -273,11 +273,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 16px 20px;
+  padding: 14px 18px;
 }
-.languages-box .box-title { margin-bottom: 10px; }
+.languages-box .box-title { margin-bottom: 8px; }
 
-.lang-list { display: flex; flex-direction: column; gap: 8px; }
+.lang-list { display: flex; flex-direction: column; gap: 7px; }
 .lang-item {
   display: flex;
   align-items: center;
@@ -342,11 +342,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-sub {
   font-size: 11px;
   color: var(--text-faint);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .social-icons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -354,8 +354,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface-2);
@@ -383,7 +383,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 14px 16px;
+  padding: 12px 14px;
   flex-shrink: 0;
   transition: border-color var(--transition), background var(--transition);
 }
@@ -395,7 +395,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 .project-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .project-links { display: flex; gap: 6px; }
@@ -414,8 +414,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 8px;
+  line-height: 1.5;
+  margin-bottom: 7px;
 }
 .project-lang {
   font-size: 10px;
@@ -452,8 +452,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   width: 100%;
   height: 100%;
 }
-.cta-emoji { font-size: 20px; line-height: 1; }
-.cta-text  { font-size: 15px; font-weight: 700; color: #fff; }
+.cta-emoji { font-size: 18px; line-height: 1; }
+.cta-text  { font-size: 14px; font-weight: 700; color: #fff; }
 .cta-sub   { display: none; }
 
 /* =====================
@@ -463,7 +463,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 11px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -476,7 +476,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .cert-clickable { cursor: pointer; }
 .cert-logo {
-  width: 32px; height: 32px;
+  width: 30px; height: 30px;
   border-radius: var(--radius-xs);
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 700;
@@ -492,7 +492,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .cert-logo.workearly { background: rgba(99,102,241,0.12); color: #818cf8; border: 1px solid rgba(99,102,241,0.25); font-size: 9px; font-weight: 700; }
 .cert-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .cert-name {
-  font-size: 12px; font-weight: 600; color: var(--text);
+  font-size: 11px; font-weight: 600; color: var(--text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .cert-issuer-name { font-size: 10px; color: var(--text-faint); margin-top: 2px; }
@@ -573,7 +573,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 10px;
   height: 100%;
 }
-.timezone-icon  { font-size: 22px; flex-shrink: 0; }
+.timezone-icon  { font-size: 20px; flex-shrink: 0; }
 .timezone-info  { display: flex; flex-direction: column; justify-content: center; }
 .timezone-label { font-size: 10px; color: var(--text-muted); }
 .timezone-row {
@@ -581,7 +581,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: baseline;
   gap: 8px;
 }
-.timezone-time  { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+.timezone-time  { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
 .timezone-zone  { font-size: 9px;  color: var(--text-faint); margin-top: 1px; }
 
 .timezone-date-block {
@@ -592,7 +592,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
 }
 .timezone-date-day {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text);
   line-height: 1;
@@ -639,13 +639,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-template-rows: auto;
   }
   .welcome-box   { grid-column: 1 / 3; }
-  .about-box     { grid-column: span 1; min-height: 280px; }
+  .about-box     { grid-column: span 1; min-height: 260px; }
   .contact-box   { grid-column: span 1; }
-  .project-box   { grid-column: 1 / 3; min-height: 480px; }
-  .timezone-box  { grid-column: span 1; min-height: 100px; }
-  .languages-box { grid-column: span 1; min-height: 180px; }
+  .project-box   { grid-column: 1 / 3; min-height: 440px; }
+  .timezone-box  { grid-column: span 1; min-height: 90px; }
+  .languages-box { grid-column: span 1; min-height: 160px; }
   .please-box    { grid-column: span 1; }
-  .certs-box     { grid-column: 1 / 3; min-height: 280px; }
+  .certs-box     { grid-column: 1 / 3; min-height: 260px; }
 }
 
 /* ============================================================
