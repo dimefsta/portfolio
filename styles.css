@@ -70,7 +70,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 210px 190px 70px 220px 50px;
+  grid-template-rows: 210px 190px 70px 70px 50px;
   gap: 12px;
   max-width: 1160px;
   width: 100%;
@@ -96,10 +96,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    ===================== */
 .welcome-box   { grid-column: 1 / 4; grid-row: 1; }
 .about-box     { grid-column: 4;     grid-row: 1 / 3; }
-.contact-box   { grid-column: 1;     grid-row: 2; }
+.languages-box { grid-column: 1;     grid-row: 2; }
 .project-box   { grid-column: 2 / 4; grid-row: 2 / 6; }
-.timezone-box  { grid-column: 1;     grid-row: 3; }
-.languages-box { grid-column: 1;     grid-row: 4; }
+.contact-box   { grid-column: 1;     grid-row: 3; }
+.timezone-box  { grid-column: 1;     grid-row: 4; }
 .please-box    { grid-column: 1;     grid-row: 5; cursor: pointer; }
 .certs-box     { grid-column: 4;     grid-row: 3 / 6; }
 
@@ -670,10 +670,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .welcome-box   { grid-column: 1 / 3; }
   .about-box     { grid-column: span 1; min-height: 240px; }
-  .contact-box   { grid-column: span 1; }
-  .project-box   { grid-column: 1 / 3; min-height: 400px; }
-  .timezone-box  { grid-column: span 1; min-height: 80px; }
   .languages-box { grid-column: span 1; min-height: 180px; }
+  .project-box   { grid-column: 1 / 3; min-height: 400px; }
+  .contact-box   { grid-column: span 1; }
+  .timezone-box  { grid-column: span 1; min-height: 80px; }
   .please-box    { grid-column: span 1; }
   .certs-box     { grid-column: 1 / 3; min-height: 240px; }
 }
