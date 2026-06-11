@@ -70,9 +70,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 210px 180px 70px 200px 50px;
+  grid-template-rows: 210px 190px 70px 220px 50px;
   gap: 12px;
-  max-width: 1080px;
+  max-width: 1160px;
   width: 100%;
   margin: 0 auto;
 }
@@ -292,69 +292,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .skill-tag:hover { border-color: rgba(255,46,46,0.4); color: var(--accent-red); }
 
 /* =====================
-   LANGUAGES BOX
-   ===================== */
-.languages-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 14px 16px;
-}
-.languages-box .box-title { margin-bottom: 10px; }
-
-.lang-list { display: flex; flex-direction: column; gap: 8px; }
-.lang-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  min-width: 0;
-}
-.lang-flag { font-size: 14px; line-height: 1; flex-shrink: 0; }
-.lang-name {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text);
-  flex-shrink: 0;
-  min-width: 50px;
-}
-.lang-level {
-  font-size: 9px;
-  color: var(--text-faint);
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.lang-badge {
-  font-size: 8.5px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 99px;
-  border: 1px solid rgba(88,204,2,0.25);
-  background: rgba(88,204,2,0.08);
-  color: #58cc02;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.lang-badge.native {
-  border-color: rgba(232,232,232,0.15);
-  background: rgba(232,232,232,0.06);
-  color: var(--text-muted);
-}
-.lang-badge.basic {
-  border-color: rgba(247,223,30,0.2);
-  background: rgba(247,223,30,0.06);
-  color: #f7df1e;
-}
-
-/* =====================
    CONTACT / SOCIALS
    ===================== */
 .contact-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 16px 20px;
 }
 .contact-content {
   flex-shrink: 0;
@@ -363,6 +307,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex: 1;
+  justify-content: center;
 }
 .contact-sub {
   font-size: 11px;
@@ -401,6 +347,61 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: color var(--transition);
 }
 .hire-link:hover { color: var(--accent-red); }
+
+/* =====================
+   LANGUAGES BOX
+   ===================== */
+.languages-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 16px;
+}
+.languages-box .box-title { margin-bottom: 10px; }
+
+.lang-list { display: flex; flex-direction: column; gap: 9px; }
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+.lang-flag { font-size: 14px; line-height: 1; flex-shrink: 0; }
+.lang-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  flex-shrink: 0;
+  min-width: 52px;
+}
+.lang-level {
+  font-size: 9px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 68px;
+}
+.lang-badge {
+  font-size: 8.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 99px;
+  border: 1px solid rgba(88,204,2,0.25);
+  background: rgba(88,204,2,0.08);
+  color: #58cc02;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.lang-badge.native {
+  border-color: rgba(232,232,232,0.15);
+  background: rgba(232,232,232,0.06);
+  color: var(--text-muted);
+}
+.lang-badge.basic {
+  border-color: rgba(247,223,30,0.2);
+  background: rgba(247,223,30,0.06);
+  color: #f7df1e;
+}
 
 /* =====================
    PROJECTS
@@ -643,7 +644,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    FOOTER — standalone, outside grid
    ===================== */
 .site-footer {
-  max-width: 1080px;
+  max-width: 1160px;
   width: 100%;
   margin: 12px auto 0;
   padding: 14px 4px;
