@@ -354,21 +354,22 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .social-icons {
   display: flex;
-  gap: 7px;
+  gap: 6px;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text-muted);
   transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
+  flex-shrink: 0;
 }
 .social-icon:hover {
   color: var(--accent-red);
