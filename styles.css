@@ -70,9 +70,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 190px 160px 64px 180px 46px;
+  grid-template-rows: 210px 180px 70px 200px 50px;
   gap: 12px;
-  max-width: 900px;
+  max-width: 1080px;
   width: 100%;
   margin: 0 auto;
 }
@@ -643,7 +643,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    FOOTER — standalone, outside grid
    ===================== */
 .site-footer {
-  max-width: 900px;
+  max-width: 1080px;
   width: 100%;
   margin: 12px auto 0;
   padding: 14px 4px;
