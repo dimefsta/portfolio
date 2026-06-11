@@ -23,7 +23,11 @@
   --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  height: 100%;
+}
 
 body {
   background: var(--bg);
@@ -31,9 +35,12 @@ body {
   font-family: var(--font);
   font-size: 14px;
   min-height: 100vh;
-  padding: 24px;
+  height: 100%;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -46,9 +53,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 220px 180px 72px 160px 50px;
-  gap: 14px;
-  max-width: 1280px;
+  grid-template-rows: 190px 160px 64px 140px 46px;
+  gap: 12px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -59,7 +67,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 20px;
   overflow: hidden;
   position: relative;
   transition: border-color var(--transition);
@@ -84,7 +92,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-box {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 20px;
 }
 
 /* =====================
@@ -116,8 +124,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   min-height: 0;
   display: flex;
   flex-direction: column;
-  margin-right: -14px;
-  padding-right: 14px;
+  margin-right: -12px;
+  padding-right: 12px;
 }
 
 .skills,
@@ -130,12 +138,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .projects-list,
 .certs-list {
-  margin-right: -14px;
-  padding-right: 10px;
+  margin-right: -12px;
+  padding-right: 8px;
 }
-.projects-list { display: flex; flex-direction: column; gap: 10px; }
-.certs-list    { display: flex; flex-direction: column; gap: 8px; }
-.skills        { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; align-content: flex-start; padding-right: 2px; }
+.projects-list { display: flex; flex-direction: column; gap: 8px; }
+.certs-list    { display: flex; flex-direction: column; gap: 7px; }
+.skills        { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; align-content: flex-start; padding-right: 2px; }
 
 .about-content > p { flex-shrink: 0; }
 
@@ -167,7 +175,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -186,9 +194,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .view-more-btn {
   display: block;
   text-align: center;
-  margin-top: 12px;
-  margin-right: 14px;
-  padding: 8px 0;
+  margin-top: 10px;
+  margin-right: 12px;
+  padding: 7px 0;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -213,11 +221,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  gap: 20px;
+  gap: 16px;
 }
 .welcome-text { flex: 1; }
 .typewriter {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-muted);
@@ -232,8 +240,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .welcome-image-container {
   flex-shrink: 0;
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -244,8 +252,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    ABOUT BOX
    ===================== */
 .about-bio {
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 12px;
+  line-height: 1.65;
   color: var(--text-muted);
   margin-bottom: 4px;
   flex-shrink: 0;
@@ -255,7 +263,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .skill-tag {
   font-size: 10px;
   font-weight: 500;
-  padding: 3px 9px;
+  padding: 3px 8px;
   border-radius: 99px;
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -273,24 +281,24 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 14px 18px;
+  padding: 12px 16px;
 }
 .languages-box .box-title { margin-bottom: 8px; }
 
-.lang-list { display: flex; flex-direction: column; gap: 7px; }
+.lang-list { display: flex; flex-direction: column; gap: 6px; }
 .lang-item {
   display: flex;
   align-items: center;
   gap: 6px;
   min-width: 0;
 }
-.lang-flag { font-size: 14px; line-height: 1; flex-shrink: 0; }
+.lang-flag { font-size: 13px; line-height: 1; flex-shrink: 0; }
 .lang-name {
   font-size: 11px;
   font-weight: 600;
   color: var(--text);
   flex-shrink: 0;
-  min-width: 48px;
+  min-width: 46px;
 }
 .lang-level {
   font-size: 9px;
@@ -342,11 +350,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .contact-sub {
   font-size: 11px;
   color: var(--text-faint);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .social-icons {
   display: flex;
-  gap: 8px;
+  gap: 7px;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -354,8 +362,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface-2);
@@ -383,7 +391,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 12px 14px;
+  padding: 10px 12px;
   flex-shrink: 0;
   transition: border-color var(--transition), background var(--transition);
 }
@@ -395,14 +403,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
-.project-name { font-size: 13px; font-weight: 600; color: var(--text); }
-.project-links { display: flex; gap: 6px; }
+.project-name { font-size: 12px; font-weight: 600; color: var(--text); }
+.project-links { display: flex; gap: 5px; }
 .project-btn {
   font-size: 10px;
   font-weight: 500;
-  padding: 3px 9px;
+  padding: 3px 8px;
   border-radius: 99px;
   border: 1px solid var(--border);
   transition: border-color var(--transition), color var(--transition), background var(--transition);
@@ -414,13 +422,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 7px;
+  line-height: 1.45;
+  margin-bottom: 6px;
 }
 .project-lang {
   font-size: 10px;
   font-weight: 500;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 99px;
   background: var(--accent-dim);
   border: 1px solid var(--border);
@@ -452,8 +460,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   width: 100%;
   height: 100%;
 }
-.cta-emoji { font-size: 18px; line-height: 1; }
-.cta-text  { font-size: 14px; font-weight: 700; color: #fff; }
+.cta-emoji { font-size: 16px; line-height: 1; }
+.cta-text  { font-size: 13px; font-weight: 700; color: #fff; }
 .cta-sub   { display: none; }
 
 /* =====================
@@ -462,8 +470,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .cert-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 11px;
+  gap: 9px;
+  padding: 8px 10px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -476,26 +484,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .cert-clickable { cursor: pointer; }
 .cert-logo {
-  width: 30px; height: 30px;
+  width: 28px; height: 28px;
   border-radius: var(--radius-xs);
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
+  font-size: 10px; font-weight: 700;
   flex-shrink: 0;
 }
 .cert-logo.google  { background: rgba(66,133,244,0.15);  color: #4285f4; border: 1px solid rgba(66,133,244,0.2); }
-.cert-logo.fcc     { background: rgba(0,166,99,0.15);    color: #00a663; border: 1px solid rgba(0,166,99,0.2);   font-size: 9px; }
+.cert-logo.fcc     { background: rgba(0,166,99,0.15);    color: #00a663; border: 1px solid rgba(0,166,99,0.2);   font-size: 8px; }
 .cert-logo.meta    { background: rgba(24,119,242,0.15);  color: #1877f2; border: 1px solid rgba(24,119,242,0.2); }
-.cert-logo.ms      { background: rgba(0,120,212,0.15);   color: #0078d4; border: 1px solid rgba(0,120,212,0.2);  font-size: 9px; }
-.cert-logo.cisco   { background: rgba(0,188,212,0.12);   color: #00bcd4; border: 1px solid rgba(0,188,212,0.2);  font-size: 9px; }
-.cert-logo.ucert   { background: rgba(180,120,255,0.12); color: #b478ff; border: 1px solid rgba(180,120,255,0.22); font-size: 10px; }
-.cert-logo.sap     { background: rgba(0,150,60,0.12);    color: #00963c; border: 1px solid rgba(0,150,60,0.2);   font-size: 9px; font-weight: 800; }
-.cert-logo.workearly { background: rgba(99,102,241,0.12); color: #818cf8; border: 1px solid rgba(99,102,241,0.25); font-size: 9px; font-weight: 700; }
+.cert-logo.ms      { background: rgba(0,120,212,0.15);   color: #0078d4; border: 1px solid rgba(0,120,212,0.2);  font-size: 8px; }
+.cert-logo.cisco   { background: rgba(0,188,212,0.12);   color: #00bcd4; border: 1px solid rgba(0,188,212,0.2);  font-size: 8px; }
+.cert-logo.ucert   { background: rgba(180,120,255,0.12); color: #b478ff; border: 1px solid rgba(180,120,255,0.22); font-size: 9px; }
+.cert-logo.sap     { background: rgba(0,150,60,0.12);    color: #00963c; border: 1px solid rgba(0,150,60,0.2);   font-size: 8px; font-weight: 800; }
+.cert-logo.workearly { background: rgba(99,102,241,0.12); color: #818cf8; border: 1px solid rgba(99,102,241,0.25); font-size: 8px; font-weight: 700; }
 .cert-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .cert-name {
   font-size: 11px; font-weight: 600; color: var(--text);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.cert-issuer-name { font-size: 10px; color: var(--text-faint); margin-top: 2px; }
+.cert-issuer-name { font-size: 10px; color: var(--text-faint); margin-top: 1px; }
 .cert-arrow {
   font-size: 12px; color: var(--text-faint); flex-shrink: 0;
   transition: color var(--transition), transform var(--transition);
@@ -573,7 +581,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 10px;
   height: 100%;
 }
-.timezone-icon  { font-size: 20px; flex-shrink: 0; }
+.timezone-icon  { font-size: 18px; flex-shrink: 0; }
 .timezone-info  { display: flex; flex-direction: column; justify-content: center; }
 .timezone-label { font-size: 10px; color: var(--text-muted); }
 .timezone-row {
@@ -581,7 +589,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: baseline;
   gap: 8px;
 }
-.timezone-time  { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
+.timezone-time  { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; }
 .timezone-zone  { font-size: 9px;  color: var(--text-faint); margin-top: 1px; }
 
 .timezone-date-block {
@@ -592,14 +600,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
 }
 .timezone-date-day {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text);
   line-height: 1;
   letter-spacing: -0.01em;
 }
 .timezone-date-month {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   color: var(--accent-red);
   text-transform: uppercase;
@@ -607,7 +615,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-top: 2px;
 }
 .timezone-date-year {
-  font-size: 9px;
+  font-size: 8px;
   color: var(--text-faint);
   letter-spacing: 0.04em;
   margin-top: 1px;
@@ -617,10 +625,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    FOOTER — standalone, outside grid
    ===================== */
 .site-footer {
-  max-width: 1280px;
+  max-width: 1200px;
   width: 100%;
-  margin: 14px auto 0;
-  padding: 16px 4px;
+  margin: 12px auto 0;
+  padding: 14px 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -634,25 +642,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    TABLET
    ===================== */
 @media (max-width: 1024px) {
+  body { justify-content: flex-start; }
   .container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
   }
   .welcome-box   { grid-column: 1 / 3; }
-  .about-box     { grid-column: span 1; min-height: 260px; }
+  .about-box     { grid-column: span 1; min-height: 240px; }
   .contact-box   { grid-column: span 1; }
-  .project-box   { grid-column: 1 / 3; min-height: 440px; }
-  .timezone-box  { grid-column: span 1; min-height: 90px; }
-  .languages-box { grid-column: span 1; min-height: 160px; }
+  .project-box   { grid-column: 1 / 3; min-height: 400px; }
+  .timezone-box  { grid-column: span 1; min-height: 80px; }
+  .languages-box { grid-column: span 1; min-height: 150px; }
   .please-box    { grid-column: span 1; }
-  .certs-box     { grid-column: 1 / 3; min-height: 260px; }
+  .certs-box     { grid-column: 1 / 3; min-height: 240px; }
 }
 
 /* ============================================================
    MOBILE — Single column tiles
    ============================================================ */
 @media (max-width: 580px) {
-  body { padding: 10px; font-size: 13px; }
+  body { padding: 10px; font-size: 13px; justify-content: flex-start; }
 
   .container {
     display: flex;
