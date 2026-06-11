@@ -28,13 +28,18 @@ function updateClock() {
   if (timeEl) {
     timeEl.textContent = now.toLocaleTimeString('el-GR', {
       timeZone: 'Europe/Athens',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
     });
   }
   if (dateEl) {
     dateEl.textContent = now.toLocaleDateString('el-GR', {
       timeZone: 'Europe/Athens',
-      weekday: 'short', day: 'numeric', month: 'short', year: 'numeric',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
     });
   }
 }
