@@ -431,7 +431,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .project-name { font-size: 12px; font-weight: 600; color: var(--text); }
 .project-links { display: flex; gap: 5px; }
-.project-link {
+
+/* project-btn = actual class in HTML */
+.project-btn {
   font-size: 10px;
   font-weight: 600;
   padding: 2px 8px;
@@ -439,26 +441,40 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border: 1px solid var(--border);
   color: var(--text-muted);
   background: var(--surface);
-  transition: color var(--transition), border-color var(--transition);
-  display: flex;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  display: inline-flex;
   align-items: center;
   gap: 3px;
+  text-decoration: none;
 }
-.project-link:hover { color: var(--accent-red); border-color: rgba(255,46,46,0.4); }
-.project-link.live {
+.project-btn:hover { color: var(--accent-red); border-color: rgba(255,46,46,0.4); }
+.project-btn.live {
   background: rgba(255,46,46,0.12);
   color: var(--accent-red);
   border-color: rgba(255,46,46,0.3);
 }
-.project-link.live:hover { background: rgba(255,46,46,0.2); }
+.project-btn.live:hover { background: rgba(255,46,46,0.2); }
+.project-btn.repo {
+  background: var(--surface);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+.project-btn.repo:hover {
+  color: var(--accent-red);
+  border-color: rgba(255,46,46,0.4);
+  background: var(--accent-red-dim);
+}
+
 .project-desc {
   font-size: 11px;
   color: var(--text-muted);
   line-height: 1.5;
   margin-bottom: 6px;
 }
-.project-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.project-tag {
+
+/* project-lang = actual class in HTML */
+.project-lang {
+  display: inline-block;
   font-size: 9.5px;
   font-weight: 600;
   padding: 2px 7px;
@@ -467,16 +483,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: rgba(255,200,30,0.06);
   color: #f7c81e;
 }
-.project-tag.react  { border-color: rgba(97,218,251,0.2);  background: rgba(97,218,251,0.06);  color: #61dafb; }
-.project-tag.python { border-color: rgba(55,118,171,0.2);  background: rgba(55,118,171,0.06);  color: #3776ab; }
-.project-tag.node   { border-color: rgba(104,160,99,0.2);  background: rgba(104,160,99,0.06);  color: #68a063; }
-.project-tag.css    { border-color: rgba(38,77,228,0.2);   background: rgba(38,77,228,0.06);   color: #264de4; }
-.project-tag.html   { border-color: rgba(227,79,38,0.2);   background: rgba(227,79,38,0.06);   color: #e34f26; }
-.project-tag.cpp    { border-color: rgba(0,89,157,0.2);    background: rgba(0,89,157,0.06);    color: #00599d; }
-.project-tag.ts     { border-color: rgba(49,120,198,0.2);  background: rgba(49,120,198,0.06);  color: #3178c6; }
+.project-lang[data-lang="React"]      { border-color: rgba(97,218,251,0.2);  background: rgba(97,218,251,0.06);  color: #61dafb; }
+.project-lang[data-lang="Python"]     { border-color: rgba(55,118,171,0.2);  background: rgba(55,118,171,0.06);  color: #3776ab; }
+.project-lang[data-lang="Node.js"]    { border-color: rgba(104,160,99,0.2);  background: rgba(104,160,99,0.06);  color: #68a063; }
+.project-lang[data-lang="CSS"]        { border-color: rgba(38,77,228,0.2);   background: rgba(38,77,228,0.06);   color: #264de4; }
+.project-lang[data-lang="HTML"]       { border-color: rgba(227,79,38,0.2);   background: rgba(227,79,38,0.06);   color: #e34f26; }
+.project-lang[data-lang="TypeScript"] { border-color: rgba(49,120,198,0.2);  background: rgba(49,120,198,0.06);  color: #3178c6; }
+.project-lang[data-lang="C#"]         { border-color: rgba(104,33,122,0.2);  background: rgba(104,33,122,0.06);  color: #9b4fb4; }
 
 /* =====================
-   TIMEZONE BOX
+   TIMEZONE BOX — class names match HTML exactly
    ===================== */
 .timezone-box {
   display: flex;
@@ -486,51 +502,70 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-wrap: nowrap;
   overflow: hidden;
 }
-.tz-flag {
+.timezone-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.timezone-icon {
   font-size: 18px;
   flex-shrink: 0;
 }
-.tz-location {
+.timezone-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.timezone-label {
   font-size: 10px;
   color: var(--text-faint);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.tz-time {
+.timezone-row {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.timezone-time {
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.04em;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.tz-best {
+.timezone-zone {
   font-size: 8px;
   color: var(--text-faint);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
-.tz-middle { flex: 1; min-width: 0; }
-.tz-right {
+.timezone-date-block {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   flex-shrink: 0;
 }
-.tz-day {
+.timezone-date-day {
   font-size: 28px;
   font-weight: 700;
   color: var(--accent-red);
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-.tz-month {
+.timezone-date-month {
   font-size: 9px;
   color: var(--text-faint);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.tz-year {
+.timezone-date-year {
   font-size: 8px;
   color: var(--text-faint);
 }
@@ -565,10 +600,21 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* =====================
-   CERTIFICATIONS BOX
+   CERTIFICATIONS BOX — class names match HTML exactly
    ===================== */
 .certs-box .box-title { flex-shrink: 0; }
-.cert-item {
+.cert-count {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+
+/* cert-card = actual class in HTML */
+.cert-card {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -579,12 +625,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   cursor: pointer;
   transition: border-color var(--transition), background var(--transition);
   flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  text-align: left;
 }
-.cert-item:hover {
+.cert-card:hover {
   border-color: rgba(255,46,46,0.3);
   background: rgba(255,46,46,0.04);
 }
-.cert-icon {
+
+/* cert-logo = actual class in HTML */
+.cert-logo {
   width: 24px;
   height: 24px;
   border-radius: 6px;
@@ -596,11 +648,20 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.03em;
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
-.cert-icon.google  { background: #4285f4; }
-.cert-icon.meta    { background: #0866ff; }
-.cert-icon.we      { background: #1e3a5f; font-size: 9px; }
+.cert-logo.google    { background: #4285f4; border-color: transparent; }
+.cert-logo.meta      { background: #0866ff; border-color: transparent; }
+.cert-logo.workearly { background: #1e3a5f; font-size: 9px; border-color: transparent; }
+.cert-logo.fcc       { background: #0a0a23; border-color: rgba(255,255,255,0.15); color: #99c5c4; font-size: 9px; }
+.cert-logo.cisco     { background: #1ba0d7; border-color: transparent; font-size: 8px; }
+.cert-logo.sap       { background: #007db8; border-color: transparent; font-size: 9px; }
+.cert-logo.ucert     { background: #333; border-color: rgba(255,255,255,0.15); color: #ccc; }
+
 .cert-info { flex: 1; min-width: 0; }
+
+/* cert-name = correct */
 .cert-name {
   font-size: 10.5px;
   font-weight: 600;
@@ -609,14 +670,19 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 140px;
+  display: block;
 }
-.cert-issuer {
+
+/* cert-issuer-name = actual class in HTML */
+.cert-issuer-name {
   font-size: 9px;
   color: var(--text-faint);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
+
 .cert-arrow { color: var(--text-faint); font-size: 12px; flex-shrink: 0; }
 
 /* =====================
@@ -733,14 +799,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .welcome-box, .about-box, .contact-box,
   .project-box, .timezone-box, .languages-box,
-  .please-box, .certs-box { grid-column: 1; grid-row: auto; }
+  .please-box, .certs-box {
+    grid-column: 1;
+    grid-row: auto;
+  }
 
   /* Mobile box sizing */
   .welcome-box   { min-height: 120px; }
   .about-box     { min-height: auto; }
   .contact-box   { min-height: auto; }
   .project-box   { min-height: 350px; }
-  .timezone-box  { min-height: 50px; }
+  .timezone-box  { min-height: auto; }
   .languages-box { min-height: auto; }
   .please-box    { min-height: 48px; }
   .certs-box     { min-height: 200px; }
@@ -789,18 +858,28 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .languages-box .mobile-header { display: flex; }
-  .languages-box.expanded .lang-list    { max-height: 300px; margin-top: 12px; }
+  .languages-box.expanded .lang-list { max-height: 300px; margin-top: 12px; }
   .languages-box.expanded { max-height: 300px; }
   #lang-title-desktop { display: none; }
 
-  /* Timezone box */
-  .tz-time { font-size: 16px; }
-  .tz-day  { font-size: 20px; }
+  /* Timezone box mobile — compact horizontal layout */
+  .timezone-box {
+    padding: 10px 14px;
+    min-height: auto;
+  }
+  .timezone-time       { font-size: 16px; }
+  .timezone-date-day   { font-size: 22px; }
+  .timezone-date-month { font-size: 8px; }
+  .timezone-date-year  { font-size: 7px; }
+  .timezone-label      { font-size: 9px; }
+  .timezone-zone       { font-size: 7px; }
 
   /* Projects box */
-  .project-box { padding: 14px; }
+  .project-box  { padding: 14px; }
   .project-name { font-size: 11px; }
   .project-desc { font-size: 10px; }
+  .project-btn  { font-size: 9px; padding: 2px 6px; }
+  .project-lang { font-size: 9px; }
 
   /* Certs box */
   .certs-box {
@@ -814,6 +893,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .certs-box .certs-content { margin-top: 12px; }
   #certs-title-desktop { display: none; }
 
-  .cert-name { font-size: 9px; }
-  .cert-issuer { font-size: 8px; }
+  .cert-name        { font-size: 9.5px; }
+  .cert-issuer-name { font-size: 8px; }
+  .cert-logo        { width: 20px; height: 20px; font-size: 9px; }
 }
