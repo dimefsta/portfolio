@@ -11,15 +11,12 @@ function buildEmail() {
 
 function applyEmailLinks() {
   var email = buildEmail();
-  /* Hire Me box */
-  var hireBox = document.querySelector('.please-box[data-email-target]');
-  if (hireBox) hireBox.setAttribute('href', 'mailto:' + email);
-  /* Email social icon */
+  var hireBox   = document.querySelector('.please-box[data-email-target]');
   var emailIcon = document.querySelector('.social-icon[data-email-target]');
-  if (emailIcon) emailIcon.setAttribute('href', 'mailto:' + email);
-  /* aria-label update */
-  if (emailIcon) emailIcon.setAttribute('aria-label', 'Send email to ' + email);
-  if (hireBox)  hireBox.setAttribute('aria-label',  'Hire me — send an email to ' + email);
+  if (hireBox)   hireBox.setAttribute('href',       'mailto:' + email);
+  if (emailIcon) emailIcon.setAttribute('href',      'mailto:' + email);
+  if (emailIcon) emailIcon.setAttribute('aria-label','Send email to ' + email);
+  if (hireBox)   hireBox.setAttribute('aria-label',  'Hire me — send an email to ' + email);
 }
 
 /* =====================
@@ -39,19 +36,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!el) return;
     setTimeout(function () {
       el.style.transition = 'opacity 600ms ease';
-      el.style.opacity = '1';
+      el.style.opacity    = '1';
     }, item.delay);
   });
 
   /* Dynamic cert count */
-  var certItems = document.querySelectorAll('#certs-list .cert-card');
-  var count = certItems.length;
+  var certItems    = document.querySelectorAll('#certs-list .cert-card');
+  var count        = certItems.length;
   var desktopCount = document.getElementById('cert-count-desktop');
   var mobileCount  = document.getElementById('cert-count-mobile');
   if (desktopCount) desktopCount.textContent = '(' + count + ')';
   if (mobileCount)  mobileCount.textContent  = '(' + count + ')';
 
-  /* Cert clickable buttons — data-driven, no inline onclick */
+  /* Cert modal triggers */
   document.querySelectorAll('.cert-clickable[data-cert-src]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       openCertModal(btn.dataset.certSrc, btn.dataset.certTitle);
@@ -69,25 +66,14 @@ function updateClock() {
   var dayEl   = document.getElementById('timezone-date-day');
   var monthEl = document.getElementById('timezone-date-month');
   var yearEl  = document.getElementById('timezone-date-year');
-
-  var now = new Date();
-  var athens = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Athens' }));
-
-  if (timeEl) {
-    timeEl.textContent = now.toLocaleTimeString('el-GR', {
-      timeZone: 'Europe/Athens',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    });
-  }
+  var now     = new Date();
+  var athens  = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Athens' }));
+  if (timeEl)  timeEl.textContent  = now.toLocaleTimeString('el-GR', { timeZone: 'Europe/Athens', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
   if (dayEl)   dayEl.textContent   = String(athens.getDate()).padStart(2, '0');
   if (monthEl) monthEl.textContent = MONTHS_SHORT[athens.getMonth()];
   if (yearEl)  yearEl.textContent  = athens.getFullYear();
 }
 
-/* Pause clock when tab is hidden — saves battery on mobile */
 var _clockInterval;
 function startClock() { if (!_clockInterval) _clockInterval = setInterval(updateClock, 1000); }
 function stopClock()  { clearInterval(_clockInterval); _clockInterval = null; }
@@ -114,7 +100,7 @@ function openCertModal(src, title) {
   document.body.style.overflow = 'hidden';
   document.querySelector('.cert-modal-close').focus();
   img.onload  = function () { loading.style.display = 'none'; img.style.display = 'block'; };
-  img.onerror = function () { loading.textContent = 'Could not load image.'; };
+  img.onerror = function () { loading.textContent   = 'Could not load image.'; };
   img.src = src;
 }
 
@@ -128,71 +114,95 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* =====================
-   MOBILE TAP-TO-EXPAND
+   MOBILE ACCORDION
+   ─────────────────────
+   Breakpoint matches CSS: 600px.
+   Listeners are attached ONCE per header (data-mobileListenerAttached).
+   On resize to desktop → remove .expanded from all boxes.
+   On resize to mobile  → restore mobile-header visibility.
    ===================== */
-var MOBILE_BREAKPOINT = 580;
+var MOBILE_BP = 600;
 var _resizeTimer;
+
+/* All accordion box descriptors */
+var BOXES = [
+  { boxSel: '.about-box',     headerSel: '.about-box .mobile-header' },
+  { boxSel: '.contact-box',   headerSel: '.contact-box .mobile-header' },
+  { boxSel: '.project-box',   headerSel: '.project-box .mobile-header' },
+  { boxSel: '.languages-box', headerSel: '.languages-box .mobile-header' },
+  { boxSel: '.certs-box',     headerSel: '.certs-box .mobile-header' },
+];
+
+/* Desktop-only title IDs that should hide on mobile */
+var DESKTOP_TITLE_IDS = [
+  'about-title-desktop',
+  'lang-title-desktop',
+  'certs-title-desktop',
+  'projects-title-desktop',
+  'contact-desktop-title',
+];
+
+function isMobile() {
+  return window.innerWidth <= MOBILE_BP;
+}
 
 function toggleBox(box, header) {
   var expanded = box.classList.toggle('expanded');
-  if (header) header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 }
 
 function initMobile() {
-  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  var mobile = isMobile();
 
-  /* Show/hide desktop titles and mobile headers */
-  document.querySelectorAll('.mobile-header').forEach(function (h) {
-    h.style.display = isMobile ? 'flex' : 'none';
-  });
-  ['about-title-desktop', 'lang-title-desktop', 'certs-title-desktop', 'projects-title-desktop'].forEach(function (id) {
+  /* Show / hide desktop titles */
+  DESKTOP_TITLE_IDS.forEach(function (id) {
     var el = document.getElementById(id);
-    if (el) el.style.display = isMobile ? 'none' : '';
+    if (el) el.style.display = mobile ? 'none' : '';
   });
-  var contactDesktop = document.getElementById('contact-desktop-title');
-  if (contactDesktop) contactDesktop.style.display = isMobile ? 'none' : '';
 
-  if (!isMobile) {
-    /* Reset any collapsed state from mobile */
-    ['about-content', 'contact-body', 'project-body', 'certs-content', 'lang-list'].forEach(function (cls) {
-      var el = document.querySelector('.' + cls);
-      if (el) { el.style.maxHeight = ''; el.style.overflow = ''; }
+  /* Show / hide mobile headers */
+  BOXES.forEach(function (desc) {
+    var header = document.querySelector(desc.headerSel);
+    if (header) header.style.display = mobile ? 'flex' : 'none';
+  });
+
+  if (!mobile) {
+    /* DESKTOP RESET: remove expanded class so CSS shows all content normally */
+    BOXES.forEach(function (desc) {
+      var box = document.querySelector(desc.boxSel);
+      if (box) {
+        box.classList.remove('expanded');
+      }
     });
     return;
   }
 
-  var boxes = [
-    { box: document.querySelector('.about-box'),     header: document.querySelector('.about-box .mobile-header') },
-    { box: document.querySelector('.certs-box'),     header: document.querySelector('.certs-box .mobile-header') },
-    { box: document.querySelector('.contact-box'),   header: document.querySelector('.contact-box .mobile-header') },
-    { box: document.querySelector('.project-box'),   header: document.querySelector('.project-box .mobile-header') },
-    { box: document.querySelector('.languages-box'), header: document.querySelector('.languages-box .mobile-header') },
-  ];
+  /* MOBILE: attach click listeners (only once per header) */
+  BOXES.forEach(function (desc) {
+    var box    = document.querySelector(desc.boxSel);
+    var header = document.querySelector(desc.headerSel);
+    if (!box || !header) return;
 
-  boxes.forEach(function (item) {
-    if (!item.box || !item.header) return;
+    /* Attach listener only once */
+    if (header.dataset.mobileListenerAttached === '1') return;
+    header.dataset.mobileListenerAttached = '1';
 
-    /* Avoid duplicate listeners — mark with dataset flag */
-    if (item.header.dataset.mobileInit === '1') return;
-    item.header.dataset.mobileInit = '1';
+    header.setAttribute('role',         'button');
+    header.setAttribute('tabindex',     '0');
+    header.setAttribute('aria-expanded','false');
 
-    item.header.setAttribute('role', 'button');
-    item.header.setAttribute('tabindex', '0');
-    item.header.setAttribute('aria-expanded', 'false');
-
-    /* Tap only on the header row */
-    item.header.addEventListener('click', function (e) {
-      if (window.innerWidth > MOBILE_BREAKPOINT) return;
+    header.addEventListener('click', function (e) {
+      /* Guard: only act on mobile — ignore stale events on desktop */
+      if (!isMobile()) return;
       e.stopPropagation();
-      toggleBox(item.box, item.header);
+      toggleBox(box, header);
     });
 
-    /* Keyboard support */
-    item.header.addEventListener('keydown', function (e) {
-      if (window.innerWidth > MOBILE_BREAKPOINT) return;
+    header.addEventListener('keydown', function (e) {
+      if (!isMobile()) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggleBox(item.box, item.header);
+        toggleBox(box, header);
       }
     });
   });
