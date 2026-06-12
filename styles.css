@@ -359,7 +359,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: flex-start;
   padding: 14px 16px;
 }
-.languages-box .box-title { margin-bottom: 18px; }
+.languages-box .box-title { margin-bottom: 10px; }
+.languages-box .lang-list { padding-top: 8px; }
 
 .lang-list { display: flex; flex-direction: column; gap: 9px; }
 .lang-item {
