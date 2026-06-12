@@ -432,7 +432,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-name { font-size: 12px; font-weight: 600; color: var(--text); }
 .project-links { display: flex; gap: 5px; }
 
-/* project-btn = actual class in HTML */
 .project-btn {
   font-size: 10px;
   font-weight: 600;
@@ -472,7 +471,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-bottom: 6px;
 }
 
-/* project-lang = actual class in HTML */
 .project-lang {
   display: inline-block;
   font-size: 9.5px;
@@ -492,7 +490,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-lang[data-lang="C#"]         { border-color: rgba(104,33,122,0.2);  background: rgba(104,33,122,0.06);  color: #9b4fb4; }
 
 /* =====================
-   TIMEZONE BOX — class names match HTML exactly
+   TIMEZONE BOX
    ===================== */
 .timezone-box {
   display: flex;
@@ -508,10 +506,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 10px;
   width: 100%;
 }
-.timezone-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-}
+.timezone-icon { font-size: 18px; flex-shrink: 0; }
 .timezone-info {
   flex: 1;
   min-width: 0;
@@ -526,11 +521,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.timezone-row {
-  display: flex;
-  align-items: baseline;
-  gap: 5px;
-}
+.timezone-row { display: flex; align-items: baseline; gap: 5px; }
 .timezone-time {
   font-size: 20px;
   font-weight: 700;
@@ -565,10 +556,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.timezone-date-year {
-  font-size: 8px;
-  color: var(--text-faint);
-}
+.timezone-date-year { font-size: 8px; color: var(--text-faint); }
 
 /* =====================
    PLEASE BOX (CTA)
@@ -600,7 +588,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* =====================
-   CERTIFICATIONS BOX — class names match HTML exactly
+   CERTIFICATIONS BOX
    ===================== */
 .certs-box .box-title { flex-shrink: 0; }
 .cert-count {
@@ -613,7 +601,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-radius: 99px;
 }
 
-/* cert-card = actual class in HTML */
 .cert-card {
   display: flex;
   align-items: center;
@@ -635,7 +622,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   background: rgba(255,46,46,0.04);
 }
 
-/* cert-logo = actual class in HTML */
 .cert-logo {
   width: 24px;
   height: 24px;
@@ -660,8 +646,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .cert-logo.ucert     { background: #333; border-color: rgba(255,255,255,0.15); color: #ccc; }
 
 .cert-info { flex: 1; min-width: 0; }
-
-/* cert-name = correct */
 .cert-name {
   font-size: 10.5px;
   font-weight: 600;
@@ -672,8 +656,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   max-width: 140px;
   display: block;
 }
-
-/* cert-issuer-name = actual class in HTML */
 .cert-issuer-name {
   font-size: 9px;
   color: var(--text-faint);
@@ -682,7 +664,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   text-overflow: ellipsis;
   display: block;
 }
-
 .cert-arrow { color: var(--text-faint); font-size: 12px; flex-shrink: 0; }
 
 /* =====================
@@ -752,7 +733,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   user-select: none;
   width: 100%;
   padding: 2px 0;
-  /* Ensure the tap target is tall enough */
   min-height: 36px;
 }
 .mobile-header .box-title { margin-bottom: 0; }
@@ -811,48 +791,51 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
   /* Mobile box sizing */
   .welcome-box   { min-height: 120px; }
-  .about-box     { min-height: auto; }
-  .contact-box   { min-height: auto; }
-  .project-box   { min-height: auto; }
-  .timezone-box  { min-height: auto; }
-  .languages-box { min-height: auto; }
-  .please-box    { min-height: 48px; }
+  .about-box,
+  .contact-box,
+  .project-box,
+  .timezone-box,
+  .languages-box,
   .certs-box     { min-height: auto; }
+  .please-box    { min-height: 48px; }
 
   /* Welcome box mobile */
   .typewriter { font-size: 14px; }
   .welcome-image-container { width: 70px; height: 70px; }
 
   /* ── MOBILE ACCORDION BASE ──
-     All accordion boxes start collapsed (header only visible).
-     Content is hidden via max-height + overflow:hidden.
-     Expanded state reveals content with a smooth transition.
+     The box collapses to show only the mobile-header (title + chevron).
+     Content siblings are hidden with display:none so no pixel bleeds through.
+     On .expanded the content reappears and the box grows naturally.
   */
 
   /* About box */
   .about-box {
     padding: 14px 16px;
-    max-height: 60px;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .about-box.expanded   { max-height: 500px; }
   #about-title-desktop  { display: none; }
   .about-box .mobile-header { display: flex; }
-  .about-box .about-content { margin-top: 12px; }
+  .about-box .about-content {
+    display: none;
+  }
+  .about-box.expanded .about-content {
+    display: flex;
+    margin-top: 12px;
+  }
 
   /* Contact box */
   .contact-box .contact-content { display: none !important; }
   .contact-box {
     padding: 14px 16px;
-    max-height: 60px;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .contact-box.expanded { max-height: 300px; }
   .contact-box .mobile-header { display: flex; }
-  .contact-box .contact-body { margin-top: 12px; }
-
+  .contact-box .contact-body {
+    display: none;
+  }
+  .contact-box.expanded .contact-body {
+    display: flex;
+    margin-top: 12px;
+  }
   .contact-box .social-icons {
     flex-direction: column;
     align-items: stretch;
@@ -864,35 +847,34 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* Languages box */
   .languages-box {
     padding: 14px 16px;
-    max-height: 60px;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .languages-box .mobile-header { display: flex; }
-  .languages-box.expanded { max-height: 320px; }
-  .languages-box.expanded .lang-list { margin-top: 12px; }
   #lang-title-desktop { display: none; }
+  .languages-box .lang-list {
+    display: none;
+  }
+  .languages-box.expanded .lang-list {
+    display: flex;
+    margin-top: 12px;
+  }
 
-  /* Projects box */
+  /* Projects box — hide desktop title wrapper + project-body */
   .project-box {
     padding: 14px 16px;
-    max-height: 60px;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .project-box .mobile-header { display: flex; }
-  .project-box.expanded { max-height: 1200px; }
-  .project-box.expanded .project-body { margin-top: 12px; }
-  #projects-title-desktop { display: none; }
-  /* Hide project-content desktop title wrapper on mobile */
   .project-box .project-content { display: none; }
-  .project-box.expanded .project-content { display: none; }
-  /* project-body overflow: let the box scroll as a whole on mobile */
+  #projects-title-desktop { display: none; }
   .project-box .project-body {
+    display: none;
+  }
+  .project-box.expanded .project-body {
+    display: flex;
+    flex-direction: column;
     overflow-y: visible;
     margin-right: 0;
     padding-right: 0;
-    flex: unset;
+    margin-top: 12px;
   }
   .project-box .projects-list {
     overflow-y: visible;
@@ -904,11 +886,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .project-btn  { font-size: 9px; padding: 2px 6px; }
   .project-lang { font-size: 9px; }
 
-  /* Timezone box mobile — compact horizontal layout */
-  .timezone-box {
-    padding: 10px 14px;
-    min-height: auto;
-  }
+  /* Timezone box mobile */
+  .timezone-box { padding: 10px 14px; }
   .timezone-time       { font-size: 16px; }
   .timezone-date-day   { font-size: 22px; }
   .timezone-date-month { font-size: 8px; }
@@ -919,14 +898,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   /* Certs box */
   .certs-box {
     padding: 14px 16px;
-    max-height: 60px;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .certs-box.expanded { max-height: 1400px; }
   .certs-box .mobile-header { display: flex; }
-  .certs-box .certs-content { margin-top: 12px; }
   #certs-title-desktop { display: none; }
+  .certs-box .certs-content {
+    display: none;
+  }
+  .certs-box.expanded .certs-content {
+    display: flex;
+    margin-top: 12px;
+  }
 
   .cert-name        { font-size: 9.5px; }
   .cert-issuer-name { font-size: 8px; }
