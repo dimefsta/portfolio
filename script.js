@@ -131,30 +131,35 @@ document.addEventListener('keydown', function (e) {
    MOBILE TAP-TO-EXPAND
    ===================== */
 var MOBILE_BREAKPOINT = 580;
-var _mobileInitMap = new WeakMap();
 var _resizeTimer;
 
+function toggleBox(box, header) {
+  var expanded = box.classList.toggle('expanded');
+  if (header) header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+}
+
 function initMobile() {
-  if (window.innerWidth > MOBILE_BREAKPOINT) {
-    document.querySelectorAll('.mobile-header').forEach(function (h) { h.style.display = 'none'; });
-    document.querySelectorAll(
-      '[id$="-title-desktop"], #about-title-desktop, #lang-title-desktop, #certs-title-desktop, #projects-title-desktop'
-    ).forEach(function (el) { el.style.display = ''; });
+  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+
+  /* Show/hide desktop titles and mobile headers */
+  document.querySelectorAll('.mobile-header').forEach(function (h) {
+    h.style.display = isMobile ? 'flex' : 'none';
+  });
+  ['about-title-desktop', 'lang-title-desktop', 'certs-title-desktop', 'projects-title-desktop'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = isMobile ? 'none' : '';
+  });
+  var contactDesktop = document.getElementById('contact-desktop-title');
+  if (contactDesktop) contactDesktop.style.display = isMobile ? 'none' : '';
+
+  if (!isMobile) {
+    /* Reset any collapsed state from mobile */
     ['about-content', 'contact-body', 'project-body', 'certs-content', 'lang-list'].forEach(function (cls) {
       var el = document.querySelector('.' + cls);
       if (el) { el.style.maxHeight = ''; el.style.overflow = ''; }
     });
     return;
   }
-
-  ['about-title-desktop', 'lang-title-desktop', 'certs-title-desktop', 'projects-title-desktop'].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  var contactDesktop = document.getElementById('contact-desktop-title');
-  if (contactDesktop) contactDesktop.style.display = 'none';
-
-  document.querySelectorAll('.mobile-header').forEach(function (h) { h.style.display = 'flex'; });
 
   var boxes = [
     { box: document.querySelector('.about-box'),     header: document.querySelector('.about-box .mobile-header') },
@@ -165,30 +170,31 @@ function initMobile() {
   ];
 
   boxes.forEach(function (item) {
-    if (!item.box || _mobileInitMap.has(item.box)) return;
-    _mobileInitMap.set(item.box, true);
+    if (!item.box || !item.header) return;
 
-    if (item.header) {
-      item.header.setAttribute('role', 'button');
-      item.header.setAttribute('tabindex', '0');
-      item.header.setAttribute('aria-expanded', 'false');
-    }
+    /* Avoid duplicate listeners — mark with dataset flag */
+    if (item.header.dataset.mobileInit === '1') return;
+    item.header.dataset.mobileInit = '1';
 
-    item.box.addEventListener('click', function (e) {
+    item.header.setAttribute('role', 'button');
+    item.header.setAttribute('tabindex', '0');
+    item.header.setAttribute('aria-expanded', 'false');
+
+    /* Tap only on the header row */
+    item.header.addEventListener('click', function (e) {
       if (window.innerWidth > MOBILE_BREAKPOINT) return;
-      if (e.target.closest('a, button, .cert-clickable')) return;
-      var expanded = item.box.classList.toggle('expanded');
-      if (item.header) item.header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      e.stopPropagation();
+      toggleBox(item.box, item.header);
     });
 
-    if (item.header) {
-      item.header.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          item.box.click();
-        }
-      });
-    }
+    /* Keyboard support */
+    item.header.addEventListener('keydown', function (e) {
+      if (window.innerWidth > MOBILE_BREAKPOINT) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleBox(item.box, item.header);
+      }
+    });
   });
 }
 

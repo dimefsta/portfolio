@@ -750,6 +750,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   justify-content: space-between;
   cursor: pointer;
   user-select: none;
+  width: 100%;
+  padding: 2px 0;
+  /* Ensure the tap target is tall enough */
+  min-height: 36px;
 }
 .mobile-header .box-title { margin-bottom: 0; }
 .mobile-chevron {
@@ -757,6 +761,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text-muted);
   transition: transform var(--transition);
   line-height: 1;
+  flex-shrink: 0;
 }
 .expanded .mobile-chevron { transform: rotate(180deg); }
 
@@ -808,17 +813,23 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .welcome-box   { min-height: 120px; }
   .about-box     { min-height: auto; }
   .contact-box   { min-height: auto; }
-  .project-box   { min-height: 350px; }
+  .project-box   { min-height: auto; }
   .timezone-box  { min-height: auto; }
   .languages-box { min-height: auto; }
   .please-box    { min-height: 48px; }
-  .certs-box     { min-height: 200px; }
+  .certs-box     { min-height: auto; }
 
   /* Welcome box mobile */
   .typewriter { font-size: 14px; }
   .welcome-image-container { width: 70px; height: 70px; }
 
-  /* About box — mobile accordion */
+  /* ── MOBILE ACCORDION BASE ──
+     All accordion boxes start collapsed (header only visible).
+     Content is hidden via max-height + overflow:hidden.
+     Expanded state reveals content with a smooth transition.
+  */
+
+  /* About box */
   .about-box {
     padding: 14px 16px;
     max-height: 60px;
@@ -830,7 +841,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .about-box .mobile-header { display: flex; }
   .about-box .about-content { margin-top: 12px; }
 
-  /* Contact box mobile */
+  /* Contact box */
   .contact-box .contact-content { display: none !important; }
   .contact-box {
     padding: 14px 16px;
@@ -850,7 +861,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   }
   .contact-box .social-icon { width: 100%; height: 44px; border-radius: 8px; }
 
-  /* Languages box — mobile accordion */
+  /* Languages box */
   .languages-box {
     padding: 14px 16px;
     max-height: 60px;
@@ -858,9 +869,40 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .languages-box .mobile-header { display: flex; }
-  .languages-box.expanded .lang-list { max-height: 300px; margin-top: 12px; }
-  .languages-box.expanded { max-height: 300px; }
+  .languages-box.expanded { max-height: 320px; }
+  .languages-box.expanded .lang-list { margin-top: 12px; }
   #lang-title-desktop { display: none; }
+
+  /* Projects box */
+  .project-box {
+    padding: 14px 16px;
+    max-height: 60px;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-box .mobile-header { display: flex; }
+  .project-box.expanded { max-height: 1200px; }
+  .project-box.expanded .project-body { margin-top: 12px; }
+  #projects-title-desktop { display: none; }
+  /* Hide project-content desktop title wrapper on mobile */
+  .project-box .project-content { display: none; }
+  .project-box.expanded .project-content { display: none; }
+  /* project-body overflow: let the box scroll as a whole on mobile */
+  .project-box .project-body {
+    overflow-y: visible;
+    margin-right: 0;
+    padding-right: 0;
+    flex: unset;
+  }
+  .project-box .projects-list {
+    overflow-y: visible;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .project-name { font-size: 11px; }
+  .project-desc { font-size: 10px; }
+  .project-btn  { font-size: 9px; padding: 2px 6px; }
+  .project-lang { font-size: 9px; }
 
   /* Timezone box mobile — compact horizontal layout */
   .timezone-box {
@@ -874,13 +916,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .timezone-label      { font-size: 9px; }
   .timezone-zone       { font-size: 7px; }
 
-  /* Projects box */
-  .project-box  { padding: 14px; }
-  .project-name { font-size: 11px; }
-  .project-desc { font-size: 10px; }
-  .project-btn  { font-size: 9px; padding: 2px 6px; }
-  .project-lang { font-size: 9px; }
-
   /* Certs box */
   .certs-box {
     padding: 14px 16px;
@@ -888,7 +923,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     overflow: hidden;
     transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .certs-box.expanded { max-height: 600px; }
+  .certs-box.expanded { max-height: 1400px; }
   .certs-box .mobile-header { display: flex; }
   .certs-box .certs-content { margin-top: 12px; }
   #certs-title-desktop { display: none; }
