@@ -782,6 +782,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-template-rows: auto;
     gap: 8px;
   }
+
+  /* Override all grid placements — use order instead */
   .welcome-box, .about-box, .contact-box,
   .project-box, .timezone-box, .languages-box,
   .please-box, .certs-box {
@@ -789,85 +791,68 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     grid-row: auto;
   }
 
+  /* Mobile order:
+     1. Welcome
+     2. About Me
+     3. Let's Connect
+     4. Projects
+     5. Hire Me
+     6. Certifications
+     7. Languages
+     8. Timezone  ← last, just above footer
+  */
+  .welcome-box   { order: 1; }
+  .about-box     { order: 2; }
+  .contact-box   { order: 3; }
+  .project-box   { order: 4; }
+  .please-box    { order: 5; }
+  .certs-box     { order: 6; }
+  .languages-box { order: 7; }
+  .timezone-box  { order: 8; }
+
   /* Mobile box sizing */
   .welcome-box   { min-height: 120px; }
   .about-box,
   .contact-box,
   .project-box,
-  .timezone-box,
   .languages-box,
   .certs-box     { min-height: auto; }
   .please-box    { min-height: 48px; }
+  .timezone-box  { min-height: auto; }
 
   /* Welcome box mobile */
   .typewriter { font-size: 14px; }
   .welcome-image-container { width: 70px; height: 70px; }
 
-  /* ── MOBILE ACCORDION BASE ──
-     The box collapses to show only the mobile-header (title + chevron).
-     Content siblings are hidden with display:none so no pixel bleeds through.
-     On .expanded the content reappears and the box grows naturally.
-  */
-
   /* About box */
-  .about-box {
-    padding: 14px 16px;
-  }
-  #about-title-desktop  { display: none; }
+  .about-box { padding: 14px 16px; }
+  #about-title-desktop { display: none; }
   .about-box .mobile-header { display: flex; }
-  .about-box .about-content {
-    display: none;
-  }
-  .about-box.expanded .about-content {
-    display: flex;
-    margin-top: 12px;
-  }
+  .about-box .about-content { display: none; }
+  .about-box.expanded .about-content { display: flex; margin-top: 12px; }
 
   /* Contact box */
   .contact-box .contact-content { display: none !important; }
-  .contact-box {
-    padding: 14px 16px;
-  }
+  .contact-box { padding: 14px 16px; }
   .contact-box .mobile-header { display: flex; }
-  .contact-box .contact-body {
-    display: none;
-  }
-  .contact-box.expanded .contact-body {
-    display: flex;
-    margin-top: 12px;
-  }
-  .contact-box .social-icons {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    width: 100%;
-  }
-  .contact-box .social-icon { width: 100%; height: 44px; border-radius: 8px; }
+  .contact-box .contact-body { display: none; }
+  .contact-box.expanded .contact-body { display: flex; margin-top: 12px; }
+  .contact-box .social-icons { flex-direction: column; align-items: stretch; gap: 8px; width: 100%; }
+  .contact-box .social-icon  { width: 100%; height: 44px; border-radius: 8px; }
 
   /* Languages box */
-  .languages-box {
-    padding: 14px 16px;
-  }
+  .languages-box { padding: 14px 16px; }
   .languages-box .mobile-header { display: flex; }
   #lang-title-desktop { display: none; }
-  .languages-box .lang-list {
-    display: none;
-  }
-  .languages-box.expanded .lang-list {
-    display: flex;
-    margin-top: 12px;
-  }
+  .languages-box .lang-list { display: none; }
+  .languages-box.expanded .lang-list { display: flex; margin-top: 12px; }
 
-  /* Projects box — hide desktop title wrapper + project-body */
-  .project-box {
-    padding: 14px 16px;
-  }
+  /* Projects box */
+  .project-box { padding: 14px 16px; }
   .project-box .mobile-header { display: flex; }
   .project-box .project-content { display: none; }
   #projects-title-desktop { display: none; }
-  .project-box .project-body {
-    display: none;
-  }
+  .project-box .project-body { display: none; }
   .project-box.expanded .project-body {
     display: flex;
     flex-direction: column;
@@ -876,18 +861,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     padding-right: 0;
     margin-top: 12px;
   }
-  .project-box .projects-list {
-    overflow-y: visible;
-    margin-right: 0;
-    padding-right: 0;
-  }
+  .project-box .projects-list { overflow-y: visible; margin-right: 0; padding-right: 0; }
   .project-name { font-size: 11px; }
   .project-desc { font-size: 10px; }
   .project-btn  { font-size: 9px; padding: 2px 6px; }
   .project-lang { font-size: 9px; }
 
   /* Timezone box mobile */
-  .timezone-box { padding: 10px 14px; }
+  .timezone-box        { padding: 10px 14px; }
   .timezone-time       { font-size: 16px; }
   .timezone-date-day   { font-size: 22px; }
   .timezone-date-month { font-size: 8px; }
@@ -896,18 +877,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .timezone-zone       { font-size: 7px; }
 
   /* Certs box */
-  .certs-box {
-    padding: 14px 16px;
-  }
+  .certs-box { padding: 14px 16px; }
   .certs-box .mobile-header { display: flex; }
   #certs-title-desktop { display: none; }
-  .certs-box .certs-content {
-    display: none;
-  }
-  .certs-box.expanded .certs-content {
-    display: flex;
-    margin-top: 12px;
-  }
+  .certs-box .certs-content { display: none; }
+  .certs-box.expanded .certs-content { display: flex; margin-top: 12px; }
 
   .cert-name        { font-size: 9.5px; }
   .cert-issuer-name { font-size: 8px; }
