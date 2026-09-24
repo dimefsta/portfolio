@@ -51,9 +51,10 @@ portfolio/
 ├── robots.txt          # Search engine directives
 ├── site.webmanifest    # PWA manifest
 └── assets/
-    ├── welcomebox.png  # Profile photo / OG image
+    ├── avatar.png      # Optimized avatar profile photo
+    ├── welcomebox.png  # Open Graph & Twitter share preview image
     ├── favicon.ico     # Favicon
-    ├── esyd .jpeg      # UCERT certificate (ΕΣΥΔ)
+    ├── esyd.jpeg       # UCERT certificate (ΕΣΥΔ)
     └── eopep.jpeg      # UCERT certificate (ΕΟΠΠΕΠ)
 ```
 

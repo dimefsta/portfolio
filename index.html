@@ -49,6 +49,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://www.just-die.com/#person",
       "name": "Dimitris Efstathiou",
       "alternateName": "Just_Di.E",
       "url": "https://www.just-die.com",
@@ -60,6 +61,11 @@
         "addressLocality": "Athens",
         "addressCountry": "GR"
       },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Athens University of Economics and Business (ASOEE)"
+      },
+      "knowsLanguage": ["el", "en", "fr", "es"],
       "sameAs": [
         "https://github.com/dimefsta",
         "https://www.linkedin.com/in/dimitris-efstathiou-97a496344",
@@ -82,7 +88,7 @@
           <div class="welcome-content">
             <div class="welcome-text">
               <p class="typewriter" id="line1">Hi,</p>
-              <p class="typewriter" id="line2">I am <span class="bold-name">Just</span> <span class="bold-name">Di</span>mitris <span class="bold-name">E</span>fstathiou,</p>
+              <h1 class="typewriter hero-title" id="line2">I am <span class="bold-name">Just</span> <span class="bold-name">Di</span>mitris <span class="bold-name">E</span>fstathiou,</h1>
               <p class="typewriter" id="line3">an entrepreneur by day</p>
               <p class="typewriter" id="line4">and a <span class="job">software developer</span> by night.</p>
             </div>
@@ -102,11 +108,7 @@
             </div>
             <span class="bento-tap-hint">Tap to read ↗</span>
           </div>
-          <div class="mobile-header" style="display:none">
-            <h3 class="box-title">About Me</h3>
-            <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
-          </div>
-          <h3 class="box-title" id="about-title-desktop">About Me</h3>
+          <h2 class="box-title" id="about-title-desktop">About Me</h2>
           <div class="about-content" id="about-content">
             <p class="about-bio">Based in Athens 🇬🇷. Started Computer Science at ASOEE, now building my dev path through real projects. I learn fast and ship even faster.</p>
             <p class="about-bio" style="margin-top:8px;">Open to <strong>junior roles</strong>, <strong>freelance</strong> &amp; <strong>collaborations</strong>.</p>
@@ -134,12 +136,8 @@
 
         <!-- CONTACT BOX -->
         <div class="box contact-box" id="contact-box">
-          <div class="mobile-header" style="display:none">
-            <h3 class="box-title">Let's Connect</h3>
-            <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
-          </div>
           <div class="contact-content" id="contact-desktop-title">
-            <h3 class="box-title">Let's Connect</h3>
+            <h2 class="box-title">Let's Connect</h2>
             <p class="contact-sub">Open to collaborations &amp; opportunities</p>
           </div>
           <div class="contact-body" id="contact-body">
@@ -170,12 +168,8 @@
             <div class="bento-tile-sub">Apps, Games &amp; Canvas</div>
             <span class="bento-tap-hint">Tap to explore ↗</span>
           </div>
-          <div class="mobile-header" style="display:none">
-            <h3 class="box-title">Projects</h3>
-            <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
-          </div>
           <div class="project-content">
-            <h3 class="box-title" id="projects-title-desktop">Projects</h3>
+            <h2 class="box-title" id="projects-title-desktop">Projects</h2>
           </div>
           <div class="project-body" id="project-body">
             <div class="projects-list" id="projects-list">
@@ -233,12 +227,8 @@
             <div class="bento-tile-sub">Google, Meta, FCC</div>
             <span class="bento-tap-hint">View All 16 ↗</span>
           </div>
-          <div class="mobile-header" style="display:none">
-            <h3 class="box-title">Certifications <span class="cert-count" id="cert-count-mobile"></span></h3>
-            <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
-          </div>
           <div class="certs-content" id="certs-content">
-            <h3 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count" id="cert-count-desktop"></span></h3>
+            <h2 class="box-title" id="certs-title-desktop">Certifications <span class="cert-count" id="cert-count-desktop"></span></h2>
             <div class="certs-list" id="certs-list">
               <a href="https://www.coursera.org/account/accomplishments/specialization/WZHNQSVZR6WV" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">IT Support Professional</span><span class="cert-issuer-name">Google · Jan 2025</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://www.credly.com/badges/4e831c8e-7855-41cb-afbf-4173fd2b26ef/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo workearly">WE</div><div class="cert-info"><span class="cert-name">SQL Fundamentals</span><span class="cert-issuer-name">Workearly · Sep 2025</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
@@ -253,8 +243,8 @@
               <a href="https://www.credly.com/badges/cb63da41-f402-4848-b8cc-88a52ed347b6/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo sap">SAP</div><div class="cert-info"><span class="cert-name">SAP S/4HANA Retail</span><span class="cert-issuer-name">SAP · Sep 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://www.credly.com/badges/4f183a9b-ad4c-47c1-9102-7d11c1f92b57/linked_in_profile" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo cisco">IoT</div><div class="cert-info"><span class="cert-name">Introduction to IoT</span><span class="cert-issuer-name">Cisco · Sep 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
               <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Fundamentals of Digital Marketing</span><span class="cert-issuer-name">Google Digital Garage · Aug 2023</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
-              <button class="cert-card cert-clickable" data-cert-src="https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/esyd%20.jpeg" data-cert-title="Standard Office User — ΕΣΥΔ" aria-label="View Standard Office User ΕΣΥΔ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΣΥΔ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
-              <button class="cert-card cert-clickable" data-cert-src="https://raw.githubusercontent.com/dimefsta/portfolio/main/assets/eopep.jpeg" data-cert-title="Standard Office User — ΕΟΠΠΕΠ" aria-label="View Standard Office User ΕΟΠΠΕΠ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
+              <button class="cert-card cert-clickable" data-cert-src="assets/esyd.jpeg" data-cert-title="Standard Office User — ΕΣΥΔ" aria-label="View Standard Office User ΕΣΥΔ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΣΥΔ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
+              <button class="cert-card cert-clickable" data-cert-src="assets/eopep.jpeg" data-cert-title="Standard Office User — ΕΟΠΠΕΠ" aria-label="View Standard Office User ΕΟΠΠΕΠ certificate image"><div class="cert-logo ucert">U</div><div class="cert-info"><span class="cert-name">Standard Office User (ΕΟΠΠΕΠ)</span><span class="cert-issuer-name">UCERT · May 2023</span></div><span class="cert-arrow" aria-hidden="true">🖼️</span></button>
               <a href="https://learndigital.withgoogle.com/digitalgarage" target="_blank" rel="noopener noreferrer" class="cert-card"><div class="cert-logo google">G</div><div class="cert-info"><span class="cert-name">Online Marketing in Tourism</span><span class="cert-issuer-name">Google Digital Garage · Feb 2018</span></div><span class="cert-arrow" aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -269,7 +259,7 @@
               <div class="timezone-row">
                 <span class="timezone-time" id="timezone-time">--:--</span>
               </div>
-              <div class="timezone-zone">EEST (UTC+3)</div>
+              <div class="timezone-zone" id="timezone-zone">--</div>
             </div>
             <div class="timezone-date-block">
               <span class="timezone-date-day" id="timezone-date-day">--</span>
@@ -290,11 +280,7 @@
             <div class="bento-tile-sub">Greek, English, French, Spanish</div>
             <span class="bento-tap-hint">View Fluency ↗</span>
           </div>
-          <div class="mobile-header" style="display:none">
-            <h3 class="box-title">Languages</h3>
-            <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
-          </div>
-          <h3 class="box-title" id="lang-title-desktop">Languages</h3>
+          <h2 class="box-title" id="lang-title-desktop">Languages</h2>
           <div class="lang-list" id="lang-list">
             <div class="lang-item"><span class="lang-flag" aria-hidden="true">🇬🇷</span><span class="lang-name">Greek</span><span class="lang-level">Native</span><span class="lang-badge native">Native</span></div>
             <div class="lang-item"><span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-name">English</span><span class="lang-level">Professional</span><span class="lang-badge">Duolingo 130/130</span></div>
@@ -329,7 +315,7 @@
           <div class="bento-sheet-pill"></div>
         </div>
         <div class="bento-sheet-header">
-          <h3 class="bento-sheet-title" id="bento-sheet-title"></h3>
+          <h2 class="bento-sheet-title" id="bento-sheet-title"></h2>
           <button class="bento-sheet-close" id="bento-sheet-close" aria-label="Close details">✕</button>
         </div>
         <div class="bento-sheet-body" id="bento-sheet-body"></div>
