@@ -35,8 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var el = document.getElementById(item.id);
     if (!el) return;
     setTimeout(function () {
-      el.style.transition = 'opacity 600ms ease';
+      el.style.transition = 'opacity 600ms ease, transform 600ms ease';
       el.style.opacity    = '1';
+      el.style.transform  = 'translateY(0)';
     }, item.delay);
   });
 
@@ -90,127 +91,138 @@ function openCertModal(src, title) {
   var modal   = document.getElementById('cert-modal');
   var img     = document.getElementById('cert-modal-img');
   var loading = document.getElementById('cert-modal-loading');
+  if (!modal) return;
   img.style.display     = 'none';
   loading.style.display = 'block';
   loading.textContent   = 'Loading...';
   img.src               = '';
   document.getElementById('cert-modal-title').textContent = title;
   img.alt = title;
+  modal.classList.add('open');
   modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
-  document.querySelector('.cert-modal-close').focus();
+  var closeBtn = modal.querySelector('.cert-modal-close');
+  if (closeBtn) closeBtn.focus();
   img.onload  = function () { loading.style.display = 'none'; img.style.display = 'block'; };
   img.onerror = function () { loading.textContent   = 'Could not load image.'; };
   img.src = src;
 }
 
 function closeCertModal() {
-  document.getElementById('cert-modal').classList.remove('active');
+  var modal = document.getElementById('cert-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
   document.body.style.overflow = '';
 }
 
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') closeCertModal();
+document.addEventListener('DOMContentLoaded', function () {
+  var modal = document.getElementById('cert-modal');
+  if (modal) {
+    var closeBtn = modal.querySelector('.cert-modal-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeCertModal);
+    }
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeCertModal();
+    });
+  }
 });
 
 /* =====================
-   MOBILE ACCORDION
-   ─────────────────────
-   Breakpoint matches CSS: 600px.
-   Listeners are attached ONCE per header (data-mobileListenerAttached).
-   On resize to desktop → remove .expanded from all boxes.
-   On resize to mobile  → restore mobile-header visibility.
+   BENTO SHEET MODAL (MOBILE EXPANSION)
    ===================== */
-var MOBILE_BP = 600;
-var _resizeTimer;
+function openBentoSheet(type) {
+  var modal   = document.getElementById('bento-sheet-modal');
+  var titleEl = document.getElementById('bento-sheet-title');
+  var bodyEl  = document.getElementById('bento-sheet-body');
+  if (!modal || !titleEl || !bodyEl) return;
 
-/* All accordion box descriptors */
-var BOXES = [
-  { boxSel: '.about-box',     headerSel: '.about-box .mobile-header' },
-  { boxSel: '.contact-box',   headerSel: '.contact-box .mobile-header' },
-  { boxSel: '.project-box',   headerSel: '.project-box .mobile-header' },
-  { boxSel: '.languages-box', headerSel: '.languages-box .mobile-header' },
-  { boxSel: '.certs-box',     headerSel: '.certs-box .mobile-header' },
-];
+  var title = '';
+  var contentHtml = '';
 
-/* Desktop-only title IDs that should hide on mobile */
-var DESKTOP_TITLE_IDS = [
-  'about-title-desktop',
-  'lang-title-desktop',
-  'certs-title-desktop',
-  'projects-title-desktop',
-  'contact-desktop-title',
-];
-
-function isMobile() {
-  return window.innerWidth <= MOBILE_BP;
-}
-
-function toggleBox(box, header) {
-  var expanded = box.classList.toggle('expanded');
-  header.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-}
-
-function initMobile() {
-  var mobile = isMobile();
-
-  /* Show / hide desktop titles */
-  DESKTOP_TITLE_IDS.forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) el.style.display = mobile ? 'none' : '';
-  });
-
-  /* Show / hide mobile headers */
-  BOXES.forEach(function (desc) {
-    var header = document.querySelector(desc.headerSel);
-    if (header) header.style.display = mobile ? 'flex' : 'none';
-  });
-
-  if (!mobile) {
-    /* DESKTOP RESET: remove expanded class so CSS shows all content normally */
-    BOXES.forEach(function (desc) {
-      var box = document.querySelector(desc.boxSel);
-      if (box) {
-        box.classList.remove('expanded');
-      }
-    });
-    return;
+  if (type === 'about') {
+    title = 'About Me';
+    var aboutContent = document.getElementById('about-content');
+    contentHtml = aboutContent ? aboutContent.innerHTML : '';
+  } else if (type === 'projects') {
+    title = 'Projects (7)';
+    var projBody = document.getElementById('project-body');
+    contentHtml = projBody ? projBody.innerHTML : '';
+  } else if (type === 'certs') {
+    title = 'Certifications (16)';
+    var certsList = document.getElementById('certs-content');
+    contentHtml = certsList ? certsList.innerHTML : '';
+  } else if (type === 'languages') {
+    title = 'Languages';
+    var langList = document.getElementById('lang-list');
+    contentHtml = langList ? langList.innerHTML : '';
+  } else if (type === 'welcome') {
+    title = 'Dimitris Efstathiou';
+    var welcomeContent = document.querySelector('.welcome-content');
+    contentHtml = welcomeContent ? welcomeContent.innerHTML : '';
   }
 
-  /* MOBILE: attach click listeners (only once per header) */
-  BOXES.forEach(function (desc) {
-    var box    = document.querySelector(desc.boxSel);
-    var header = document.querySelector(desc.headerSel);
-    if (!box || !header) return;
+  titleEl.textContent = title;
+  bodyEl.innerHTML = contentHtml;
 
-    /* Attach listener only once */
-    if (header.dataset.mobileListenerAttached === '1') return;
-    header.dataset.mobileListenerAttached = '1';
-
-    header.setAttribute('role',         'button');
-    header.setAttribute('tabindex',     '0');
-    header.setAttribute('aria-expanded','false');
-
-    header.addEventListener('click', function (e) {
-      /* Guard: only act on mobile — ignore stale events on desktop */
-      if (!isMobile()) return;
-      e.stopPropagation();
-      toggleBox(box, header);
+  // Re-attach cert-clickable triggers if certificates were loaded in the sheet
+  if (type === 'certs') {
+    bodyEl.querySelectorAll('.cert-clickable[data-cert-src]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openCertModal(btn.dataset.certSrc, btn.dataset.certTitle);
+      });
     });
+  }
 
-    header.addEventListener('keydown', function (e) {
-      if (!isMobile()) return;
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleBox(box, header);
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBentoSheet() {
+  var modal = document.getElementById('bento-sheet-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Mobile Bento tile tap listeners
+  document.querySelectorAll('.box[data-bento-expand]').forEach(function (box) {
+    box.addEventListener('click', function (e) {
+      if (window.innerWidth > 600) return; // Only active on mobile
+      
+      // If user tapped a direct interactive element inside the box, let it execute
+      var clickedLink = e.target.closest('a');
+      var clickedBtn  = e.target.closest('button');
+      if ((clickedLink && clickedLink !== box) || (clickedBtn && clickedBtn !== box)) {
+        return;
+      }
+      
+      var type = box.getAttribute('data-bento-expand');
+      if (type) {
+        openBentoSheet(type);
       }
     });
   });
-}
 
-document.addEventListener('DOMContentLoaded', initMobile);
+  // Close sheet handlers
+  var closeBtn = document.getElementById('bento-sheet-close');
+  var backdrop = document.getElementById('bento-sheet-backdrop');
+  if (closeBtn) closeBtn.addEventListener('click', closeBentoSheet);
+  if (backdrop) backdrop.addEventListener('click', closeBentoSheet);
+});
 
-window.addEventListener('resize', function () {
-  clearTimeout(_resizeTimer);
-  _resizeTimer = setTimeout(initMobile, 150);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeCertModal();
+    closeBentoSheet();
+  }
 });

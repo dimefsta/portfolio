@@ -35,7 +35,7 @@
     <link rel="apple-touch-icon" href="assets/favicon.ico" />
 
     <!-- Performance: Preload hero image (LCP) -->
-    <link rel="preload" as="image" href="assets/welcomebox.png" />
+    <link rel="preload" as="image" href="assets/avatar.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,7 +74,7 @@
     <!-- Skip to main content (accessibility) -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <div class="container">
 
         <!-- WELCOME BOX -->
@@ -93,7 +93,15 @@
         </div>
 
         <!-- ABOUT BOX -->
-        <div class="box about-box" id="about-box">
+        <div class="box about-box" id="about-box" data-bento-expand="about">
+          <div class="bento-tile-preview bento-preview-about">
+            <span class="bento-tile-tag">👤 Bio &amp; Stack</span>
+            <div class="bento-tile-stat">CS @ ASOEE</div>
+            <div class="bento-mini-tags">
+              <span>JavaScript</span><span>React</span><span>Node</span>
+            </div>
+            <span class="bento-tap-hint">Tap to read ↗</span>
+          </div>
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">About Me</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -154,7 +162,14 @@
         </div>
 
         <!-- PROJECTS BOX -->
-        <div class="box project-box" id="project-box">
+        <div class="box project-box" id="project-box" data-bento-expand="projects">
+          <div class="bento-tile-preview bento-preview-projects">
+            <span class="bento-tile-tag">💻 Portfolio</span>
+            <div class="bento-tile-number">7</div>
+            <div class="bento-tile-stat">Projects</div>
+            <div class="bento-tile-sub">Apps, Games &amp; Canvas</div>
+            <span class="bento-tap-hint">Tap to explore ↗</span>
+          </div>
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Projects</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -210,7 +225,14 @@
         </a>
 
         <!-- CERTIFICATIONS BOX -->
-        <div class="box certs-box" id="certs-box">
+        <div class="box certs-box" id="certs-box" data-bento-expand="certs">
+          <div class="bento-tile-preview bento-preview-certs">
+            <span class="bento-tile-tag">📜 Credentials</span>
+            <div class="bento-tile-number">16</div>
+            <div class="bento-tile-stat">Certificates</div>
+            <div class="bento-tile-sub">Google, Meta, FCC</div>
+            <span class="bento-tap-hint">View All 16 ↗</span>
+          </div>
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Certifications <span class="cert-count" id="cert-count-mobile"></span></h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -258,7 +280,16 @@
         </div>
 
         <!-- LANGUAGES BOX -->
-        <div class="box languages-box" id="languages-box">
+        <div class="box languages-box" id="languages-box" data-bento-expand="languages">
+          <div class="bento-tile-preview bento-preview-languages">
+            <span class="bento-tile-tag">🗣️ Languages</span>
+            <div class="bento-flags-row">
+              <span>🇬🇷</span><span>🇬🇧</span><span>🇫🇷</span><span>🇪🇸</span>
+            </div>
+            <div class="bento-tile-stat">4 Languages</div>
+            <div class="bento-tile-sub">Greek, English, French, Spanish</div>
+            <span class="bento-tap-hint">View Fluency ↗</span>
+          </div>
           <div class="mobile-header" style="display:none">
             <h3 class="box-title">Languages</h3>
             <span class="mobile-chevron" aria-hidden="true">&#8964;</span>
@@ -281,12 +312,27 @@
     </footer>
 
     <!-- CERT MODAL -->
-    <div class="cert-modal" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <div class="cert-modal" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title" aria-hidden="true">
       <div class="cert-modal-inner">
         <button class="cert-modal-close" aria-label="Close certificate modal">×</button>
         <div class="cert-modal-loading" id="cert-modal-loading">Loading...</div>
         <img class="cert-modal-img" id="cert-modal-img" src="" alt="Certificate" />
         <p class="cert-modal-title" id="cert-modal-title"></p>
+      </div>
+    </div>
+
+    <!-- BENTO DETAIL BOTTOM SHEET (MOBILE) -->
+    <div class="bento-sheet-modal" id="bento-sheet-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="bento-sheet-backdrop" id="bento-sheet-backdrop"></div>
+      <div class="bento-sheet-panel">
+        <div class="bento-sheet-pill-bar">
+          <div class="bento-sheet-pill"></div>
+        </div>
+        <div class="bento-sheet-header">
+          <h3 class="bento-sheet-title" id="bento-sheet-title"></h3>
+          <button class="bento-sheet-close" id="bento-sheet-close" aria-label="Close details">✕</button>
+        </div>
+        <div class="bento-sheet-body" id="bento-sheet-body"></div>
       </div>
     </div>
 
