@@ -248,7 +248,7 @@ function openBentoSheet(type, triggerEl) {
     title = 'Projects (7)';
     sourceEl = document.getElementById('project-body');
   } else if (type === 'certs') {
-    title = 'Certifications (16)';
+    title = 'Certifications (17)';
     sourceEl = document.getElementById('certs-content');
   } else if (type === 'languages') {
     title = 'Languages';
