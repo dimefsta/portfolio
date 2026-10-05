@@ -695,6 +695,7 @@ h1.hero-title {
   background: var(--surface);
   border: 1px solid var(--border);
 }
+.cert-logo.columbia  { background: #1b365d; border-color: rgba(117,170,219,0.35); color: #75aadb; font-size: 9.5px; font-weight: 800; }
 .cert-logo.google    { background: #4285f4; border-color: transparent; }
 .cert-logo.meta      { background: #0866ff; border-color: transparent; }
 .cert-logo.workearly { background: #1e3a5f; font-size: 9px; border-color: transparent; }
